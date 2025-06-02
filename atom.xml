@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Agent的个人博客</title>
-  <icon>http://tow-086.github.io.com/img/avatar.png</icon>
+  <icon>http://tow-086.github.io/img/avatar.png</icon>
   
-  <link href="http://tow-086.github.io.com/atom.xml" rel="self"/>
+  <link href="http://tow-086.github.io/atom.xml" rel="self"/>
   
-  <link href="http://tow-086.github.io.com/"/>
+  <link href="http://tow-086.github.io/"/>
   <updated>2025-04-03T14:43:28.250Z</updated>
-  <id>http://tow-086.github.io.com/</id>
+  <id>http://tow-086.github.io/</id>
   
   <author>
     <name>Agent</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title></title>
-    <link href="http://tow-086.github.io.com/2025/06/02/RSA%E7%B3%BB%E5%88%97/"/>
-    <id>http://tow-086.github.io.com/2025/06/02/RSA%E7%B3%BB%E5%88%97/</id>
+    <link href="http://tow-086.github.io/2025/06/02/RSA%E7%B3%BB%E5%88%97/"/>
+    <id>http://tow-086.github.io/2025/06/02/RSA%E7%B3%BB%E5%88%97/</id>
     <published>2025-06-02T07:25:24.420Z</published>
     <updated>2025-04-03T14:43:28.250Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://tow-086.github.io.com/2025/06/01/hello-world/"/>
-    <id>http://tow-086.github.io.com/2025/06/01/hello-world/</id>
+    <link href="http://tow-086.github.io/2025/06/01/hello-world/"/>
+    <id>http://tow-086.github.io/2025/06/01/hello-world/</id>
     <published>2025-06-01T15:11:59.612Z</published>
     <updated>2025-06-02T06:40:48.672Z</updated>
     
@@ -56,14 +56,14 @@
     
     
     
-    <category term="Crypto" scheme="http://tow-086.github.io.com/tags/Crypto/"/>
+    <category term="Crypto" scheme="http://tow-086.github.io/tags/Crypto/"/>
     
   </entry>
   
   <entry>
     <title>SHCTF2024</title>
-    <link href="http://tow-086.github.io.com/2024/10/15/SHCTF2024/"/>
-    <id>http://tow-086.github.io.com/2024/10/15/SHCTF2024/</id>
+    <link href="http://tow-086.github.io/2024/10/15/SHCTF2024/"/>
+    <id>http://tow-086.github.io/2024/10/15/SHCTF2024/</id>
     <published>2024-10-15T10:41:42.046Z</published>
     <updated>2025-06-02T06:41:01.634Z</updated>
     
@@ -78,10 +78,10 @@
     
     
     
-    <category term="Crypto" scheme="http://tow-086.github.io.com/categories/Crypto/"/>
+    <category term="Crypto" scheme="http://tow-086.github.io/categories/Crypto/"/>
     
     
-    <category term="Crypto" scheme="http://tow-086.github.io.com/tags/Crypto/"/>
+    <category term="Crypto" scheme="http://tow-086.github.io/tags/Crypto/"/>
     
   </entry>
   
