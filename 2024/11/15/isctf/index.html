@@ -1,0 +1,695 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Agent">
+  <meta name="keywords" content="Crypto,Reverse,算法,编程技术,日常">
+  
+    <meta name="description" content="isctf 密码wp位（Bit）是最小的数据单位，字节（Byte）由 8 个位组成，字符则是通过字节表示的 我和小蓝鲨的秘密（rsa图片加密解密涉及rsa的图片加密解密 原题： 123456789101112131415161718192021222324252627282930from PIL import Imagefrom Crypto.Util.number import bytes_to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024isCTF">
+<meta property="og:url" content="http://tow-086.github.io/2024/11/15/isctf/index.html">
+<meta property="og:site_name" content="Agent的个人博客">
+<meta property="og:description" content="isctf 密码wp位（Bit）是最小的数据单位，字节（Byte）由 8 个位组成，字符则是通过字节表示的 我和小蓝鲨的秘密（rsa图片加密解密涉及rsa的图片加密解密 原题： 123456789101112131415161718192021222324252627282930from PIL import Imagefrom Crypto.Util.number import bytes_to">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://tow-086.github.io/A8CED196128B7720AA3C9C771B1D0E6D.jpg">
+<meta property="article:published_time" content="2024-11-15T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-06T04:01:27.822Z">
+<meta property="article:author" content="Agent">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="密码">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://tow-086.github.io/A8CED196128B7720AA3C9C771B1D0E6D.jpg">
+  
+  
+  
+  <title>2024isCTF - Agent的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tow-086.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Agent的个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024isCTF"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-15 12:00" pubdate>
+          2024年11月15日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024isCTF</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="isctf-密码wp"><a href="#isctf-密码wp" class="headerlink" title="isctf 密码wp"></a>isctf 密码wp</h1><p><strong>位（Bit）是最小的数据单位，字节（Byte）由 8 个位组成，字符则是通过字节表示的</strong></p>
+<h2 id="我和小蓝鲨的秘密（rsa图片加密解密"><a href="#我和小蓝鲨的秘密（rsa图片加密解密" class="headerlink" title="我和小蓝鲨的秘密（rsa图片加密解密"></a>我和小蓝鲨的秘密（rsa图片加密解密</h2><p>涉及rsa的图片加密解密</p>
+<p>原题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> bytes_to_long, long_to_bytes<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>n = <span class="hljs-number">29869349657224745144762606999</span><br>e = <span class="hljs-number">65537</span><br><br>original_image_path = <span class="hljs-string">&quot;flag.jpg&quot;</span><br>img = Image.<span class="hljs-built_in">open</span>(original_image_path)<br>img = img.convert(<span class="hljs-string">&quot;RGB&quot;</span>)        <span class="hljs-comment">#将图像转换为 RGB 格式，确保每个像素包含红、绿、蓝三个通道。</span><br><br><span class="hljs-comment">#将图像转换为一个 NumPy 数组，其中 h 和 w 分别代表图像的高度和宽度（像素的行数和列数），_ 是表示颜色通道数，这里应该是 3，因为是 RGB 图像。后续代码也写出是3了</span><br>img_array = np.array(img)<br>h, w, _ = img_array.shape<br><br><span class="hljs-comment">#初始化一个空的 NumPy 数组，用于存储加密后的图像数据。数组的形状是 (h, w, 3)，即和原图像一样的尺寸和颜色通道。dtype=object 表示该数组中的元素将是任意类型的对象，这里存储的是加密后的整数。</span><br>encrypted_array = np.zeros((h, w, <span class="hljs-number">3</span>), dtype=<span class="hljs-built_in">object</span>)<br><br><span class="hljs-comment">#遍历像素点</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>        <span class="hljs-comment">#提取当前像素的红、绿、蓝通道的值（每个值范围通常是 0 到 255）</span><br>        r, g, b = <span class="hljs-built_in">int</span>(img_array[i, j, <span class="hljs-number">0</span>]), <span class="hljs-built_in">int</span>(img_array[i, j, <span class="hljs-number">1</span>]), <span class="hljs-built_in">int</span>(img_array[i, j, <span class="hljs-number">2</span>])<br>		<span class="hljs-comment">#rsa加密</span><br>        encrypted_array[i, j, <span class="hljs-number">0</span>] = <span class="hljs-built_in">pow</span>(r, e, n)<br>        encrypted_array[i, j, <span class="hljs-number">1</span>] = <span class="hljs-built_in">pow</span>(g, e, n)<br>        encrypted_array[i, j, <span class="hljs-number">2</span>] = <span class="hljs-built_in">pow</span>(b, e, n)<br><br>np.save(<span class="hljs-string">&quot;encrypted_image.npy&quot;</span>, encrypted_array)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;图片已加密并保存为 encrypted_image.npy&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>题解：d可以直接分解n然后得到p和q再得到d，代码没写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.PublicKey <span class="hljs-keyword">import</span> RSA<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><br><span class="hljs-comment"># RSA私钥中的 d 和 n</span><br>d = <span class="hljs-number">114529273505388659836222611033</span> <br>n = <span class="hljs-number">29869349657224745144762606999</span><br>e = <span class="hljs-number">65537</span> <br><br><span class="hljs-comment"># 从文件读取加密后的图像数据</span><br><span class="hljs-comment">#此选项允许加载含有 Python 对象的 .npy 文件，因为加密图像数据的类型可能是 object（例如存储的是整数的加密结果）</span><br>encrypted_array = np.load(<span class="hljs-string">r&quot;E:\edge下载\CTF\isctf\我和小蓝鲨的秘密\我和小蓝鲨的秘密\encrypted_image.npy&quot;</span>, allow_pickle=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment">#高、宽和3（上面说了，不再赘述）</span><br>h, w, _ = encrypted_array.shape<br><span class="hljs-comment">#用于后续存放解密后的数据</span><br>decrypted_list = []<br><br><span class="hljs-comment"># 对每个像素进行解密</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(h):<br>    row = []<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(w):<br>        pixel = []<br>        <span class="hljs-keyword">for</span> channel <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):  <span class="hljs-comment"># 红、绿、蓝三个通道</span><br>            <span class="hljs-comment">#获取加密数据</span><br>            encrypted_value = encrypted_array[i, j, channel]<br>            <span class="hljs-comment">#对加密数据进行解密</span><br>            decrypted_value = <span class="hljs-built_in">pow</span>(encrypted_value, d, n)  <span class="hljs-comment"># 使用RSA私钥解密</span><br>            <span class="hljs-comment">#讲解秘数据加入到decrypted_list中，用于后续转为图片</span><br>            pixel.append(decrypted_value)<br>        row.append(pixel)<br>    decrypted_list.append(row)<br><br><span class="hljs-comment"># 将解密后的像素值转换为 numpy 数组</span><br>decrypted_array = np.array(decrypted_list, dtype=<span class="hljs-built_in">object</span>)<br><br><span class="hljs-comment"># 将解密后的数据转换为图像</span><br>decrypted_array = np.clip(decrypted_array, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>).astype(np.uint8)  <span class="hljs-comment"># 确保像素值在有效范围内</span><br>decrypted_img = Image.fromarray(decrypted_array)<br><br><span class="hljs-comment"># 保存解密后的图片</span><br>decrypted_img.save(<span class="hljs-string">&quot;decrypted_image.jpg&quot;</span>)<br>decrypted_img.show()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;图片已解密并保存为 decrypted_image.jpg&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>![屏幕截图 2024-11-10 130024](屏幕截图 2024-11-10 130024.png)</p>
+<h2 id="ChaCha20-Poly1305"><a href="#ChaCha20-Poly1305" class="headerlink" title="ChaCha20-Poly1305"></a>ChaCha20-Poly1305</h2><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs tap">ChaCha20-Poly1305加密解密原理<br>ChaCha20 和 Poly1305 是现代密码学中两种常用的加密算法。它们被设计为高效且安全的算法，常用于保障数据的隐私性和完整性。它们可以联合使用，组成一种“认证加密算法” (Authenticated Encryption with Associated Data, AEAD)，既提供加密（保密性）又提供完整性验证（认证性）。ChaCha20-Poly1305的组合方式是在加密数据时确保其不仅是保密的，而且可以检测是否被篡改。<br><br>1. ChaCha20 加密算法<br>ChaCha20 是一种流密码算法，它的设计基于 ChaCha 算法，ChaCha 是 Salsa20（另一种流密码算法）的一个变种。ChaCha20 每次操作生成<span class="hljs-number"> 256 </span>位的伪随机输出，常用于加密数据流。<br><br>ChaCha20的工作原理：<br>ChaCha20 的加密过程可以分为以下几个步骤：<br><br>输入：它需要一个<span class="hljs-number"> 256 </span>位的密钥、一个<span class="hljs-number"> 64 </span>位的随机初始值（nonce）和一个<span class="hljs-number"> 32 </span>位的计数器。<br>状态初始化：ChaCha20 从密钥和其他信息（如nonce、计数器等）创建一个 4x4 的矩阵（共<span class="hljs-number"> 16 </span>个<span class="hljs-number"> 32 </span>位的字），这些数据用于初始化算法的内部状态。<br>流密码生成：通过不断迭代应用非线性操作（包括加法、异或和循环移位等），生成伪随机数流。<br>加密过程：生成的伪随机数流与明文数据按位异或，从而完成加密。<br>ChaCha20 的加密过程包括<span class="hljs-number"> 20 </span>轮迭代，并且每一轮迭代都使用对称的操作，确保最终输出是高度随机的。<br><br>2. Poly1305 消息认证码（MAC）<br>Poly1305 是一种基于单一密钥的消息认证码 (MAC)，用来提供数据完整性和认证。它通过对消息进行加密生成唯一的签名，使接收方可以验证消息是否被篡改。<br><br>Poly1305的工作原理：<br>输入：Poly1305 接受一个<span class="hljs-number"> 256 </span>位的密钥和一段消息（数据块）。<br>算法：Poly1305 将消息划分成固定大小的块（通常为<span class="hljs-number"> 16 </span>字节），然后使用密钥对这些块进行加密、处理。<br>认证码生成：每个数据块经过加密后生成一个认证码，最后生成的认证码可以用来验证消息是否在传输过程中被篡改。<br>Poly1305 是一个高效的认证码生成算法，其安全性基于大数分解的困难性。<br><br>ChaCha20-Poly1305 组合<br>ChaCha20 和 Poly1305 结合在一起，提供了 认证加密（Authenticated Encryption，AE）。在这种组合中，ChaCha20 提供加密功能，确保数据的机密性；而 Poly1305 提供消息认证功能，确保数据没有在传输过程中被篡改。<br><br>工作流程：<br>加密：<br>使用 ChaCha20 对数据进行加密，生成密文。<br>生成认证码：<br>使用 Poly1305 对密文及相关数据（如头部信息、nonce 等）生成认证码（MAC）。<br>传输：<br>将密文和认证码一起传输到接收方。<br>验证与解密：<br>接收方使用相同的密钥和nonce对密文进行解密。如果认证码验证成功，说明数据没有被篡改，接收方就可以得到明文数据；如果认证码验证失败，数据被认为已经被篡改或丢失完整性。<br>ChaCha20-Poly1305 的安全性<br>保密性：ChaCha20 是一个高质量的流密码，具有强大的加密能力。<br>完整性：Poly1305 作为认证码生成器，可以检测出数据是否在传输过程中被篡改。<br>抗攻击性：ChaCha20-Poly1305 组合抗受多种攻击，包括重放攻击和密钥恢复攻击。<br>由于 ChaCha20 的高效性和 Poly1305 的简单性，该组合算法非常适合在需要快速加密且对安全性有较高要求的场景中使用，如 TLS、VPN 和加密通信协议。<br><br>名字的由来<br>1. ChaCha20<br>“ChaCha20” 中的 ChaCha 是该算法的名字来源。ChaCha 是 Salsa20（由 Daniel J. Bernstein 提出的流密码算法）的一个变种，ChaCha 在 Salsa20 的基础上做了一些增强，使其更安全且更易于分析。<br><br>“ChaCha” 这个名字来自于 Salsa20 的“舞蹈”名称（Salsa 是一种舞蹈，而 ChaCha 是 Salsa 的一种变体），这种名称可能暗示着 ChaCha20 的变化和增强。<br>数字<span class="hljs-number"> 20 </span>表示该算法执行的迭代次数为<span class="hljs-number"> 20 </span>轮，保证了更强的安全性。<br>2. Poly1305<br>Poly1305 是由 Daniel J. Bernstein 提出的消息认证码（MAC）。这个名字来源于它的数学基础：它基于一个多项式（poly）的计算。<br><br>数字<span class="hljs-number"> 1305 </span>代表了 Poly1305 使用的一个具体的多项式，通常是一个在有限域上进行计算的多项式。<br>结合起来，ChaCha20-Poly1305 代表了这两种算法的结合体，其中：<br><br>ChaCha20 是加密算法的名称，基于 ChaCha 的变种。<br>Poly1305 是消息认证码的名称，基于一个多项式的计算。<br>这个名字简洁地表达了该加密组合的两个核心算法，并标明了其关键的安全特性：加密与认证。<br><br>总结<br>ChaCha20 提供流密码加密，确保数据的机密性。<br>Poly1305 提供消息认证码（MAC），确保数据的完整性和认证。<br>ChaCha20-Poly1305 组合提供了高效、安全的认证加密功能，广泛用于现代网络安全协议中，如 TLS 1.3。<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs stylus">ChaCha20-Poly1305 解释<br>ChaCha20：一种流密码算法，用于生成伪随机密钥流。其优点包括速度较快和抗破解能力强。<br>Poly1305：一种认证码算法，用于生成数据完整性和认证的哈希值，确保数据在传输过程中没有被篡改。<br><br>在 PyCryptodome 或类似的加密库中，ChaCha20-Poly1305 模式通常通过 ChaCha20_Poly1305 类来实现。cipher<span class="hljs-selector-class">.encrypt_and_digest</span>() 方法会同时加密数据并生成认证码。<br><br>生成密钥和nonce：<br><br>key = <span class="hljs-built_in">get_random_bytes</span>(<span class="hljs-number">32</span>)：生成一个<span class="hljs-number">32</span>字节的随机密钥，这是 ChaCha20-Poly1305 所需要的密钥长度。<br>nonce = <span class="hljs-built_in">get_random_bytes</span>(<span class="hljs-number">12</span>)：生成一个<span class="hljs-number">12</span>字节的随机数（nonce），这是 ChaCha20-Poly1305 模式要求的长度，通常 nonce 必须是唯一的，不能重复。<br>创建 ChaCha20_Poly1305 对象：<br><br>使用 ChaCha20_Poly1305<span class="hljs-selector-class">.new</span>() 创建一个新的加密对象，传入密钥和 nonce。<br>加密和生成认证码：<br><br>cipher<span class="hljs-selector-class">.encrypt_and_digest</span>(plaintext)：这个方法既加密数据，也计算出一个认证码（tag）。认证码可以用来验证数据在传输过程中是否被篡改。<br>输出密文和认证码：<br><br>ciphertext：加密后的数据。<br>tag：Poly1305 算法生成的认证码，用来保证数据的完整性和真实性。<br><br>ChaCha20-Poly1305 提供了 认证加密（AEAD），它不仅确保了数据的 机密性（通过加密）还确保了数据的 完整性（通过认证码）。<br>cipher<span class="hljs-selector-class">.encrypt_and_digest</span>() 同时执行加密和认证操作，返回加密后的数据和认证码（tag）。<br>解密时，使用相同的密钥和 nonce，并且需要提供正确的认证码来验证数据的完整性。<br>这种加密方式广泛应用于安全通信协议，如 TLS、VPN 和现代加密货币应用中，因为它在速度和安全性方面表现出色。<br></code></pre></td></tr></table></figure>
+
+<p>原题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> ChaCha20_Poly1305<br><span class="hljs-keyword">import</span> os<br><br>key = os.urandom(<span class="hljs-number">32</span>)<br>nonce = os.urandom(<span class="hljs-number">12</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag.txt&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    plaintext = f.read()<br><br>cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)<br><br>ct, tag = cipher.encrypt_and_digest(plaintext)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Encrypted Flag: <span class="hljs-subst">&#123;ct.<span class="hljs-built_in">hex</span>()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Tag: <span class="hljs-subst">&#123;tag.<span class="hljs-built_in">hex</span>()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Nonce: <span class="hljs-subst">&#123;nonce.<span class="hljs-built_in">hex</span>()&#125;</span>&quot;</span>)<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;key.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> key_file:<br>    key_file.write(key.<span class="hljs-built_in">hex</span>())<br></code></pre></td></tr></table></figure>
+
+<p>这是ChaCha20_Poly1305，它的原理，我还没看，这几天摆烂了，不想学习，看加密过程大概了解到：用key（密钥），nonce（只被使用一次的任意或非重复的数值）可以加密得到cipher，然后用cipher生成认证码ct和tag，用于防止密文被破解（具体过程不清楚）</p>
+<p>原题是给了个txt的文本，里面给的东西很多（基本上是都i给你了），<strong>但是</strong>byd我最开始以为是截取长度再base91解出key（hex），没想到他是base92直接出然后用</p>
+<p>这是解密：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> ChaCha20_Poly1305<br><span class="hljs-keyword">import</span> binascii<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-comment"># 已知的 hex 数据</span><br>hex_nonce = <span class="hljs-string">&quot;d8ebeedec812a6d71240cc50&quot;</span><br>hex_tag = <span class="hljs-string">&quot;70ffcc508bf4519e7616f602123c307b&quot;</span><br>hex_ciphertext = <span class="hljs-string">&quot;20408b9fc498063ad53a4abb53633a6a15df0ddaf173012d620fa33001794dbb8c038920273464e13170e26d08923aeb&quot;</span><br>base92_key = <span class="hljs-string">&quot;3=t#sMX3?9GHSPdi4i^gk!3*(cH8S8XT2y&amp;?Tv4!?AGG=R]ZDy/PVVa+DqiXAH*&#125;DS&amp;Nn*a+@&lt;H,=!L&quot;</span><br>decoded_key =<span class="hljs-number">0x173974535637a5ef30a116b03d00bd2fe751951ca3eaa62daec2b8f5ca5b6135</span><br>decoded_key=long_to_bytes(decoded_key)<br><span class="hljs-comment"># 将 hex 转换为字节</span><br>nonce = binascii.unhexlify(hex_nonce)<br>tag = binascii.unhexlify(hex_tag)<br>ciphertext = binascii.unhexlify(hex_ciphertext)<br><br>cipher = ChaCha20_Poly1305.new(key=decoded_key, nonce=nonce)<br>plaintext = cipher.decrypt_and_verify(ciphertext, tag)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;解密后的数据:&quot;</span>, plaintext.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>![](屏幕截图 2024-11-15 213023.png)</p>
+<h2 id="蓝鲨的费马"><a href="#蓝鲨的费马" class="headerlink" title="蓝鲨的费马"></a>蓝鲨的费马</h2><p>这是原题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span>*<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sympy <span class="hljs-keyword">import</span> *<br><br>flag=<span class="hljs-string">b&#x27;ISCTF&#123;********&#125;&#x27;</span><br>m=bytes_to_long(flag)<br><br>p=libnum.generate_prime(<span class="hljs-number">1024</span>)<br>q=libnum.generate_prime(<span class="hljs-number">1024</span>)<br>n=p*q<br>e=<span class="hljs-number">0x10001</span> <br>e=<span class="hljs-number">65537</span><br>c=<span class="hljs-built_in">pow</span>(m,e,n)<br>d=inverse(e,(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>leak = (d+(<span class="hljs-built_in">pow</span>(p,q,n)+<span class="hljs-built_in">pow</span>(q,p,n)))%n<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;c=&quot;</span>, c)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;n=&quot;</span>, n)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;leak=&quot;</span>, leak)<br></code></pre></td></tr></table></figure>
+
+<p>这个不是很难，有点难罢了：</p>
+<p><img src="/A8CED196128B7720AA3C9C771B1D0E6D.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>然后代码是这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gmpy2 <span class="hljs-keyword">import</span>*<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> sympy <span class="hljs-keyword">import</span> *<br><br>c=<br>n=<br>leak=<br>e=<br>l=e*leak%n<br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span> (e):<br>    <span class="hljs-keyword">if</span>((l-<span class="hljs-number">1</span>-k)%(e-k)==<span class="hljs-number">0</span>):<br>        p_and_q=(l-<span class="hljs-number">1</span>-k)//(e-k)<br>        a=p_and_q*p_and_q-<span class="hljs-number">4</span>*n<br>        <br>        <br>        <span class="hljs-keyword">if</span>(a&lt;=<span class="hljs-number">0</span>):<br>            <span class="hljs-keyword">continue</span><br>        b=iroot(a,<span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">if</span>(b[<span class="hljs-number">1</span>]):<br>            p=(p_and_q+b[<span class="hljs-number">0</span>])//<span class="hljs-number">2</span><br>            q=(p_and_q-b[<span class="hljs-number">0</span>])//<span class="hljs-number">2</span><br>            d=<span class="hljs-built_in">pow</span>(e,-<span class="hljs-number">1</span>,(p-<span class="hljs-number">1</span>)*(q-<span class="hljs-number">1</span>))<br>            m=<span class="hljs-built_in">pow</span>(c,d,n)<br>            <span class="hljs-built_in">print</span>(long_to_bytes(m))<br><br></code></pre></td></tr></table></figure>
+
+<p>![](屏幕截图 2024-11-15 221522.png)</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTF/" class="category-chain-item">CTF</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CTF/%E5%AF%86%E7%A0%81/" class="category-chain-item">密码</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+        <a href="/tags/%E5%AF%86%E7%A0%81/" class="print-no-link">#密码</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024isCTF</div>
+      <div>http://tow-086.github.io/2024/11/15/isctf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Agent</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/21/%E9%87%91%E7%9B%BE%E5%AF%86%E7%A0%81/" title="2024金盾信安杯">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2024金盾信安杯</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/24/1024%E6%96%B0%E7%94%9F%E8%B5%9B/" title="2024的1024新生赛">
+                        <span class="hidden-mobile">2024的1024新生赛</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
