@@ -27,7 +27,7 @@
 <meta property="og:description" content="BaseCTF2024新生赛（复现（抄来的前面的没做，今个开始做吧&#x2F;&#x2F;2024&#x2F;10&#x2F;9 1.十七倍原题：  &#x2F;&#x2F;题目给的东西不少 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://tow-086.github.io/3281c719ed44d75237456124b56858ef-1729763611735-2.png">
-<meta property="og:image" content="http://tow-086.github.io/2024/10/10/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B%EF%BC%88%E5%A4%8D%E7%8E%B0%EF%BC%88%E6%8A%84%E6%9D%A5%E7%9A%84/QQ/3363009478/nt_qq/nt_data/Pic/2024-10/Ori/3281c719ed44d75237456124b56858ef.png">
+<meta property="og:image" content="e:/QQ/3363009478/nt_qq/nt_data/Pic/2024-10/Ori/3281c719ed44d75237456124b56858ef.png">
 <meta property="og:image" content="http://tow-086.github.io/864640c81027cc176127f0e4ca597d9d_720.jpg">
 <meta property="og:image" content="http://tow-086.github.io/d393d331f13b098870a1e572a29a737a_720.jpg">
 <meta property="og:image" content="http://tow-086.github.io/b8eefbff6ed3a5782e88320bf7441829.jpeg">
@@ -322,7 +322,7 @@
 <p>代码审计（Code audit）是指以发现程序错误、安全漏洞和违反程序规范为目标的源代码分析。它是软件开发生命周期中的一个重要环节，旨在通过检查源代码来识别潜在的安全隐患、编码不规范之处以及可能引发的安全漏洞。</p>
 <p><del>分析代码：randomArray():这个方法返回的result为单位矩阵：1（E，至于为什么，证明没看懂，正在看ing</del></p>
 <p>返回的不是1但是，因为这个：我们的目的是求出flag，则用行列式求</p>
-<p><img src="/2024/10/10/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B%EF%BC%88%E5%A4%8D%E7%8E%B0%EF%BC%88%E6%8A%84%E6%9D%A5%E7%9A%84/QQ/3363009478/nt_qq/nt_data/Pic/2024-10/Ori/3281c719ed44d75237456124b56858ef.png" srcset="/img/loading.gif" lazyload alt="3281c719ed44d75237456124b56858ef"></p>
+<p><img src="E:/QQ/3363009478/nt_qq/nt_data/Pic/2024-10/Ori/3281c719ed44d75237456124b56858ef.png" srcset="/img/loading.gif" lazyload alt="3281c719ed44d75237456124b56858ef"></p>
 <p>&#x3D;&#x3D;呃呃呃呃，这个是行列式，我傻逼了，别骂我&#x3D;&#x3D;</p>
 <p>&#x3D;&#x3D;行列式和矩阵的相乘的，额，运算规则是不一样的！！！忘完了，真得学吧，学了之后我不会也要加入408大军了吧&#x3D;&#x3D;</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">A=flag*(a*d-b*c)<br>那么就容易知道：$$flag = |flag| = \frac&#123;|MAT|&#125;&#123;|A_&#123;abcd&#125;|&#125;$$<br>EXP<br></code></pre></td></tr></table></figure>
