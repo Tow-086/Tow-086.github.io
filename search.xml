@@ -651,109 +651,6 @@ More info: Deployment
       </tags>
   </entry>
   <entry>
-    <title>2024isCTF</title>
-    <url>/2024/11/15/isctf/</url>
-    <content><![CDATA[isctf 密码wp位（Bit）是最小的数据单位，字节（Byte）由 8 个位组成，字符则是通过字节表示的
-我和小蓝鲨的秘密（rsa图片加密解密涉及rsa的图片加密解密
-原题：
-from PIL import Imagefrom Crypto.Util.number import bytes_to_long, long_to_bytesimport numpy as npn = 29869349657224745144762606999e = 65537original_image_path = &quot;flag.jpg&quot;img = Image.open(original_image_path)img = img.convert(&quot;RGB&quot;)        #将图像转换为 RGB 格式，确保每个像素包含红、绿、蓝三个通道。#将图像转换为一个 NumPy 数组，其中 h 和 w 分别代表图像的高度和宽度（像素的行数和列数），_ 是表示颜色通道数，这里应该是 3，因为是 RGB 图像。后续代码也写出是3了img_array = np.array(img)h, w, _ = img_array.shape#初始化一个空的 NumPy 数组，用于存储加密后的图像数据。数组的形状是 (h, w, 3)，即和原图像一样的尺寸和颜色通道。dtype=object 表示该数组中的元素将是任意类型的对象，这里存储的是加密后的整数。encrypted_array = np.zeros((h, w, 3), dtype=object)#遍历像素点for i in range(h):    for j in range(w):        #提取当前像素的红、绿、蓝通道的值（每个值范围通常是 0 到 255）        r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2])		#rsa加密        encrypted_array[i, j, 0] = pow(r, e, n)        encrypted_array[i, j, 1] = pow(g, e, n)        encrypted_array[i, j, 2] = pow(b, e, n)np.save(&quot;encrypted_image.npy&quot;, encrypted_array)print(&quot;图片已加密并保存为 encrypted_image.npy&quot;)
-
-
-
-题解：d可以直接分解n然后得到p和q再得到d，代码没写
-from Crypto.PublicKey import RSAimport numpy as npfrom PIL import Image# RSA私钥中的 d 和 nd = 114529273505388659836222611033 n = 29869349657224745144762606999e = 65537 # 从文件读取加密后的图像数据#此选项允许加载含有 Python 对象的 .npy 文件，因为加密图像数据的类型可能是 object（例如存储的是整数的加密结果）encrypted_array = np.load(r&quot;E:\edge下载\CTF\isctf\我和小蓝鲨的秘密\我和小蓝鲨的秘密\encrypted_image.npy&quot;, allow_pickle=True)#高、宽和3（上面说了，不再赘述）h, w, _ = encrypted_array.shape#用于后续存放解密后的数据decrypted_list = []# 对每个像素进行解密for i in range(h):    row = []    for j in range(w):        pixel = []        for channel in range(3):  # 红、绿、蓝三个通道            #获取加密数据            encrypted_value = encrypted_array[i, j, channel]            #对加密数据进行解密            decrypted_value = pow(encrypted_value, d, n)  # 使用RSA私钥解密            #讲解秘数据加入到decrypted_list中，用于后续转为图片            pixel.append(decrypted_value)        row.append(pixel)    decrypted_list.append(row)# 将解密后的像素值转换为 numpy 数组decrypted_array = np.array(decrypted_list, dtype=object)# 将解密后的数据转换为图像decrypted_array = np.clip(decrypted_array, 0, 255).astype(np.uint8)  # 确保像素值在有效范围内decrypted_img = Image.fromarray(decrypted_array)# 保存解密后的图片decrypted_img.save(&quot;decrypted_image.jpg&quot;)decrypted_img.show()print(&quot;图片已解密并保存为 decrypted_image.jpg&quot;)
-
-![屏幕截图 2024-11-10 130024](屏幕截图 2024-11-10 130024.png)
-ChaCha20-Poly1305ChaCha20-Poly1305加密解密原理ChaCha20 和 Poly1305 是现代密码学中两种常用的加密算法。它们被设计为高效且安全的算法，常用于保障数据的隐私性和完整性。它们可以联合使用，组成一种“认证加密算法” (Authenticated Encryption with Associated Data, AEAD)，既提供加密（保密性）又提供完整性验证（认证性）。ChaCha20-Poly1305的组合方式是在加密数据时确保其不仅是保密的，而且可以检测是否被篡改。1. ChaCha20 加密算法ChaCha20 是一种流密码算法，它的设计基于 ChaCha 算法，ChaCha 是 Salsa20（另一种流密码算法）的一个变种。ChaCha20 每次操作生成 256 位的伪随机输出，常用于加密数据流。ChaCha20的工作原理：ChaCha20 的加密过程可以分为以下几个步骤：输入：它需要一个 256 位的密钥、一个 64 位的随机初始值（nonce）和一个 32 位的计数器。状态初始化：ChaCha20 从密钥和其他信息（如nonce、计数器等）创建一个 4x4 的矩阵（共 16 个 32 位的字），这些数据用于初始化算法的内部状态。流密码生成：通过不断迭代应用非线性操作（包括加法、异或和循环移位等），生成伪随机数流。加密过程：生成的伪随机数流与明文数据按位异或，从而完成加密。ChaCha20 的加密过程包括 20 轮迭代，并且每一轮迭代都使用对称的操作，确保最终输出是高度随机的。2. Poly1305 消息认证码（MAC）Poly1305 是一种基于单一密钥的消息认证码 (MAC)，用来提供数据完整性和认证。它通过对消息进行加密生成唯一的签名，使接收方可以验证消息是否被篡改。Poly1305的工作原理：输入：Poly1305 接受一个 256 位的密钥和一段消息（数据块）。算法：Poly1305 将消息划分成固定大小的块（通常为 16 字节），然后使用密钥对这些块进行加密、处理。认证码生成：每个数据块经过加密后生成一个认证码，最后生成的认证码可以用来验证消息是否在传输过程中被篡改。Poly1305 是一个高效的认证码生成算法，其安全性基于大数分解的困难性。ChaCha20-Poly1305 组合ChaCha20 和 Poly1305 结合在一起，提供了 认证加密（Authenticated Encryption，AE）。在这种组合中，ChaCha20 提供加密功能，确保数据的机密性；而 Poly1305 提供消息认证功能，确保数据没有在传输过程中被篡改。工作流程：加密：使用 ChaCha20 对数据进行加密，生成密文。生成认证码：使用 Poly1305 对密文及相关数据（如头部信息、nonce 等）生成认证码（MAC）。传输：将密文和认证码一起传输到接收方。验证与解密：接收方使用相同的密钥和nonce对密文进行解密。如果认证码验证成功，说明数据没有被篡改，接收方就可以得到明文数据；如果认证码验证失败，数据被认为已经被篡改或丢失完整性。ChaCha20-Poly1305 的安全性保密性：ChaCha20 是一个高质量的流密码，具有强大的加密能力。完整性：Poly1305 作为认证码生成器，可以检测出数据是否在传输过程中被篡改。抗攻击性：ChaCha20-Poly1305 组合抗受多种攻击，包括重放攻击和密钥恢复攻击。由于 ChaCha20 的高效性和 Poly1305 的简单性，该组合算法非常适合在需要快速加密且对安全性有较高要求的场景中使用，如 TLS、VPN 和加密通信协议。名字的由来1. ChaCha20“ChaCha20” 中的 ChaCha 是该算法的名字来源。ChaCha 是 Salsa20（由 Daniel J. Bernstein 提出的流密码算法）的一个变种，ChaCha 在 Salsa20 的基础上做了一些增强，使其更安全且更易于分析。“ChaCha” 这个名字来自于 Salsa20 的“舞蹈”名称（Salsa 是一种舞蹈，而 ChaCha 是 Salsa 的一种变体），这种名称可能暗示着 ChaCha20 的变化和增强。数字 20 表示该算法执行的迭代次数为 20 轮，保证了更强的安全性。2. Poly1305Poly1305 是由 Daniel J. Bernstein 提出的消息认证码（MAC）。这个名字来源于它的数学基础：它基于一个多项式（poly）的计算。数字 1305 代表了 Poly1305 使用的一个具体的多项式，通常是一个在有限域上进行计算的多项式。结合起来，ChaCha20-Poly1305 代表了这两种算法的结合体，其中：ChaCha20 是加密算法的名称，基于 ChaCha 的变种。Poly1305 是消息认证码的名称，基于一个多项式的计算。这个名字简洁地表达了该加密组合的两个核心算法，并标明了其关键的安全特性：加密与认证。总结ChaCha20 提供流密码加密，确保数据的机密性。Poly1305 提供消息认证码（MAC），确保数据的完整性和认证。ChaCha20-Poly1305 组合提供了高效、安全的认证加密功能，广泛用于现代网络安全协议中，如 TLS 1.3。
-
-
-
-ChaCha20-Poly1305 解释ChaCha20：一种流密码算法，用于生成伪随机密钥流。其优点包括速度较快和抗破解能力强。Poly1305：一种认证码算法，用于生成数据完整性和认证的哈希值，确保数据在传输过程中没有被篡改。在 PyCryptodome 或类似的加密库中，ChaCha20-Poly1305 模式通常通过 ChaCha20_Poly1305 类来实现。cipher.encrypt_and_digest() 方法会同时加密数据并生成认证码。生成密钥和nonce：key = get_random_bytes(32)：生成一个32字节的随机密钥，这是 ChaCha20-Poly1305 所需要的密钥长度。nonce = get_random_bytes(12)：生成一个12字节的随机数（nonce），这是 ChaCha20-Poly1305 模式要求的长度，通常 nonce 必须是唯一的，不能重复。创建 ChaCha20_Poly1305 对象：使用 ChaCha20_Poly1305.new() 创建一个新的加密对象，传入密钥和 nonce。加密和生成认证码：cipher.encrypt_and_digest(plaintext)：这个方法既加密数据，也计算出一个认证码（tag）。认证码可以用来验证数据在传输过程中是否被篡改。输出密文和认证码：ciphertext：加密后的数据。tag：Poly1305 算法生成的认证码，用来保证数据的完整性和真实性。ChaCha20-Poly1305 提供了 认证加密（AEAD），它不仅确保了数据的 机密性（通过加密）还确保了数据的 完整性（通过认证码）。cipher.encrypt_and_digest() 同时执行加密和认证操作，返回加密后的数据和认证码（tag）。解密时，使用相同的密钥和 nonce，并且需要提供正确的认证码来验证数据的完整性。这种加密方式广泛应用于安全通信协议，如 TLS、VPN 和现代加密货币应用中，因为它在速度和安全性方面表现出色。
-
-原题：
-from Crypto.Cipher import ChaCha20_Poly1305import oskey = os.urandom(32)nonce = os.urandom(12)with open(&#x27;flag.txt&#x27;, &#x27;rb&#x27;) as f:    plaintext = f.read()cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)ct, tag = cipher.encrypt_and_digest(plaintext)print(f&quot;Encrypted Flag: &#123;ct.hex()&#125;&quot;)print(f&quot;Tag: &#123;tag.hex()&#125;&quot;)print(f&quot;Nonce: &#123;nonce.hex()&#125;&quot;)with open(&#x27;key.txt&#x27;, &#x27;w&#x27;) as key_file:    key_file.write(key.hex())
-
-这是ChaCha20_Poly1305，它的原理，我还没看，这几天摆烂了，不想学习，看加密过程大概了解到：用key（密钥），nonce（只被使用一次的任意或非重复的数值）可以加密得到cipher，然后用cipher生成认证码ct和tag，用于防止密文被破解（具体过程不清楚）
-原题是给了个txt的文本，里面给的东西很多（基本上是都i给你了），但是byd我最开始以为是截取长度再base91解出key（hex），没想到他是base92直接出然后用
-这是解密：
-from Crypto.Cipher import ChaCha20_Poly1305import binasciifrom Crypto.Util.number import *# 已知的 hex 数据hex_nonce = &quot;d8ebeedec812a6d71240cc50&quot;hex_tag = &quot;70ffcc508bf4519e7616f602123c307b&quot;hex_ciphertext = &quot;20408b9fc498063ad53a4abb53633a6a15df0ddaf173012d620fa33001794dbb8c038920273464e13170e26d08923aeb&quot;base92_key = &quot;3=t#sMX3?9GHSPdi4i^gk!3*(cH8S8XT2y&amp;?Tv4!?AGG=R]ZDy/PVVa+DqiXAH*&#125;DS&amp;Nn*a+@&lt;H,=!L&quot;decoded_key =0x173974535637a5ef30a116b03d00bd2fe751951ca3eaa62daec2b8f5ca5b6135decoded_key=long_to_bytes(decoded_key)# 将 hex 转换为字节nonce = binascii.unhexlify(hex_nonce)tag = binascii.unhexlify(hex_tag)ciphertext = binascii.unhexlify(hex_ciphertext)cipher = ChaCha20_Poly1305.new(key=decoded_key, nonce=nonce)plaintext = cipher.decrypt_and_verify(ciphertext, tag)print(&quot;解密后的数据:&quot;, plaintext.decode(&#x27;utf-8&#x27;))
-
-![](屏幕截图 2024-11-15 213023.png)
-蓝鲨的费马这是原题：
-from gmpy2 import*from Crypto.Util.number import *from sympy import *flag=b&#x27;ISCTF&#123;********&#125;&#x27;m=bytes_to_long(flag)p=libnum.generate_prime(1024)q=libnum.generate_prime(1024)n=p*qe=0x10001 e=65537c=pow(m,e,n)d=inverse(e,(p-1)*(q-1))leak = (d+(pow(p,q,n)+pow(q,p,n)))%nprint(&quot;c=&quot;, c)print(&quot;n=&quot;, n)print(&quot;leak=&quot;, leak)
-
-这个不是很难，有点难罢了：
-
-然后代码是这样：
-from gmpy2 import*from Crypto.Util.number import *from sympy import *c=n=leak=e=l=e*leak%nfor k in range (e):    if((l-1-k)%(e-k)==0):        p_and_q=(l-1-k)//(e-k)        a=p_and_q*p_and_q-4*n                        if(a&lt;=0):            continue        b=iroot(a,2)        if(b[1]):            p=(p_and_q+b[0])//2            q=(p_and_q-b[0])//2            d=pow(e,-1,(p-1)*(q-1))            m=pow(c,d,n)            print(long_to_bytes(m))
-
-![](屏幕截图 2024-11-15 221522.png)
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>密码</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>密码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rabbitMQ下载配置与demo测试</title>
-    <url>/2025/06/17/rabbitMQ%E4%B8%8B%E8%BD%BD%E9%85%8D%E7%BD%AE%E4%B8%8Edemo%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[rabbitMQ下载配置与demo测试下载与配置文件先下载Erlang  https://www.erlang.org/downloads  ，找到符合自己windows的版本下载就好。
-为什么要先下载这个东西，因为rabbitmq没法直接在windows上直接运行，因为我是windows，所以找到的方法就是这个，其他系统可以自行寻找方法。
-下载之后安装，记住安装路径然后配置到环境变量，各位到rabbitmq了估计已经配过Java，MySQL和redis之类的了，方法差不多，但是注意：下载好的Erlang OTP中间是有空格的要改为ErlangOTP再添加到环境变量。（环境变量是不识别空格和中文的）
-然后下载rabbitmq，https://www.rabbitmq.com/download.html  ，选择 “Windows Installer” (.exe) 版本下载。然后安装，配置环境变量，注意：rabbitmq的不是bin而是sbin
-然后就能启动服务了：
-# 安装rabbitmq的服务rabbitmq-service install# 启动rabbitmq的服务rabbitmq-service start
-
-RabbitMQ 自带 Web 管理页面，需要安装插件:
-rabbitmq-plugins enable rabbitmq_management
-
-访问地址：
-
-http://localhost:15672
-默认账号密码为：guest &#x2F; guest
-
-如果打不开可以尝试刷新几次，如果还是打不开清理一下换从重新启动服务即可
-demo测试额，其实我不会rabbitmq，只知道她大概是个什么东西，所以扒了一个demo：
-该项目实现了一个基于Spring Boot和RabbitMQ的消息队列基本功能，主要包括：
-
-RabbitMQ配置 RabbitMQConfig ：
-
-创建持久化队列 demo.queue
-定义直连交换机 demo.exchange
-绑定队列与交换机使用路由键 demo.key
-
-
-消息生产者 MessageProducer ：
-
-
-public void send(String message) &#123;    rabbitTemplate.convertAndSend(        RabbitMQConfig.EXCHANGE_NAME,        RabbitMQConfig.ROUTING_KEY,        message    );&#125;
-
- 消息消费者 MessageConsumer ：
-@RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)public void receive(String message) &#123;    System.out.println(&quot; [x] Received: &quot; + message);&#125;
-
-启动时自动发送测试消息 RabbitMqDemoTestApplication ：
-@Overridepublic void run(String... args) &#123;    messageProducer.send(&quot;Hello from Spring Boot and RabbitMQ!&quot;);&#125;
-
-当前实现功能：
-
-基本的消息生产消费流程
-Spring Boot与RabbitMQ集成
-直连交换机模式的消息路由
-控制台打印发送&#x2F;接收记录
-
-]]></content>
-      <categories>
-        <category>-java -技术栈 -rabbitMQ</category>
-      </categories>
-      <tags>
-        <tag>-java -技术栈 -rabbitMQ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2024BaseCTF</title>
     <url>/2024/10/10/BaseCTF2024%E6%96%B0%E7%94%9F%E8%B5%9B%EF%BC%88%E5%A4%8D%E7%8E%B0%EF%BC%88%E6%8A%84%E6%9D%A5%E7%9A%84/</url>
     <content><![CDATA[BaseCTF2024新生赛（复现（抄来的前面的没做，今个开始做吧&#x2F;&#x2F;2024&#x2F;10&#x2F;9
@@ -989,10 +886,113 @@ from Crypto.Util.number import *from gmpy2 import *from Crypto.PublicKey import 
       </tags>
   </entry>
   <entry>
+    <title>2024isCTF</title>
+    <url>/2024/11/15/isctf/</url>
+    <content><![CDATA[isctf 密码wp位（Bit）是最小的数据单位，字节（Byte）由 8 个位组成，字符则是通过字节表示的
+我和小蓝鲨的秘密（rsa图片加密解密涉及rsa的图片加密解密
+原题：
+from PIL import Imagefrom Crypto.Util.number import bytes_to_long, long_to_bytesimport numpy as npn = 29869349657224745144762606999e = 65537original_image_path = &quot;flag.jpg&quot;img = Image.open(original_image_path)img = img.convert(&quot;RGB&quot;)        #将图像转换为 RGB 格式，确保每个像素包含红、绿、蓝三个通道。#将图像转换为一个 NumPy 数组，其中 h 和 w 分别代表图像的高度和宽度（像素的行数和列数），_ 是表示颜色通道数，这里应该是 3，因为是 RGB 图像。后续代码也写出是3了img_array = np.array(img)h, w, _ = img_array.shape#初始化一个空的 NumPy 数组，用于存储加密后的图像数据。数组的形状是 (h, w, 3)，即和原图像一样的尺寸和颜色通道。dtype=object 表示该数组中的元素将是任意类型的对象，这里存储的是加密后的整数。encrypted_array = np.zeros((h, w, 3), dtype=object)#遍历像素点for i in range(h):    for j in range(w):        #提取当前像素的红、绿、蓝通道的值（每个值范围通常是 0 到 255）        r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2])		#rsa加密        encrypted_array[i, j, 0] = pow(r, e, n)        encrypted_array[i, j, 1] = pow(g, e, n)        encrypted_array[i, j, 2] = pow(b, e, n)np.save(&quot;encrypted_image.npy&quot;, encrypted_array)print(&quot;图片已加密并保存为 encrypted_image.npy&quot;)
+
+
+
+题解：d可以直接分解n然后得到p和q再得到d，代码没写
+from Crypto.PublicKey import RSAimport numpy as npfrom PIL import Image# RSA私钥中的 d 和 nd = 114529273505388659836222611033 n = 29869349657224745144762606999e = 65537 # 从文件读取加密后的图像数据#此选项允许加载含有 Python 对象的 .npy 文件，因为加密图像数据的类型可能是 object（例如存储的是整数的加密结果）encrypted_array = np.load(r&quot;E:\edge下载\CTF\isctf\我和小蓝鲨的秘密\我和小蓝鲨的秘密\encrypted_image.npy&quot;, allow_pickle=True)#高、宽和3（上面说了，不再赘述）h, w, _ = encrypted_array.shape#用于后续存放解密后的数据decrypted_list = []# 对每个像素进行解密for i in range(h):    row = []    for j in range(w):        pixel = []        for channel in range(3):  # 红、绿、蓝三个通道            #获取加密数据            encrypted_value = encrypted_array[i, j, channel]            #对加密数据进行解密            decrypted_value = pow(encrypted_value, d, n)  # 使用RSA私钥解密            #讲解秘数据加入到decrypted_list中，用于后续转为图片            pixel.append(decrypted_value)        row.append(pixel)    decrypted_list.append(row)# 将解密后的像素值转换为 numpy 数组decrypted_array = np.array(decrypted_list, dtype=object)# 将解密后的数据转换为图像decrypted_array = np.clip(decrypted_array, 0, 255).astype(np.uint8)  # 确保像素值在有效范围内decrypted_img = Image.fromarray(decrypted_array)# 保存解密后的图片decrypted_img.save(&quot;decrypted_image.jpg&quot;)decrypted_img.show()print(&quot;图片已解密并保存为 decrypted_image.jpg&quot;)
+
+![屏幕截图 2024-11-10 130024](屏幕截图 2024-11-10 130024.png)
+ChaCha20-Poly1305ChaCha20-Poly1305加密解密原理ChaCha20 和 Poly1305 是现代密码学中两种常用的加密算法。它们被设计为高效且安全的算法，常用于保障数据的隐私性和完整性。它们可以联合使用，组成一种“认证加密算法” (Authenticated Encryption with Associated Data, AEAD)，既提供加密（保密性）又提供完整性验证（认证性）。ChaCha20-Poly1305的组合方式是在加密数据时确保其不仅是保密的，而且可以检测是否被篡改。1. ChaCha20 加密算法ChaCha20 是一种流密码算法，它的设计基于 ChaCha 算法，ChaCha 是 Salsa20（另一种流密码算法）的一个变种。ChaCha20 每次操作生成 256 位的伪随机输出，常用于加密数据流。ChaCha20的工作原理：ChaCha20 的加密过程可以分为以下几个步骤：输入：它需要一个 256 位的密钥、一个 64 位的随机初始值（nonce）和一个 32 位的计数器。状态初始化：ChaCha20 从密钥和其他信息（如nonce、计数器等）创建一个 4x4 的矩阵（共 16 个 32 位的字），这些数据用于初始化算法的内部状态。流密码生成：通过不断迭代应用非线性操作（包括加法、异或和循环移位等），生成伪随机数流。加密过程：生成的伪随机数流与明文数据按位异或，从而完成加密。ChaCha20 的加密过程包括 20 轮迭代，并且每一轮迭代都使用对称的操作，确保最终输出是高度随机的。2. Poly1305 消息认证码（MAC）Poly1305 是一种基于单一密钥的消息认证码 (MAC)，用来提供数据完整性和认证。它通过对消息进行加密生成唯一的签名，使接收方可以验证消息是否被篡改。Poly1305的工作原理：输入：Poly1305 接受一个 256 位的密钥和一段消息（数据块）。算法：Poly1305 将消息划分成固定大小的块（通常为 16 字节），然后使用密钥对这些块进行加密、处理。认证码生成：每个数据块经过加密后生成一个认证码，最后生成的认证码可以用来验证消息是否在传输过程中被篡改。Poly1305 是一个高效的认证码生成算法，其安全性基于大数分解的困难性。ChaCha20-Poly1305 组合ChaCha20 和 Poly1305 结合在一起，提供了 认证加密（Authenticated Encryption，AE）。在这种组合中，ChaCha20 提供加密功能，确保数据的机密性；而 Poly1305 提供消息认证功能，确保数据没有在传输过程中被篡改。工作流程：加密：使用 ChaCha20 对数据进行加密，生成密文。生成认证码：使用 Poly1305 对密文及相关数据（如头部信息、nonce 等）生成认证码（MAC）。传输：将密文和认证码一起传输到接收方。验证与解密：接收方使用相同的密钥和nonce对密文进行解密。如果认证码验证成功，说明数据没有被篡改，接收方就可以得到明文数据；如果认证码验证失败，数据被认为已经被篡改或丢失完整性。ChaCha20-Poly1305 的安全性保密性：ChaCha20 是一个高质量的流密码，具有强大的加密能力。完整性：Poly1305 作为认证码生成器，可以检测出数据是否在传输过程中被篡改。抗攻击性：ChaCha20-Poly1305 组合抗受多种攻击，包括重放攻击和密钥恢复攻击。由于 ChaCha20 的高效性和 Poly1305 的简单性，该组合算法非常适合在需要快速加密且对安全性有较高要求的场景中使用，如 TLS、VPN 和加密通信协议。名字的由来1. ChaCha20“ChaCha20” 中的 ChaCha 是该算法的名字来源。ChaCha 是 Salsa20（由 Daniel J. Bernstein 提出的流密码算法）的一个变种，ChaCha 在 Salsa20 的基础上做了一些增强，使其更安全且更易于分析。“ChaCha” 这个名字来自于 Salsa20 的“舞蹈”名称（Salsa 是一种舞蹈，而 ChaCha 是 Salsa 的一种变体），这种名称可能暗示着 ChaCha20 的变化和增强。数字 20 表示该算法执行的迭代次数为 20 轮，保证了更强的安全性。2. Poly1305Poly1305 是由 Daniel J. Bernstein 提出的消息认证码（MAC）。这个名字来源于它的数学基础：它基于一个多项式（poly）的计算。数字 1305 代表了 Poly1305 使用的一个具体的多项式，通常是一个在有限域上进行计算的多项式。结合起来，ChaCha20-Poly1305 代表了这两种算法的结合体，其中：ChaCha20 是加密算法的名称，基于 ChaCha 的变种。Poly1305 是消息认证码的名称，基于一个多项式的计算。这个名字简洁地表达了该加密组合的两个核心算法，并标明了其关键的安全特性：加密与认证。总结ChaCha20 提供流密码加密，确保数据的机密性。Poly1305 提供消息认证码（MAC），确保数据的完整性和认证。ChaCha20-Poly1305 组合提供了高效、安全的认证加密功能，广泛用于现代网络安全协议中，如 TLS 1.3。
+
+
+
+ChaCha20-Poly1305 解释ChaCha20：一种流密码算法，用于生成伪随机密钥流。其优点包括速度较快和抗破解能力强。Poly1305：一种认证码算法，用于生成数据完整性和认证的哈希值，确保数据在传输过程中没有被篡改。在 PyCryptodome 或类似的加密库中，ChaCha20-Poly1305 模式通常通过 ChaCha20_Poly1305 类来实现。cipher.encrypt_and_digest() 方法会同时加密数据并生成认证码。生成密钥和nonce：key = get_random_bytes(32)：生成一个32字节的随机密钥，这是 ChaCha20-Poly1305 所需要的密钥长度。nonce = get_random_bytes(12)：生成一个12字节的随机数（nonce），这是 ChaCha20-Poly1305 模式要求的长度，通常 nonce 必须是唯一的，不能重复。创建 ChaCha20_Poly1305 对象：使用 ChaCha20_Poly1305.new() 创建一个新的加密对象，传入密钥和 nonce。加密和生成认证码：cipher.encrypt_and_digest(plaintext)：这个方法既加密数据，也计算出一个认证码（tag）。认证码可以用来验证数据在传输过程中是否被篡改。输出密文和认证码：ciphertext：加密后的数据。tag：Poly1305 算法生成的认证码，用来保证数据的完整性和真实性。ChaCha20-Poly1305 提供了 认证加密（AEAD），它不仅确保了数据的 机密性（通过加密）还确保了数据的 完整性（通过认证码）。cipher.encrypt_and_digest() 同时执行加密和认证操作，返回加密后的数据和认证码（tag）。解密时，使用相同的密钥和 nonce，并且需要提供正确的认证码来验证数据的完整性。这种加密方式广泛应用于安全通信协议，如 TLS、VPN 和现代加密货币应用中，因为它在速度和安全性方面表现出色。
+
+原题：
+from Crypto.Cipher import ChaCha20_Poly1305import oskey = os.urandom(32)nonce = os.urandom(12)with open(&#x27;flag.txt&#x27;, &#x27;rb&#x27;) as f:    plaintext = f.read()cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)ct, tag = cipher.encrypt_and_digest(plaintext)print(f&quot;Encrypted Flag: &#123;ct.hex()&#125;&quot;)print(f&quot;Tag: &#123;tag.hex()&#125;&quot;)print(f&quot;Nonce: &#123;nonce.hex()&#125;&quot;)with open(&#x27;key.txt&#x27;, &#x27;w&#x27;) as key_file:    key_file.write(key.hex())
+
+这是ChaCha20_Poly1305，它的原理，我还没看，这几天摆烂了，不想学习，看加密过程大概了解到：用key（密钥），nonce（只被使用一次的任意或非重复的数值）可以加密得到cipher，然后用cipher生成认证码ct和tag，用于防止密文被破解（具体过程不清楚）
+原题是给了个txt的文本，里面给的东西很多（基本上是都i给你了），但是byd我最开始以为是截取长度再base91解出key（hex），没想到他是base92直接出然后用
+这是解密：
+from Crypto.Cipher import ChaCha20_Poly1305import binasciifrom Crypto.Util.number import *# 已知的 hex 数据hex_nonce = &quot;d8ebeedec812a6d71240cc50&quot;hex_tag = &quot;70ffcc508bf4519e7616f602123c307b&quot;hex_ciphertext = &quot;20408b9fc498063ad53a4abb53633a6a15df0ddaf173012d620fa33001794dbb8c038920273464e13170e26d08923aeb&quot;base92_key = &quot;3=t#sMX3?9GHSPdi4i^gk!3*(cH8S8XT2y&amp;?Tv4!?AGG=R]ZDy/PVVa+DqiXAH*&#125;DS&amp;Nn*a+@&lt;H,=!L&quot;decoded_key =0x173974535637a5ef30a116b03d00bd2fe751951ca3eaa62daec2b8f5ca5b6135decoded_key=long_to_bytes(decoded_key)# 将 hex 转换为字节nonce = binascii.unhexlify(hex_nonce)tag = binascii.unhexlify(hex_tag)ciphertext = binascii.unhexlify(hex_ciphertext)cipher = ChaCha20_Poly1305.new(key=decoded_key, nonce=nonce)plaintext = cipher.decrypt_and_verify(ciphertext, tag)print(&quot;解密后的数据:&quot;, plaintext.decode(&#x27;utf-8&#x27;))
+
+![](屏幕截图 2024-11-15 213023.png)
+蓝鲨的费马这是原题：
+from gmpy2 import*from Crypto.Util.number import *from sympy import *flag=b&#x27;ISCTF&#123;********&#125;&#x27;m=bytes_to_long(flag)p=libnum.generate_prime(1024)q=libnum.generate_prime(1024)n=p*qe=0x10001 e=65537c=pow(m,e,n)d=inverse(e,(p-1)*(q-1))leak = (d+(pow(p,q,n)+pow(q,p,n)))%nprint(&quot;c=&quot;, c)print(&quot;n=&quot;, n)print(&quot;leak=&quot;, leak)
+
+这个不是很难，有点难罢了：
+
+然后代码是这样：
+from gmpy2 import*from Crypto.Util.number import *from sympy import *c=n=leak=e=l=e*leak%nfor k in range (e):    if((l-1-k)%(e-k)==0):        p_and_q=(l-1-k)//(e-k)        a=p_and_q*p_and_q-4*n                        if(a&lt;=0):            continue        b=iroot(a,2)        if(b[1]):            p=(p_and_q+b[0])//2            q=(p_and_q-b[0])//2            d=pow(e,-1,(p-1)*(q-1))            m=pow(c,d,n)            print(long_to_bytes(m))
+
+![](屏幕截图 2024-11-15 221522.png)
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>密码</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>密码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在博客上传图片</title>
     <url>/2025/08/03/test01/</url>
     <content><![CDATA[
 ]]></content>
+  </entry>
+  <entry>
+    <title>rabbitMQ下载配置与demo测试</title>
+    <url>/2025/06/17/rabbitMQ%E4%B8%8B%E8%BD%BD%E9%85%8D%E7%BD%AE%E4%B8%8Edemo%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[rabbitMQ下载配置与demo测试下载与配置文件先下载Erlang  https://www.erlang.org/downloads  ，找到符合自己windows的版本下载就好。
+为什么要先下载这个东西，因为rabbitmq没法直接在windows上直接运行，因为我是windows，所以找到的方法就是这个，其他系统可以自行寻找方法。
+下载之后安装，记住安装路径然后配置到环境变量，各位到rabbitmq了估计已经配过Java，MySQL和redis之类的了，方法差不多，但是注意：下载好的Erlang OTP中间是有空格的要改为ErlangOTP再添加到环境变量。（环境变量是不识别空格和中文的）
+然后下载rabbitmq，https://www.rabbitmq.com/download.html  ，选择 “Windows Installer” (.exe) 版本下载。然后安装，配置环境变量，注意：rabbitmq的不是bin而是sbin
+然后就能启动服务了：
+# 安装rabbitmq的服务rabbitmq-service install# 启动rabbitmq的服务rabbitmq-service start
+
+RabbitMQ 自带 Web 管理页面，需要安装插件:
+rabbitmq-plugins enable rabbitmq_management
+
+访问地址：
+
+http://localhost:15672
+默认账号密码为：guest &#x2F; guest
+
+如果打不开可以尝试刷新几次，如果还是打不开清理一下换从重新启动服务即可
+demo测试额，其实我不会rabbitmq，只知道她大概是个什么东西，所以扒了一个demo：
+该项目实现了一个基于Spring Boot和RabbitMQ的消息队列基本功能，主要包括：
+
+RabbitMQ配置 RabbitMQConfig ：
+
+创建持久化队列 demo.queue
+定义直连交换机 demo.exchange
+绑定队列与交换机使用路由键 demo.key
+
+
+消息生产者 MessageProducer ：
+
+
+public void send(String message) &#123;    rabbitTemplate.convertAndSend(        RabbitMQConfig.EXCHANGE_NAME,        RabbitMQConfig.ROUTING_KEY,        message    );&#125;
+
+ 消息消费者 MessageConsumer ：
+@RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)public void receive(String message) &#123;    System.out.println(&quot; [x] Received: &quot; + message);&#125;
+
+启动时自动发送测试消息 RabbitMqDemoTestApplication ：
+@Overridepublic void run(String... args) &#123;    messageProducer.send(&quot;Hello from Spring Boot and RabbitMQ!&quot;);&#125;
+
+当前实现功能：
+
+基本的消息生产消费流程
+Spring Boot与RabbitMQ集成
+直连交换机模式的消息路由
+控制台打印发送&#x2F;接收记录
+
+]]></content>
+      <categories>
+        <category>-java -技术栈 -rabbitMQ</category>
+      </categories>
+      <tags>
+        <tag>-java -技术栈 -rabbitMQ</tag>
+      </tags>
   </entry>
   <entry>
     <title>这是一次测试</title>
