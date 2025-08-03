@@ -346,9 +346,9 @@
     
     <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
     
-    <category term="入门" scheme="http://tow-086.github.io/tags/%E5%85%A5%E9%97%A8/"/>
-    
     <category term="密码" scheme="http://tow-086.github.io/tags/%E5%AF%86%E7%A0%81/"/>
+    
+    <category term="入门" scheme="http://tow-086.github.io/tags/%E5%85%A5%E9%97%A8/"/>
     
   </entry>
   
