@@ -86,10 +86,10 @@
   
   <entry>
     <title>这是一次测试</title>
-    <link href="/2025/06/02/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E6%B5%8B%E8%AF%95/"/>
-    <url>/2025/06/02/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E6%B5%8B%E8%AF%95/</url>
+    <link href="/2025/06/02/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
+    <url>/2025/06/02/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E8%AE%BE%E7%BD%AE/</url>
     
-    <content type="html"><![CDATA[<p><img src="/test.png" alt="test"></p><p>shishi</p><p><a href="https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg">https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg</a></p><p><img src="https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg"></p><p><img src="/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E8%AE%BE%E7%BD%AE/test.png" alt="test"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8E%E5%9B%BE%E7%89%87%E7%9A%84%E6%B5%8B%E8%AF%95/test.png" alt="test"></p><p>shishi</p><p><a href="https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg">https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg</a></p><p><img src="https://i-blog.csdnimg.cn/blog_migrate/b35fbbc13e7eb8df543f6ab255f0319b.jpeg"></p><p><img src="/test.png" alt="test"></p>]]></content>
     
     
     
