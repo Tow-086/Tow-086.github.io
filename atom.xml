@@ -6,7 +6,7 @@
   <link href="http://tow-086.github.io/atom.xml" rel="self"/>
   
   <link href="http://tow-086.github.io/"/>
-  <updated>2025-08-03T11:14:03.394Z</updated>
+  <updated>2025-08-03T11:20:59.827Z</updated>
   <id>http://tow-086.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test03</title>
+    <link href="http://tow-086.github.io/2025/08/03/test03/"/>
+    <id>http://tow-086.github.io/2025/08/03/test03/</id>
+    <published>2025-08-03T11:19:45.645Z</published>
+    <updated>2025-08-03T11:20:59.827Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/image-20250803192042144.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>test02</title>
