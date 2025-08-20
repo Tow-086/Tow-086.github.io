@@ -6,7 +6,7 @@
   <link href="http://tow-086.github.io/atom.xml" rel="self"/>
   
   <link href="http://tow-086.github.io/"/>
-  <updated>2025-08-09T16:48:38.361Z</updated>
+  <updated>2025-08-15T14:20:54.646Z</updated>
   <id>http://tow-086.github.io/</id>
   
   <author>
@@ -15,6 +15,122 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2025Lilctf(Reverse)</title>
+    <link href="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/"/>
+    <id>http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/</id>
+    <published>2025-08-15T04:00:00.000Z</published>
+    <updated>2025-08-15T14:20:54.646Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2025Lilctf-Reverse&quot;&gt;&lt;a href=&quot;#2025Lilctf-Reverse&quot; class=&quot;headerlink&quot; title=&quot;2025Lilctf(Reverse)&quot;&gt;&lt;/a&gt;2025Lilctf(Reverse)&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/categories/CTF/"/>
+    
+    <category term="Reverse" scheme="http://tow-086.github.io/categories/CTF/Reverse/"/>
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
+    
+    <category term="Reverse" scheme="http://tow-086.github.io/tags/Reverse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2025Lilctf(Crypto)</title>
+    <link href="http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/"/>
+    <id>http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/</id>
+    <published>2025-08-15T04:00:00.000Z</published>
+    <updated>2025-08-19T13:01:01.868Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2025Lilctf-Crypto&quot;&gt;&lt;a href=&quot;#2025Lilctf-Crypto&quot; class=&quot;headerlink&quot; title=&quot;2025Lilctf(Crypto)&quot;&gt;&lt;/a&gt;2025Lilctf(Crypto)&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/categories/CTF/"/>
+    
+    <category term="Crypto" scheme="http://tow-086.github.io/categories/CTF/Crypto/"/>
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
+    
+    <category term="Crypto" scheme="http://tow-086.github.io/tags/Crypto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SwitchHosts下载安装使用</title>
+    <link href="http://tow-086.github.io/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>http://tow-086.github.io/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</id>
+    <published>2025-08-11T04:00:00.000Z</published>
+    <updated>2025-08-11T15:56:58.988Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SwitchHosts下载安装使用&quot;&gt;&lt;a href=&quot;#SwitchHosts下载安装使用&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="util" scheme="http://tow-086.github.io/categories/Java/util/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="util" scheme="http://tow-086.github.io/tags/util/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2025天机学堂</title>
+    <link href="http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
+    <id>http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</id>
+    <published>2025-08-11T04:00:00.000Z</published>
+    <updated>2025-08-14T10:59:17.997Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2025天机学堂&quot;&gt;&lt;a href=&quot;#2025天机学堂&quot; class=&quot;headerlink&quot; title=&quot;2025天机学堂&quot;&gt;&lt;/a&gt;2025天机学堂&lt;/h1&gt;&lt;h2 id=&quot;day01：初始化项目&quot;&gt;&lt;a href=&quot;#day01：初始化项目&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="complete_item" scheme="http://tow-086.github.io/categories/Java/complete-item/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="complete_item" scheme="http://tow-086.github.io/tags/complete-item/"/>
+    
+  </entry>
   
   <entry>
     <title>2025moectf(Crypto)</title>
