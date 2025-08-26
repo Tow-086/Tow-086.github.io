@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2025Lilctf(Reverse)</title>
-    <url>/2025/08/15/2025Lilctf(Revese)/</url>
-    <content><![CDATA[2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：
-
-然后ida打开看到：
-
-找到这三个关键函数以及：
-
-推测是变表和移位的base64，扔给ai分析一下，生成脚本：
-import base64# 自定义Base64表custom_b64_table = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ3456780129+/&quot;standard_b64_table = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;# 目标密文target_b64 = &quot;KRD2c1XRSJL9e0fqCIbiyJrHW1bu0ZnTYJvYw1DM2RzPK1XIQJnN2ZfRMY4So09S&quot;# 转换到标准Base64def to_standard_b64(s):    return s.translate(str.maketrans(custom_b64_table, standard_b64_table))# 解码Base64std_b64_str = to_standard_b64(target_b64)decoded = base64.b64decode(std_b64_str)data = list(decoded)  # 解码后的48字节数据# 移位逆操作（每3字节一组）def reverse_shift(data):    result = []    for i in range(0, len(data), 3):        # 第1字节：循环右移3位（加密时循环左移3位）        b0 = data[i]        b0 = ((b0 &gt;&gt; 3) | (b0 &lt;&lt; 5)) &amp; 0xFF                # 第2字节：循环左移1位（加密时循环右移1位）        b1 = data[i+1]        b1 = ((b1 &lt;&lt; 1) | (b1 &gt;&gt; 7)) &amp; 0xFF                # 第3字节不变        b2 = data[i+2]        result.extend([b0, b1, b2])    return result# 置换表tt0 = [0x0D, 0x0E, 0x0F, 0x0C, 0x0B, 0x0A, 0x09, 0x08,       0x06, 0x07, 0x05, 0x04, 0x02, 0x03, 0x01, 0x00]# 构造逆置换表inv_t = [0] * 16for i in range(16):    inv_t[t0[i]] = i# 三轮变换逆操作（正确密钥）def reverse_blocks(blocks):    # 块0：使用密钥 t0    block0 = [blocks[0][i] ^ t0[i] for i in range(16)]    block0 = [block0[inv_t[i]] for i in range(16)]        # 块1：使用密钥 t0    block1 = [blocks[1][i] ^ t0[i] for i in range(16)]    block1 = [block1[inv_t[i]] for i in range(16)]        # 块2：使用密钥 t0⊕1（关键修正！）    key2 = [b ^ 0x01 for b in t0]    block2 = [blocks[2][i] ^ key2[i] for i in range(16)]    block2 = [block2[inv_t[i]] for i in range(16)]        return block0 + block1 + block2# 步骤1: 移位逆操作data = reverse_shift(data)# 分块（16字节/块）blocks = [    data[0:16],   # 块0: 0-15字节    data[16:32],  # 块1: 16-31字节    data[32:48]   # 块2: 32-47字节]# 步骤2: 三轮逆操作（使用正确密钥）original_data = reverse_blocks(blocks)# 转换为字符串flag = &#x27;&#x27;.join(chr(b) for b in original_data)print(&quot;完整的Flag:&quot;, flag)print(&quot;Flag长度:&quot;, len(flag))
-
-完整的Flag: LILCTF{ez_arm_asm_meow_meow_meowm_oe_wemwom_oe}wFlag长度: 48
-提交不上，猜了一下，最后试了试这个
-LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
-提交成功
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>Reverse</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Reverse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2025Lilctf(Crypto)</title>
     <url>/2025/08/15/2025Lilctf(Crypto)/</url>
     <content><![CDATA[2025Lilctf(Crypto)1.ez_math原题：
@@ -163,6 +137,32 @@ Decrypted plaintext (bytes): b’LILCTF{M4ybe_7he_brut3_f0rce_1s_be5t}’Decrypt
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2025Lilctf(Reverse)</title>
+    <url>/2025/08/15/2025Lilctf(Revese)/</url>
+    <content><![CDATA[2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：
+
+然后ida打开看到：
+
+找到这三个关键函数以及：
+
+推测是变表和移位的base64，扔给ai分析一下，生成脚本：
+import base64# 自定义Base64表custom_b64_table = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ3456780129+/&quot;standard_b64_table = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;# 目标密文target_b64 = &quot;KRD2c1XRSJL9e0fqCIbiyJrHW1bu0ZnTYJvYw1DM2RzPK1XIQJnN2ZfRMY4So09S&quot;# 转换到标准Base64def to_standard_b64(s):    return s.translate(str.maketrans(custom_b64_table, standard_b64_table))# 解码Base64std_b64_str = to_standard_b64(target_b64)decoded = base64.b64decode(std_b64_str)data = list(decoded)  # 解码后的48字节数据# 移位逆操作（每3字节一组）def reverse_shift(data):    result = []    for i in range(0, len(data), 3):        # 第1字节：循环右移3位（加密时循环左移3位）        b0 = data[i]        b0 = ((b0 &gt;&gt; 3) | (b0 &lt;&lt; 5)) &amp; 0xFF                # 第2字节：循环左移1位（加密时循环右移1位）        b1 = data[i+1]        b1 = ((b1 &lt;&lt; 1) | (b1 &gt;&gt; 7)) &amp; 0xFF                # 第3字节不变        b2 = data[i+2]        result.extend([b0, b1, b2])    return result# 置换表tt0 = [0x0D, 0x0E, 0x0F, 0x0C, 0x0B, 0x0A, 0x09, 0x08,       0x06, 0x07, 0x05, 0x04, 0x02, 0x03, 0x01, 0x00]# 构造逆置换表inv_t = [0] * 16for i in range(16):    inv_t[t0[i]] = i# 三轮变换逆操作（正确密钥）def reverse_blocks(blocks):    # 块0：使用密钥 t0    block0 = [blocks[0][i] ^ t0[i] for i in range(16)]    block0 = [block0[inv_t[i]] for i in range(16)]        # 块1：使用密钥 t0    block1 = [blocks[1][i] ^ t0[i] for i in range(16)]    block1 = [block1[inv_t[i]] for i in range(16)]        # 块2：使用密钥 t0⊕1（关键修正！）    key2 = [b ^ 0x01 for b in t0]    block2 = [blocks[2][i] ^ key2[i] for i in range(16)]    block2 = [block2[inv_t[i]] for i in range(16)]        return block0 + block1 + block2# 步骤1: 移位逆操作data = reverse_shift(data)# 分块（16字节/块）blocks = [    data[0:16],   # 块0: 0-15字节    data[16:32],  # 块1: 16-31字节    data[32:48]   # 块2: 32-47字节]# 步骤2: 三轮逆操作（使用正确密钥）original_data = reverse_blocks(blocks)# 转换为字符串flag = &#x27;&#x27;.join(chr(b) for b in original_data)print(&quot;完整的Flag:&quot;, flag)print(&quot;Flag长度:&quot;, len(flag))
+
+完整的Flag: LILCTF{ez_arm_asm_meow_meow_meowm_oe_wemwom_oe}wFlag长度: 48
+提交不上，猜了一下，最后试了试这个
+LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
+提交成功
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>Reverse</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Reverse</tag>
       </tags>
   </entry>
   <entry>
