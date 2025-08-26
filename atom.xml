@@ -6,7 +6,7 @@
   <link href="http://tow-086.github.io/atom.xml" rel="self"/>
   
   <link href="http://tow-086.github.io/"/>
-  <updated>2025-08-15T14:20:54.646Z</updated>
+  <updated>2025-08-26T14:52:30.142Z</updated>
   <id>http://tow-086.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java常见八股</title>
+    <link href="http://tow-086.github.io/2025/08/26/Java%E5%B8%B8%E8%A7%81%E5%85%AB%E8%82%A1/"/>
+    <id>http://tow-086.github.io/2025/08/26/Java%E5%B8%B8%E8%A7%81%E5%85%AB%E8%82%A1/</id>
+    <published>2025-08-26T04:00:00.000Z</published>
+    <updated>2025-08-26T14:52:30.142Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java常见八股&quot;&gt;&lt;a href=&quot;#Java常见八股&quot; class=&quot;headerlink&quot; title=&quot;Java常见八股&quot;&gt;&lt;/a&gt;&lt;strong&gt;Java常见&lt;/strong&gt;八股&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="为了实习说是" scheme="http://tow-086.github.io/categories/Java/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="为了实习说是" scheme="http://tow-086.github.io/tags/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>2025Lilctf(Reverse)</title>
@@ -75,6 +104,35 @@
   </entry>
   
   <entry>
+    <title>2025天机学堂</title>
+    <link href="http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
+    <id>http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</id>
+    <published>2025-08-11T04:00:00.000Z</published>
+    <updated>2025-08-26T15:14:11.334Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2025天机学堂&quot;&gt;&lt;a href=&quot;#2025天机学堂&quot; class=&quot;headerlink&quot; title=&quot;2025天机学堂&quot;&gt;&lt;/a&gt;2025天机学堂&lt;/h1&gt;&lt;h2 id=&quot;day01：初始化项目&quot;&gt;&lt;a href=&quot;#day01：初始化项目&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="complete_item" scheme="http://tow-086.github.io/categories/Java/complete-item/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="complete_item" scheme="http://tow-086.github.io/tags/complete-item/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SwitchHosts下载安装使用</title>
     <link href="http://tow-086.github.io/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
     <id>http://tow-086.github.io/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</id>
@@ -100,35 +158,6 @@
     <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
     
     <category term="util" scheme="http://tow-086.github.io/tags/util/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2025天机学堂</title>
-    <link href="http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
-    <id>http://tow-086.github.io/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</id>
-    <published>2025-08-11T04:00:00.000Z</published>
-    <updated>2025-08-14T10:59:17.997Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2025天机学堂&quot;&gt;&lt;a href=&quot;#2025天机学堂&quot; class=&quot;headerlink&quot; title=&quot;2025天机学堂&quot;&gt;&lt;/a&gt;2025天机学堂&lt;/h1&gt;&lt;h2 id=&quot;day01：初始化项目&quot;&gt;&lt;a href=&quot;#day01：初始化项目&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
-    
-    <category term="complete_item" scheme="http://tow-086.github.io/categories/Java/complete-item/"/>
-    
-    
-    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
-    
-    <category term="complete_item" scheme="http://tow-086.github.io/tags/complete-item/"/>
     
   </entry>
   
