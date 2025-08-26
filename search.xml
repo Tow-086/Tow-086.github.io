@@ -103,6 +103,24 @@ day05问答系统]]></content>
       </tags>
   </entry>
   <entry>
+    <title>SwitchHosts下载安装使用</title>
+    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[SwitchHosts下载安装使用github直接搜然后下载
+
+然后直接修改
+
+注意，要关代理并且重启浏览器！！！
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>util</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>util</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2025moectf(Crypto)</title>
     <url>/2025/08/09/2025moectf(Crypto)/</url>
     <content><![CDATA[2025moectf(Crypto)1.moectf(Crypto)#!/usr/bin/env python3from Crypto.PublicKey import ElGamalfrom Crypto.Random import get_random_bytes, randomfrom Crypto.Util.number import *from random import *from secret import flagdef generate_elgamal_keypair(bits=512):p = getPrime(bits)for _ in range(1000):g = getRandomRange(2, 5)if pow(g, (p - 1) // 2, p) != 1:breakx = randrange(2, p - 1)注:此处的secret模块可以理解为存储了明文flag的python文件，属于未知信息，而非公开的可用模块。你需要尝试从密文去恢复原始的flag，而不是去下载secret模块。secrets则是一个用于生成管理密码的安全随机数的python标准库。bytes_to_long函数用于将flag编码为整数。Hint：什么是 Elgamal还是附个链接吧Elgamaly = pow(g, x, p)return p, g, y, xkey=generate_elgamal_keypair(bits=512)p, g, y ,x= keyprint(&quot;=== 公钥 (p, g, y) ===&quot;)print(&quot;p =&quot;, p)print(&quot;g =&quot;, g)print(&quot;y =&quot;, y)print()k = randrange(1, p - 2)m = bytes_to_long(flag)c1 = pow(g, k, p)c2 = (m * pow(y, k, p)) % pprint(&quot;=== 密文 (c1, c2) ===&quot;)print(&quot;c1 =&quot;, c1)print(&quot;c2 =&quot;, c2)#不小心把x输出了()print(&quot;x =&quot;, x)&quot;&quot;&quot;=== 公钥 (p, g, y) ===p =11540963715962144951763578255357417528966715904849014985547597657698304891044841099894993117258279094910424033273299863589407477091830213468539451196239863g = 2y =8313424783366011287014623582773521595333285291380540689467073212212931648415580065207081449784135835711205324186662482526357834042013400765421925274271853=== 密文 (c1, c2) ===c1 =6652053553055645358275362259554856525976931841318251152940464543175108560132949610916012490837970851191204144757409335011811874896056430105292534244732863c2 =2314913568081526428247981719100952331444938852399031826635475971947484663418362533363591441216570597417789120470703548843342170567039399830377459228297983x =8010957078086554284020959664124784479610913596560035011951143269559761229114027738791440961864150225798049120582540951874956255115884539333966429021004214&quot;&quot;&quot;注:此处的secret模块可以理解为存储了明文flag的python文件，属于未知信息，而非公开的可用模块。你需要尝试从密文去恢复原始的flag，而不是去下载secret模块。secrets则是一个用于生成管理密码的安全随机数的python标准库。bytes_to_long函数用于将flag编码为整数。
@@ -295,24 +313,6 @@ Decrypted plaintext (bytes): b’LILCTF{M4ybe_7he_brut3_f0rce_1s_be5t}’Decrypt
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SwitchHosts下载安装使用</title>
-    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[SwitchHosts下载安装使用github直接搜然后下载
-
-然后直接修改
-
-注意，要关代理并且重启浏览器！！！
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>util</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>util</tag>
       </tags>
   </entry>
   <entry>
