@@ -91,35 +91,6 @@
   
   
   <entry>
-    <title>2025天机学堂</title>
-    <link href="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
-    <url>/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</url>
-    
-    <content type="html"><![CDATA[<h1 id="2025天机学堂"><a href="#2025天机学堂" class="headerlink" title="2025天机学堂"></a>2025天机学堂</h1><h2 id="day01：初始化项目"><a href="#day01：初始化项目" class="headerlink" title="day01：初始化项目"></a>day01：初始化项目</h2><p>虚拟机密码：root      123321</p><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">192.168.150.101</span> git.tianji.com  tjxt  <span class="hljs-number">123321</span><br><span class="hljs-number">192.168.150.101</span> jenkins.tianji.com    root  <span class="hljs-number">123</span><br><span class="hljs-number">192.168.150.101</span> mq.tianji.com    tjxt  <span class="hljs-number">123321</span><br><span class="hljs-number">192.168.150.101</span> nacos.tianji.com      nacos   nacos<br><span class="hljs-number">192.168.150.101</span> xxljob.tianji.com<br><span class="hljs-number">192.168.150.101</span> es.tianji.com<br><span class="hljs-number">192.168.150.101</span> api.tianji.com<br><span class="hljs-number">192.168.150.101</span> www.tianji.com      jack  <span class="hljs-number">123</span>   Rose  <span class="hljs-number">123456</span><br><span class="hljs-number">192.168.150.101</span> manage.tianji.com<br><span class="hljs-number">192.168.150.101</span> cpolar.tianji.com<br></code></pre></td></tr></table></figure><p>点击init初始化虚拟机：</p><p>在VMware得到：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230026583.png" alt="image-20250811230026583"></p><p>然后初始化网络配置，改成这样：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230229943.png" alt="image-20250811230229943"></p><p>启动虚拟机，虚拟机中的环境会自启动，我们可以访问一个进行测试，访问是要访问我画红框的url：192.168.150.101:8848</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230339618.png" alt="image-20250811230339618"></p><p>然后我们也可以使用switchhost来代理，具体可以看我switchhost的文章</p><p>nginx无法启动问题，尝试重启进行解决：解决失败，但最后耗时四小时左右解决了，问题在于nginx的conf的语法问题，大概改成这样就好了：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813173345522.png" alt="image-20250813173345522"></p><p>然后复制初始化项目到本地：</p><p><a href="http://192.168.150.101:10880/tjxt/tianji.git">http://192.168.150.101:10880/tjxt/tianji.git</a></p><p>git clone <a href="http://192.168.150.101:10880/tjxt/tianji.git">http://192.168.150.101:10880/tjxt/tianji.git</a> -b lesson-init</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813151129175.png" alt="image-20250813151129175"></p><p>然后打开项目刷新一下maven下下依赖就好了</p><p>遇到bug：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813174959296.png" alt="image-20250813174959296"></p><p>解决了一下午，到最后还是依赖问题：把这个注释的# 删掉</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814001958375.png" alt="image-20250814001958375"></p><p>查找bug，Rose删除订单时显示不能删除他人订单</p><p>想远程调试，改成这样：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814141612054.png" alt="image-20250814141612054"></p><p>然后关掉tj-trade，启动tj-trade-debug</p><p>当然也可以直接本地调试，但是注意调试前编辑配置改为local</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814144004334.png" alt="image-20250814144004334"></p><p>回到bug问题，将&#x3D;改成equals或者&#x3D;&#x3D;就好了</p><p>然后推送到本地的git就好了</p><h2 id="day02：我的课表"><a href="#day02：我的课表" class="headerlink" title="day02：我的课表"></a>day02：我的课表</h2><p>导入domain和enums然后下载mybatisplus插件然后连接：</p><p>jdbc:mysql:&#x2F;&#x2F;localhost:192.168.150.101:3306&#x2F;tj_learning?useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC</p><p>但是遇到问题：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250822133807249.png" alt="image-20250822133807249"></p><p>还没解决，因为我数据库能连上但是这个插件连不上，所以暂时没管还能继续学下去</p><p>然后写那个课程弄到我的课表的代码，这就不复制了，比较简单</p><p>然后进行测试，他会显示报名失败，因为数据库数据太老了，你自己改一下时间就能报名成功了</p><p>然后第二个是分页查询课表，也是不难，但是别忘了在请求头中加user-info，要不然会报401</p><p>第三个查询正在学习的课程也是一样</p><p>课后作业我直接搬了</p><p>但是day02有个问题，没有解决：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250822224704178.png" alt="image-20250822224704178"></p><p>但是后端接口正常使用，我就没管他</p><h2 id="day03学习计划和进度"><a href="#day03学习计划和进度" class="headerlink" title="day03学习计划和进度"></a>day03学习计划和进度</h2><p>写完代码后出现bug：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250823225231379.png" alt="image-20250823225231379"></p><p>然后发现是serviceImpl忘加service注解了，加了就能解决了</p><p>遇到了问题：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250824001502238.png" alt="image-20250824001502238"></p><p>这是数据库建表的问题，但感觉修改太麻烦了，我不改了。代码本身没问题</p><p>另外还是前端问题，导致数据没回显但是接口测试没问题</p><p>day3基本是水过去的</p><h2 id="day04高并发优化"><a href="#day04高并发优化" class="headerlink" title="day04高并发优化"></a>day04高并发优化</h2><p>u1s1面对高并发你会怎么办？hm飞书的答案：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250824233342480.png" alt="image-20250824233342480"></p><p>要我说，口头表达一下大概就是：</p><p>1.存入redis后续更新数据库</p><p>2.消息队列，慢慢处理</p><p>3.限流</p><p>4.异步请求，先返回东西后进行处理  &#x2F;&#x2F;感觉和2重复了</p><p>然后就是改造代码，懒得看了，太无聊。</p><h2 id="day05问答系统"><a href="#day05问答系统" class="headerlink" title="day05问答系统"></a>day05问答系统</h2>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java</category>
-      
-      <category>complete_item</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Java</tag>
-      
-      <tag>complete_item</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>SwitchHosts下载安装使用</title>
     <link href="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
     <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
@@ -141,6 +112,35 @@
       <tag>Java</tag>
       
       <tag>util</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2025天机学堂</title>
+    <link href="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
+    <url>/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</url>
+    
+    <content type="html"><![CDATA[<h1 id="2025天机学堂"><a href="#2025天机学堂" class="headerlink" title="2025天机学堂"></a>2025天机学堂</h1><h2 id="day01：初始化项目"><a href="#day01：初始化项目" class="headerlink" title="day01：初始化项目"></a>day01：初始化项目</h2><p>虚拟机密码：root      123321</p><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">192.168.150.101</span> git.tianji.com  tjxt  <span class="hljs-number">123321</span><br><span class="hljs-number">192.168.150.101</span> jenkins.tianji.com    root  <span class="hljs-number">123</span><br><span class="hljs-number">192.168.150.101</span> mq.tianji.com    tjxt  <span class="hljs-number">123321</span><br><span class="hljs-number">192.168.150.101</span> nacos.tianji.com      nacos   nacos<br><span class="hljs-number">192.168.150.101</span> xxljob.tianji.com<br><span class="hljs-number">192.168.150.101</span> es.tianji.com<br><span class="hljs-number">192.168.150.101</span> api.tianji.com<br><span class="hljs-number">192.168.150.101</span> www.tianji.com      jack  <span class="hljs-number">123</span>   Rose  <span class="hljs-number">123456</span><br><span class="hljs-number">192.168.150.101</span> manage.tianji.com<br><span class="hljs-number">192.168.150.101</span> cpolar.tianji.com<br></code></pre></td></tr></table></figure><p>点击init初始化虚拟机：</p><p>在VMware得到：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230026583.png" alt="image-20250811230026583"></p><p>然后初始化网络配置，改成这样：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230229943.png" alt="image-20250811230229943"></p><p>启动虚拟机，虚拟机中的环境会自启动，我们可以访问一个进行测试，访问是要访问我画红框的url：192.168.150.101:8848</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250811230339618.png" alt="image-20250811230339618"></p><p>然后我们也可以使用switchhost来代理，具体可以看我switchhost的文章</p><p>nginx无法启动问题，尝试重启进行解决：解决失败，但最后耗时四小时左右解决了，问题在于nginx的conf的语法问题，大概改成这样就好了：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813173345522.png" alt="image-20250813173345522"></p><p>然后复制初始化项目到本地：</p><p><a href="http://192.168.150.101:10880/tjxt/tianji.git">http://192.168.150.101:10880/tjxt/tianji.git</a></p><p>git clone <a href="http://192.168.150.101:10880/tjxt/tianji.git">http://192.168.150.101:10880/tjxt/tianji.git</a> -b lesson-init</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813151129175.png" alt="image-20250813151129175"></p><p>然后打开项目刷新一下maven下下依赖就好了</p><p>遇到bug：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250813174959296.png" alt="image-20250813174959296"></p><p>解决了一下午，到最后还是依赖问题：把这个注释的# 删掉</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814001958375.png" alt="image-20250814001958375"></p><p>查找bug，Rose删除订单时显示不能删除他人订单</p><p>想远程调试，改成这样：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814141612054.png" alt="image-20250814141612054"></p><p>然后关掉tj-trade，启动tj-trade-debug</p><p>当然也可以直接本地调试，但是注意调试前编辑配置改为local</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250814144004334.png" alt="image-20250814144004334"></p><p>回到bug问题，将&#x3D;改成equals或者&#x3D;&#x3D;就好了</p><p>然后推送到本地的git就好了</p><h2 id="day02：我的课表"><a href="#day02：我的课表" class="headerlink" title="day02：我的课表"></a>day02：我的课表</h2><p>导入domain和enums然后下载mybatisplus插件然后连接：</p><p>jdbc:mysql:&#x2F;&#x2F;localhost:192.168.150.101:3306&#x2F;tj_learning?useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC</p><p>但是遇到问题：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250822133807249.png" alt="image-20250822133807249"></p><p>还没解决，因为我数据库能连上但是这个插件连不上，所以暂时没管还能继续学下去</p><p>然后写那个课程弄到我的课表的代码，这就不复制了，比较简单</p><p>然后进行测试，他会显示报名失败，因为数据库数据太老了，你自己改一下时间就能报名成功了</p><p>然后第二个是分页查询课表，也是不难，但是别忘了在请求头中加user-info，要不然会报401</p><p>第三个查询正在学习的课程也是一样</p><p>课后作业我直接搬了</p><p>但是day02有个问题，没有解决：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250822224704178.png" alt="image-20250822224704178"></p><p>但是后端接口正常使用，我就没管他</p><h2 id="day03学习计划和进度"><a href="#day03学习计划和进度" class="headerlink" title="day03学习计划和进度"></a>day03学习计划和进度</h2><p>写完代码后出现bug：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250823225231379.png" alt="image-20250823225231379"></p><p>然后发现是serviceImpl忘加service注解了，加了就能解决了</p><p>遇到了问题：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250824001502238.png" alt="image-20250824001502238"></p><p>这是数据库建表的问题，但感觉修改太麻烦了，我不改了。代码本身没问题</p><p>另外还是前端问题，导致数据没回显但是接口测试没问题</p><p>day3基本是水过去的</p><h2 id="day04高并发优化"><a href="#day04高并发优化" class="headerlink" title="day04高并发优化"></a>day04高并发优化</h2><p>u1s1面对高并发你会怎么办？hm飞书的答案：</p><p><img src="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/image-20250824233342480.png" alt="image-20250824233342480"></p><p>要我说，口头表达一下大概就是：</p><p>1.存入redis后续更新数据库</p><p>2.消息队列，慢慢处理</p><p>3.限流</p><p>4.异步请求，先返回东西后进行处理  &#x2F;&#x2F;感觉和2重复了</p><p>然后就是改造代码，懒得看了，太无聊。</p><h2 id="day05问答系统"><a href="#day05问答系统" class="headerlink" title="day05问答系统"></a>day05问答系统</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>complete_item</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>complete_item</tag>
       
     </tags>
     
