@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2025Lilctf(Reverse)</title>
+    <url>/2025/08/15/2025Lilctf(Revese)/</url>
+    <content><![CDATA[2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：
+
+然后ida打开看到：
+
+找到这三个关键函数以及：
+
+推测是变表和移位的base64，扔给ai分析一下，生成脚本：
+import base64# 自定义Base64表custom_b64_table = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ3456780129+/&quot;standard_b64_table = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;# 目标密文target_b64 = &quot;KRD2c1XRSJL9e0fqCIbiyJrHW1bu0ZnTYJvYw1DM2RzPK1XIQJnN2ZfRMY4So09S&quot;# 转换到标准Base64def to_standard_b64(s):    return s.translate(str.maketrans(custom_b64_table, standard_b64_table))# 解码Base64std_b64_str = to_standard_b64(target_b64)decoded = base64.b64decode(std_b64_str)data = list(decoded)  # 解码后的48字节数据# 移位逆操作（每3字节一组）def reverse_shift(data):    result = []    for i in range(0, len(data), 3):        # 第1字节：循环右移3位（加密时循环左移3位）        b0 = data[i]        b0 = ((b0 &gt;&gt; 3) | (b0 &lt;&lt; 5)) &amp; 0xFF                # 第2字节：循环左移1位（加密时循环右移1位）        b1 = data[i+1]        b1 = ((b1 &lt;&lt; 1) | (b1 &gt;&gt; 7)) &amp; 0xFF                # 第3字节不变        b2 = data[i+2]        result.extend([b0, b1, b2])    return result# 置换表tt0 = [0x0D, 0x0E, 0x0F, 0x0C, 0x0B, 0x0A, 0x09, 0x08,       0x06, 0x07, 0x05, 0x04, 0x02, 0x03, 0x01, 0x00]# 构造逆置换表inv_t = [0] * 16for i in range(16):    inv_t[t0[i]] = i# 三轮变换逆操作（正确密钥）def reverse_blocks(blocks):    # 块0：使用密钥 t0    block0 = [blocks[0][i] ^ t0[i] for i in range(16)]    block0 = [block0[inv_t[i]] for i in range(16)]        # 块1：使用密钥 t0    block1 = [blocks[1][i] ^ t0[i] for i in range(16)]    block1 = [block1[inv_t[i]] for i in range(16)]        # 块2：使用密钥 t0⊕1（关键修正！）    key2 = [b ^ 0x01 for b in t0]    block2 = [blocks[2][i] ^ key2[i] for i in range(16)]    block2 = [block2[inv_t[i]] for i in range(16)]        return block0 + block1 + block2# 步骤1: 移位逆操作data = reverse_shift(data)# 分块（16字节/块）blocks = [    data[0:16],   # 块0: 0-15字节    data[16:32],  # 块1: 16-31字节    data[32:48]   # 块2: 32-47字节]# 步骤2: 三轮逆操作（使用正确密钥）original_data = reverse_blocks(blocks)# 转换为字符串flag = &#x27;&#x27;.join(chr(b) for b in original_data)print(&quot;完整的Flag:&quot;, flag)print(&quot;Flag长度:&quot;, len(flag))
+
+完整的Flag: LILCTF{ez_arm_asm_meow_meow_meowm_oe_wemwom_oe}wFlag长度: 48
+提交不上，猜了一下，最后试了试这个
+LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
+提交成功
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>Reverse</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Reverse</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2025moectf(Crypto)</title>
     <url>/2025/08/09/2025moectf(Crypto)/</url>
     <content><![CDATA[2025moectf(Crypto)1.moectf(Crypto)#!/usr/bin/env python3from Crypto.PublicKey import ElGamalfrom Crypto.Random import get_random_bytes, randomfrom Crypto.Util.number import *from random import *from secret import flagdef generate_elgamal_keypair(bits=512):p = getPrime(bits)for _ in range(1000):g = getRandomRange(2, 5)if pow(g, (p - 1) // 2, p) != 1:breakx = randrange(2, p - 1)注:此处的secret模块可以理解为存储了明文flag的python文件，属于未知信息，而非公开的可用模块。你需要尝试从密文去恢复原始的flag，而不是去下载secret模块。secrets则是一个用于生成管理密码的安全随机数的python标准库。bytes_to_long函数用于将flag编码为整数。Hint：什么是 Elgamal还是附个链接吧Elgamaly = pow(g, x, p)return p, g, y, xkey=generate_elgamal_keypair(bits=512)p, g, y ,x= keyprint(&quot;=== 公钥 (p, g, y) ===&quot;)print(&quot;p =&quot;, p)print(&quot;g =&quot;, g)print(&quot;y =&quot;, y)print()k = randrange(1, p - 2)m = bytes_to_long(flag)c1 = pow(g, k, p)c2 = (m * pow(y, k, p)) % pprint(&quot;=== 密文 (c1, c2) ===&quot;)print(&quot;c1 =&quot;, c1)print(&quot;c2 =&quot;, c2)#不小心把x输出了()print(&quot;x =&quot;, x)&quot;&quot;&quot;=== 公钥 (p, g, y) ===p =11540963715962144951763578255357417528966715904849014985547597657698304891044841099894993117258279094910424033273299863589407477091830213468539451196239863g = 2y =8313424783366011287014623582773521595333285291380540689467073212212931648415580065207081449784135835711205324186662482526357834042013400765421925274271853=== 密文 (c1, c2) ===c1 =6652053553055645358275362259554856525976931841318251152940464543175108560132949610916012490837970851191204144757409335011811874896056430105292534244732863c2 =2314913568081526428247981719100952331444938852399031826635475971947484663418362533363591441216570597417789120470703548843342170567039399830377459228297983x =8010957078086554284020959664124784479610913596560035011951143269559761229114027738791440961864150225798049120582540951874956255115884539333966429021004214&quot;&quot;&quot;注:此处的secret模块可以理解为存储了明文flag的python文件，属于未知信息，而非公开的可用模块。你需要尝试从密文去恢复原始的flag，而不是去下载secret模块。secrets则是一个用于生成管理密码的安全随机数的python标准库。bytes_to_long函数用于将flag编码为整数。
@@ -54,108 +80,6 @@ flag：b‘moectf{Y0u_h@v3_ju5t_s01v3d_7h1s_pr0b13m!}’
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2025天机学堂</title>
-    <url>/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</url>
-    <content><![CDATA[2025天机学堂day01：初始化项目虚拟机密码：root      123321
-192.168.150.101 git.tianji.com  tjxt  123321192.168.150.101 jenkins.tianji.com    root  123192.168.150.101 mq.tianji.com    tjxt  123321192.168.150.101 nacos.tianji.com      nacos   nacos192.168.150.101 xxljob.tianji.com192.168.150.101 es.tianji.com192.168.150.101 api.tianji.com192.168.150.101 www.tianji.com      jack  123   Rose  123456192.168.150.101 manage.tianji.com192.168.150.101 cpolar.tianji.com
-
-
-
-
-
-点击init初始化虚拟机：
-在VMware得到：
-
-然后初始化网络配置，改成这样：
-
-启动虚拟机，虚拟机中的环境会自启动，我们可以访问一个进行测试，访问是要访问我画红框的url：192.168.150.101:8848
-
-然后我们也可以使用switchhost来代理，具体可以看我switchhost的文章
-nginx无法启动问题，尝试重启进行解决：解决失败，但最后耗时四小时左右解决了，问题在于nginx的conf的语法问题，大概改成这样就好了：
-
-然后复制初始化项目到本地：
-http://192.168.150.101:10880/tjxt/tianji.git
-git clone http://192.168.150.101:10880/tjxt/tianji.git -b lesson-init
-
-然后打开项目刷新一下maven下下依赖就好了
-遇到bug：
-
-解决了一下午，到最后还是依赖问题：把这个注释的# 删掉
-
-查找bug，Rose删除订单时显示不能删除他人订单
-想远程调试，改成这样：
-
-然后关掉tj-trade，启动tj-trade-debug
-当然也可以直接本地调试，但是注意调试前编辑配置改为local
-
-回到bug问题，将&#x3D;改成equals或者&#x3D;&#x3D;就好了
-然后推送到本地的git就好了
-day02：我的课表导入domain和enums然后下载mybatisplus插件然后连接：
-jdbc:mysql:&#x2F;&#x2F;localhost:192.168.150.101:3306&#x2F;tj_learning?useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC
-但是遇到问题：
-
-还没解决，因为我数据库能连上但是这个插件连不上，所以暂时没管还能继续学下去
-然后写那个课程弄到我的课表的代码，这就不复制了，比较简单
-然后进行测试，他会显示报名失败，因为数据库数据太老了，你自己改一下时间就能报名成功了
-然后第二个是分页查询课表，也是不难，但是别忘了在请求头中加user-info，要不然会报401
-第三个查询正在学习的课程也是一样
-课后作业我直接搬了
-但是day02有个问题，没有解决：
-
-但是后端接口正常使用，我就没管他
-day03学习计划和进度写完代码后出现bug：
-
-然后发现是serviceImpl忘加service注解了，加了就能解决了
-遇到了问题：
-
-这是数据库建表的问题，但感觉修改太麻烦了，我不改了。代码本身没问题
-另外还是前端问题，导致数据没回显但是接口测试没问题
-day3基本是水过去的
-day04高并发优化u1s1面对高并发你会怎么办？hm飞书的答案：
-
-要我说，口头表达一下大概就是：
-1.存入redis后续更新数据库
-2.消息队列，慢慢处理
-3.限流
-4.异步请求，先返回东西后进行处理  &#x2F;&#x2F;感觉和2重复了
-然后就是改造代码，懒得看了，太无聊。
-day05问答系统]]></content>
-      <categories>
-        <category>Java</category>
-        <category>complete_item</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>complete_item</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2025Lilctf(Reverse)</title>
-    <url>/2025/08/15/2025Lilctf(Revese)/</url>
-    <content><![CDATA[2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：
-
-然后ida打开看到：
-
-找到这三个关键函数以及：
-
-推测是变表和移位的base64，扔给ai分析一下，生成脚本：
-import base64# 自定义Base64表custom_b64_table = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ3456780129+/&quot;standard_b64_table = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;# 目标密文target_b64 = &quot;KRD2c1XRSJL9e0fqCIbiyJrHW1bu0ZnTYJvYw1DM2RzPK1XIQJnN2ZfRMY4So09S&quot;# 转换到标准Base64def to_standard_b64(s):    return s.translate(str.maketrans(custom_b64_table, standard_b64_table))# 解码Base64std_b64_str = to_standard_b64(target_b64)decoded = base64.b64decode(std_b64_str)data = list(decoded)  # 解码后的48字节数据# 移位逆操作（每3字节一组）def reverse_shift(data):    result = []    for i in range(0, len(data), 3):        # 第1字节：循环右移3位（加密时循环左移3位）        b0 = data[i]        b0 = ((b0 &gt;&gt; 3) | (b0 &lt;&lt; 5)) &amp; 0xFF                # 第2字节：循环左移1位（加密时循环右移1位）        b1 = data[i+1]        b1 = ((b1 &lt;&lt; 1) | (b1 &gt;&gt; 7)) &amp; 0xFF                # 第3字节不变        b2 = data[i+2]        result.extend([b0, b1, b2])    return result# 置换表tt0 = [0x0D, 0x0E, 0x0F, 0x0C, 0x0B, 0x0A, 0x09, 0x08,       0x06, 0x07, 0x05, 0x04, 0x02, 0x03, 0x01, 0x00]# 构造逆置换表inv_t = [0] * 16for i in range(16):    inv_t[t0[i]] = i# 三轮变换逆操作（正确密钥）def reverse_blocks(blocks):    # 块0：使用密钥 t0    block0 = [blocks[0][i] ^ t0[i] for i in range(16)]    block0 = [block0[inv_t[i]] for i in range(16)]        # 块1：使用密钥 t0    block1 = [blocks[1][i] ^ t0[i] for i in range(16)]    block1 = [block1[inv_t[i]] for i in range(16)]        # 块2：使用密钥 t0⊕1（关键修正！）    key2 = [b ^ 0x01 for b in t0]    block2 = [blocks[2][i] ^ key2[i] for i in range(16)]    block2 = [block2[inv_t[i]] for i in range(16)]        return block0 + block1 + block2# 步骤1: 移位逆操作data = reverse_shift(data)# 分块（16字节/块）blocks = [    data[0:16],   # 块0: 0-15字节    data[16:32],  # 块1: 16-31字节    data[32:48]   # 块2: 32-47字节]# 步骤2: 三轮逆操作（使用正确密钥）original_data = reverse_blocks(blocks)# 转换为字符串flag = &#x27;&#x27;.join(chr(b) for b in original_data)print(&quot;完整的Flag:&quot;, flag)print(&quot;Flag长度:&quot;, len(flag))
-
-完整的Flag: LILCTF{ez_arm_asm_meow_meow_meowm_oe_wemwom_oe}wFlag长度: 48
-提交不上，猜了一下，最后试了试这个
-LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}
-提交成功
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>Reverse</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Reverse</tag>
       </tags>
   </entry>
   <entry>
@@ -295,6 +219,82 @@ Decrypted plaintext (bytes): b’LILCTF{M4ybe_7he_brut3_f0rce_1s_be5t}’Decrypt
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2025天机学堂</title>
+    <url>/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</url>
+    <content><![CDATA[2025天机学堂day01：初始化项目虚拟机密码：root      123321
+192.168.150.101 git.tianji.com  tjxt  123321192.168.150.101 jenkins.tianji.com    root  123192.168.150.101 mq.tianji.com    tjxt  123321192.168.150.101 nacos.tianji.com      nacos   nacos192.168.150.101 xxljob.tianji.com192.168.150.101 es.tianji.com192.168.150.101 api.tianji.com192.168.150.101 www.tianji.com      jack  123   Rose  123456192.168.150.101 manage.tianji.com192.168.150.101 cpolar.tianji.com
+
+
+
+
+
+点击init初始化虚拟机：
+在VMware得到：
+
+然后初始化网络配置，改成这样：
+
+启动虚拟机，虚拟机中的环境会自启动，我们可以访问一个进行测试，访问是要访问我画红框的url：192.168.150.101:8848
+
+然后我们也可以使用switchhost来代理，具体可以看我switchhost的文章
+nginx无法启动问题，尝试重启进行解决：解决失败，但最后耗时四小时左右解决了，问题在于nginx的conf的语法问题，大概改成这样就好了：
+
+然后复制初始化项目到本地：
+http://192.168.150.101:10880/tjxt/tianji.git
+git clone http://192.168.150.101:10880/tjxt/tianji.git -b lesson-init
+
+然后打开项目刷新一下maven下下依赖就好了
+遇到bug：
+
+解决了一下午，到最后还是依赖问题：把这个注释的# 删掉
+
+查找bug，Rose删除订单时显示不能删除他人订单
+想远程调试，改成这样：
+
+然后关掉tj-trade，启动tj-trade-debug
+当然也可以直接本地调试，但是注意调试前编辑配置改为local
+
+回到bug问题，将&#x3D;改成equals或者&#x3D;&#x3D;就好了
+然后推送到本地的git就好了
+day02：我的课表导入domain和enums然后下载mybatisplus插件然后连接：
+jdbc:mysql:&#x2F;&#x2F;localhost:192.168.150.101:3306&#x2F;tj_learning?useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC
+但是遇到问题：
+
+还没解决，因为我数据库能连上但是这个插件连不上，所以暂时没管还能继续学下去
+然后写那个课程弄到我的课表的代码，这就不复制了，比较简单
+然后进行测试，他会显示报名失败，因为数据库数据太老了，你自己改一下时间就能报名成功了
+然后第二个是分页查询课表，也是不难，但是别忘了在请求头中加user-info，要不然会报401
+第三个查询正在学习的课程也是一样
+课后作业我直接搬了
+但是day02有个问题，没有解决：
+
+但是后端接口正常使用，我就没管他
+day03学习计划和进度写完代码后出现bug：
+
+然后发现是serviceImpl忘加service注解了，加了就能解决了
+遇到了问题：
+
+这是数据库建表的问题，但感觉修改太麻烦了，我不改了。代码本身没问题
+另外还是前端问题，导致数据没回显但是接口测试没问题
+day3基本是水过去的
+day04高并发优化u1s1面对高并发你会怎么办？hm飞书的答案：
+
+要我说，口头表达一下大概就是：
+1.存入redis后续更新数据库
+2.消息队列，慢慢处理
+3.限流
+4.异步请求，先返回东西后进行处理  &#x2F;&#x2F;感觉和2重复了
+然后就是改造代码，懒得看了，太无聊。
+day05问答系统]]></content>
+      <categories>
+        <category>Java</category>
+        <category>complete_item</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>complete_item</tag>
       </tags>
   </entry>
   <entry>
