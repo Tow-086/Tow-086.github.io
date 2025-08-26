@@ -91,35 +91,6 @@
   
   
   <entry>
-    <title>SwitchHosts下载安装使用</title>
-    <link href="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
-    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    
-    <content type="html"><![CDATA[<h1 id="SwitchHosts下载安装使用"><a href="#SwitchHosts下载安装使用" class="headerlink" title="SwitchHosts下载安装使用"></a>SwitchHosts下载安装使用</h1><p>github直接搜然后下载</p><p><img src="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/image-20250811232346188.png" alt="image-20250811232346188"></p><p>然后直接修改</p><p><img src="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/image-20250811235635131.png" alt="image-20250811235635131"></p><p>注意，要关代理并且重启浏览器！！！</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Java</category>
-      
-      <category>util</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Java</tag>
-      
-      <tag>util</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>2025天机学堂</title>
     <link href="/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/"/>
     <url>/2025/08/11/2025%E5%A4%A9%E6%9C%BA%E5%AD%A6%E5%A0%82/</url>
@@ -141,6 +112,35 @@
       <tag>Java</tag>
       
       <tag>complete_item</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SwitchHosts下载安装使用</title>
+    <link href="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="SwitchHosts下载安装使用"><a href="#SwitchHosts下载安装使用" class="headerlink" title="SwitchHosts下载安装使用"></a>SwitchHosts下载安装使用</h1><p>github直接搜然后下载</p><p><img src="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/image-20250811232346188.png" alt="image-20250811232346188"></p><p>然后直接修改</p><p><img src="/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/image-20250811235635131.png" alt="image-20250811235635131"></p><p>注意，要关代理并且重启浏览器！！！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>util</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>util</tag>
       
     </tags>
     
