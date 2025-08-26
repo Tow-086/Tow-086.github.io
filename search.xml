@@ -298,24 +298,6 @@ day05问答系统]]></content>
       </tags>
   </entry>
   <entry>
-    <title>SwitchHosts下载安装使用</title>
-    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[SwitchHosts下载安装使用github直接搜然后下载
-
-然后直接修改
-
-注意，要关代理并且重启浏览器！！！
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>util</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>util</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java常见八股</title>
     <url>/2025/08/26/Java%E5%B8%B8%E8%A7%81%E5%85%AB%E8%82%A1/</url>
     <content><![CDATA[Java常见八股一、Java 基础 (Java Basics)1. 接口 (Interface) vs 抽象类 (Abstract Class)面试官： 说一下接口和抽象类的区别。
@@ -1228,6 +1210,24 @@ SpringBoot 基于 Spring 框架，内部大量应用了设计模式，以下是�
       <tags>
         <tag>Java</tag>
         <tag>为了实习说是</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SwitchHosts下载安装使用</title>
+    <url>/2025/08/11/SwitchHosts%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[SwitchHosts下载安装使用github直接搜然后下载
+
+然后直接修改
+
+注意，要关代理并且重启浏览器！！！
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>util</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>util</tag>
       </tags>
   </entry>
 </search>
