@@ -1,0 +1,1654 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Agent">
+  <meta name="keywords" content="Crypto,Reverse,算法,编程技术,日常">
+  
+    <meta name="description" content="为了实习说是MySQL1. 事务（Transaction）名词与定义 事务：数据库操作的最小工作单元，一个事务内的所有操作作为一个整体，要么全部成功，要么全部失败。 ACID 特性： 原子性 (Atomicity)：事务是一个不可分割的整体，要么全部提交，要么全部回滚。 一致性 (Consistency)：事务执行前后，数据库必须从一个一致性状态变换到另一个一致性状态（数据完整性约束不被破坏）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为了实习说是">
+<meta property="og:url" content="http://tow-086.github.io/2025/09/16/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/index.html">
+<meta property="og:site_name" content="Agent的个人博客">
+<meta property="og:description" content="为了实习说是MySQL1. 事务（Transaction）名词与定义 事务：数据库操作的最小工作单元，一个事务内的所有操作作为一个整体，要么全部成功，要么全部失败。 ACID 特性： 原子性 (Atomicity)：事务是一个不可分割的整体，要么全部提交，要么全部回滚。 一致性 (Consistency)：事务执行前后，数据库必须从一个一致性状态变换到另一个一致性状态（数据完整性约束不被破坏）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-16T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-16T08:44:28.530Z">
+<meta property="article:author" content="Agent">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="为了实习说是">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>为了实习说是 - Agent的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tow-086.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Agent的个人博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="为了实习说是"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-16 12:00" pubdate>
+          2025年9月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          17k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          145 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">为了实习说是</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="为了实习说是"><a href="#为了实习说是" class="headerlink" title="为了实习说是"></a>为了实习说是</h1><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="1-事务（Transaction）"><a href="#1-事务（Transaction）" class="headerlink" title="1. 事务（Transaction）"></a>1. 事务（Transaction）</h3><h4 id="名词与定义"><a href="#名词与定义" class="headerlink" title="名词与定义"></a><strong>名词与定义</strong></h4><ul>
+<li><strong>事务</strong>：数据库操作的最小工作单元，一个事务内的所有操作作为一个整体，要么全部成功，要么全部失败。</li>
+<li><strong>ACID 特性</strong>：<ul>
+<li><strong>原子性 (Atomicity)</strong>：事务是一个不可分割的整体，要么全部提交，要么全部回滚。</li>
+<li><strong>一致性 (Consistency)</strong>：事务执行前后，数据库必须从一个一致性状态变换到另一个一致性状态（数据完整性约束不被破坏）。</li>
+<li><strong>隔离性 (Isolation)</strong>：并发事务之间相互隔离，一个事务的执行不应影响其他事务。</li>
+<li><strong>持久性 (Durability)</strong>：事务一旦提交，其对数据的修改就是永久性的，即使系统故障也不会丢失。</li>
+</ul>
+</li>
+</ul>
+<h4 id="面试深入追问与解答"><a href="#面试深入追问与解答" class="headerlink" title="面试深入追问与解答"></a><strong>面试深入追问与解答</strong></h4><p><strong>Q：ACID特性分别靠什么保证？</strong></p>
+<ul>
+<li><strong>A (原子性)</strong> 和 <strong>D (持久性)</strong>：主要靠 <strong>Redo Log</strong> 和 <strong>Undo Log</strong>。<ul>
+<li><strong>Undo Log</strong>：用于回滚和MVCC。事务修改数据前，会先记录修改前的数据到Undo Log。如果事务需要回滚，就可以利用Undo Log将数据恢复到之前的状态。<strong>保证了原子性</strong>。</li>
+<li><strong>Redo Log</strong>：用于崩溃恢复。事务提交时，会先写Redo Log（顺序写，速度快），记录数据页的物理修改。即使修改的数据页还没有刷盘，MySQL宕机重启后也能根据Redo Log重做，将数据恢复到提交状态。<strong>保证了持久性</strong>。</li>
+</ul>
+</li>
+<li><strong>I (隔离性)</strong>：靠 <strong>锁机制</strong> 和 <strong>MVCC</strong> 来保证。</li>
+<li><strong>C (一致性)</strong>：是最终目标，由原子性、隔离性、持久性共同来保证。</li>
+</ul>
+<p><strong>Q：谈谈四大隔离级别及其解决的问题？</strong></p>
+<ul>
+<li><strong>读未提交 (Read Uncommitted)</strong>：一个事务能读到另一个事务未提交的修改。<strong>问题</strong>：<strong>脏读</strong>。</li>
+<li><strong>读已提交 (Read Committed, RC)</strong>：一个事务只能读到另一个事务已提交的修改。<strong>解决</strong>：脏读。<strong>问题</strong>：<strong>不可重复读</strong>（同一事务内两次相同的查询可能得到不同结果）。</li>
+<li><strong>可重复读 (Repeatable Read, RR)</strong>：MySQL的默认级别。一个事务内多次读取同一数据，结果是一致的。<strong>解决</strong>：脏读、不可重复读。<strong>问题</strong>：<strong>幻读</strong>（同一事务内两次范围查询，结果集数量不一致）。</li>
+<li><strong>串行化 (Serializable)</strong>：最高隔离级别，所有事务串行执行。<strong>解决</strong>：所有并发问题。<strong>问题</strong>：性能极低。</li>
+</ul>
+<p><strong>Q：MySQL的RR级别真的解决了幻读吗？</strong></p>
+<ul>
+<li><strong>答案</strong>：部分解决，但并非完全免疫。</li>
+<li><strong>如何解决</strong>：<ol>
+<li><strong>快照读</strong>（普通<code>SELECT ...</code>）：通过<strong>MVCC</strong>解决。事务首次读时会建立一致性视图（ReadView），后续读都基于这个视图，看不到其他事务新提交的数据，因此不会幻读。</li>
+<li><strong>当前读</strong>（<code>SELECT ... FOR UPDATE</code>, <code>UPDATE</code>, <code>DELETE</code>）：通过**Next-Key Lock（临键锁）**解决。当前读不仅会锁住扫描到的索引记录，还会锁住这些记录之间的“间隙”（Gap），防止其他事务在间隙中插入新数据，从而避免了幻读。</li>
+</ol>
+</li>
+<li><strong>未完全解决的情况</strong>：如果一个事务先进行快照读，然后自己又执行了当前写操作（如UPDATE），这个写操作是能“看到”其他事务最新提交的数据的，可能会破坏该事务自身的一致性视图，产生一种特殊的幻读。</li>
+</ul>
+<hr>
+<h3 id="2-锁（Locking）"><a href="#2-锁（Locking）" class="headerlink" title="2. 锁（Locking）"></a>2. 锁（Locking）</h3><h4 id="名词与定义-1"><a href="#名词与定义-1" class="headerlink" title="名词与定义"></a><strong>名词与定义</strong></h4><ul>
+<li><strong>共享锁 (S Lock)</strong>：又称读锁。事务读数据时加共享锁，允许其他事务读，但不允许写。</li>
+<li><strong>排他锁 (X Lock)</strong>：又称写锁。事务写数据时加排他锁，不允许其他事务读和写。</li>
+<li><strong>行锁</strong>：锁住一行数据。InnoDB支持。</li>
+<li><strong>表锁</strong>：锁住整张表。MyISAM引擎的主要锁机制。</li>
+<li><strong>意向锁</strong>：表级锁。<code>IS</code>（意向共享锁）和<code>IX</code>（意向排他锁）。用于快速判断表中是否有行被上锁，避免逐行检查。</li>
+</ul>
+<h4 id="面试深入追问与解答-1"><a href="#面试深入追问与解答-1" class="headerlink" title="面试深入追问与解答"></a><strong>面试深入追问与解答</strong></h4><p><strong>Q：InnoDB的行锁是怎么实现的？</strong></p>
+<ul>
+<li><strong>答案</strong>：InnoDB的行锁是基于<strong>索引</strong>实现的！</li>
+<li><strong>原理</strong>：如果一条SQL语句<strong>走索引</strong>，它只会锁住满足条件的索引项和对应的数据行。</li>
+<li><strong>致命追问</strong>：<strong>如果查询条件没有用到索引呢？</strong><ul>
+<li><strong>答</strong>：<strong>会升级为表锁</strong>！因为引擎无法通过索引快速定位到行，为了安全，它会直接锁住整个表。这就是为什么必须优化SQL、建立索引的重要原因之一。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Q：什么是间隙锁（Gap Lock）和临键锁（Next-Key Lock）？</strong></p>
+<ul>
+<li><strong>间隙锁 (Gap Lock)</strong>：锁住索引记录之间的间隙，防止其他事务在这个间隙中插入新数据。例如，<code>id</code>值有 1, 5, 10，那么间隙锁可以锁住 (1,5), (5,10), (10, +∞) 这些区间。</li>
+<li><strong>临键锁 (Next-Key Lock)</strong>：<strong>行锁 + 间隙锁</strong>。它锁住一个索引记录和它之前的间隙。例如，临键锁可能锁住 (1,5] 这个左开右闭的区间。它是RR隔离级别下<strong>防止幻读</strong>的关键机制。</li>
+</ul>
+<p><strong>Q：什么是死锁？如何排查和避免？</strong></p>
+<ul>
+<li><strong>定义</strong>：两个或多个事务相互等待对方释放锁，导致它们都无法继续执行。</li>
+<li><strong>MySQL如何处理</strong>：InnoDB有死锁检测机制，一旦检测到死锁，会<strong>立即回滚其中一个成本最小的事务</strong>，让另一个事务得以继续。</li>
+<li><strong>如何排查</strong>：使用命令 <code>SHOW ENGINE INNODB STATUS;</code>，查看 <code>LATEST DETECTED DEADLOCK</code> 部分，分析死锁日志。</li>
+<li><strong>如何避免</strong>：<ol>
+<li>保持事务短小，尽快提交。</li>
+<li>多个事务以相同的顺序访问资源（例如，总是先更新表A再更新表B）。</li>
+<li>为高频操作建立合适的索引，减少锁的竞争范围。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="3-索引（Indexing）"><a href="#3-索引（Indexing）" class="headerlink" title="3. 索引（Indexing）"></a>3. 索引（Indexing）</h3><h4 id="名词与定义-2"><a href="#名词与定义-2" class="headerlink" title="名词与定义"></a><strong>名词与定义</strong></h4><ul>
+<li><strong>索引</strong>：一种帮助MySQL高效获取数据的<strong>排好序</strong>的数据结构。</li>
+<li><strong>B+Tree</strong>：MySQL InnoDB引擎索引的默认数据结构。相比B-Tree，所有数据都存储在叶子节点，且叶子节点间有指针相连，更适合范围查询和排序。</li>
+<li><strong>聚簇索引 (Clustered Index)</strong>：表数据本身按主键顺序存储在B+Tree的叶子节点中。<strong>一张表只有一个聚簇索引</strong>。</li>
+<li><strong>非聚簇索引 (Secondary Index)</strong>：又称辅助索引。其叶子节点存储的是<strong>主键值</strong>，而不是行数据本身。查询时需要<strong>回表</strong>。</li>
+</ul>
+<h4 id="面试深入追问与解答-2"><a href="#面试深入追问与解答-2" class="headerlink" title="面试深入追问与解答"></a><strong>面试深入追问与解答</strong></h4><p><strong>Q：为什么推荐使用自增主键？</strong></p>
+<ol>
+<li><strong>性能</strong>：自增主键是顺序写入的，能很好地填充B+Tree的页，减少页分裂和碎片。</li>
+<li><strong>空间</strong>：主键长度越小，非聚簇索引的叶子节点存储的主键值也就越小，占用的空间就越小。</li>
+</ol>
+<p><strong>Q：什么是“回表”和“覆盖索引”？</strong></p>
+<ul>
+<li><strong>回表</strong>：通过非聚簇索引查询时，先在索引树中找到主键值，再根据主键值回到聚簇索引树中查找完整行数据的过程。</li>
+<li><strong>覆盖索引</strong>：如果<strong>索引字段已经包含了要查询的所有字段</strong>（例如，在<code>(name, age)</code>索引上查<code>SELECT name, age FROM user</code>），则引擎可以直接在索引页中拿到数据，<strong>避免回表</strong>，极大提升性能。</li>
+</ul>
+<p><strong>Q：什么情况下索引会失效？</strong></p>
+<ol>
+<li><strong>对索引列进行计算、函数或类型转换</strong>：<code>WHERE YEAR(create_time) = 2023</code>，<code>WHERE amount * 2 &gt; 100</code>。</li>
+<li><strong>Like以通配符开头</strong>：<code>WHERE name LIKE &#39;%三丰&#39;</code>。</li>
+<li><strong>违反最左前缀原则</strong>：对于联合索引<code>(a, b, c)</code>，查询条件没有<code>a</code>，如<code>WHERE b = 1 AND c = 2</code>。</li>
+<li><strong>使用OR连接</strong>：如果OR前后的条件并非都有索引，索引会失效。</li>
+<li><strong>索引列使用 <code>!=</code> 或 <code>NOT IN</code></strong>：可能（不是一定）导致失效。</li>
+</ol>
+<hr>
+<h3 id="4-MVCC-多版本并发控制"><a href="#4-MVCC-多版本并发控制" class="headerlink" title="4. MVCC (多版本并发控制)"></a>4. MVCC (多版本并发控制)</h3><h4 id="名词与定义-3"><a href="#名词与定义-3" class="headerlink" title="名词与定义"></a><strong>名词与定义</strong></h4><ul>
+<li><strong>MVCC</strong>：通过保存数据在某个时间点的快照来实现并发控制。读操作不会阻塞写操作，写操作也不会阻塞读操作。</li>
+<li><strong>ReadView</strong>：事务在执行快照读时产生的一致性读视图。它决定了当前事务能看到哪个版本的数据。</li>
+<li><strong>Undo Log链</strong>：一行数据可能有多个版本（由<code>DB_ROLL_PTR</code>回滚指针串联），每个版本保存在Undo Log中。</li>
+</ul>
+<h4 id="面试深入追问与解答-3"><a href="#面试深入追问与解答-3" class="headerlink" title="面试深入追问与解答"></a><strong>面试深入追问与解答</strong></h4><p><strong>Q：MVCC在RC和RR隔离级别下是如何工作的？</strong></p>
+<ul>
+<li><strong>核心</strong>：在于<strong>ReadView的生成时机不同</strong>。</li>
+<li><strong>Read Committed (RC)</strong>：<strong>每次</strong>执行快照读时都会生成一个新的ReadView。因此，它能读到其他事务<strong>最新已提交</strong>的数据。</li>
+<li><strong>Repeatable Read (RR)</strong>：只在<strong>第一次</strong>执行快照读时生成一个ReadView，后续所有读操作都复用这个视图。因此，它看不到其他事务之后提交的数据，实现了可重复读。</li>
+</ul>
+<p><strong>Q：MVCC能解决幻读吗？</strong></p>
+<ul>
+<li><strong>对于快照读</strong>：<strong>能</strong>。因为RR级别下ReadView不变，即使其他事务插入了新数据，当前事务也看不到，因此不会发生幻读。</li>
+<li><strong>对于当前读</strong>：<strong>不能</strong>。当前读读取的是最新数据，需要靠<strong>Next-Key Lock</strong>来防止幻读。</li>
+</ul>
+<hr>
+<h3 id="5-EXPLAIN-执行计划与SQL优化"><a href="#5-EXPLAIN-执行计划与SQL优化" class="headerlink" title="5. EXPLAIN 执行计划与SQL优化"></a>5. EXPLAIN 执行计划与SQL优化</h3><p><strong>核心：</strong> <code>EXPLAIN</code> 是你的SQL性能诊断器，你必须能看懂它的输出。</p>
+<h4 id="关键字段解读："><a href="#关键字段解读：" class="headerlink" title="关键字段解读："></a><strong>关键字段解读：</strong></h4><ul>
+<li><strong>type</strong>：访问类型，<strong>从好到坏</strong>：<code>system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</code>。<ul>
+<li>至少要优化到<code>range</code>级别，最好达到<code>ref</code>。</li>
+<li><code>index</code>：全索引扫描。</li>
+<li><code>ALL</code>：全表扫描，<strong>必须优化</strong>。</li>
+</ul>
+</li>
+<li><strong>key</strong>：实际使用的索引。如果为<code>NULL</code>，说明没用到索引。</li>
+<li><strong>rows</strong>：预估需要扫描的行数。值越小越好。</li>
+<li><strong>Extra</strong>：额外信息，非常重要！<ul>
+<li><code>Using filesort</code>：MySQL无法利用索引完成排序，需要额外的排序操作。<strong>需要优化</strong>。</li>
+<li><code>Using temporary</code>：使用了临时表来处理查询（常见于GROUP BY、ORDER BY）。<strong>必须优化</strong>。</li>
+<li><code>Using index</code>：使用了覆盖索引，性能极佳。</li>
+</ul>
+</li>
+</ul>
+<h4 id="优化实战思路："><a href="#优化实战思路：" class="headerlink" title="优化实战思路："></a><strong>优化实战思路：</strong></h4><ol>
+<li><strong>用<code>EXPLAIN</code>分析</strong>：找到性能瓶颈（全表扫描？文件排序？）。</li>
+<li><strong>检查索引</strong>：<ul>
+<li>查询条件列是否有索引？</li>
+<li>是否违反了最左前缀原则？</li>
+<li>是否可以考虑使用覆盖索引？</li>
+</ul>
+</li>
+<li><strong>优化SQL写法</strong>：<ul>
+<li>避免使用<code>SELECT *</code>，只取需要的字段。</li>
+<li>将复杂的查询拆分成多个简单查询（MySQL对简单查询支持更好）。</li>
+<li>优化JOIN，确保ON条件的列有索引。</li>
+</ul>
+</li>
+<li>** redesign 表结构**：如果必要，考虑分表。</li>
+</ol>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><h3 id="1-Redis-线程模型-核心中的核心"><a href="#1-Redis-线程模型-核心中的核心" class="headerlink" title="1. Redis 线程模型 (核心中的核心)"></a>1. Redis 线程模型 (核心中的核心)</h3><h4 id="名词与定义-4"><a href="#名词与定义-4" class="headerlink" title="名词与定义"></a><strong>名词与定义</strong></h4><ul>
+<li><strong>文件事件处理器</strong>：Redis基于Reactor模式开发的网络事件处理器。它是一个单线程的、高性能的事件循环，负责处理所有客户端连接、命令请求和响应。</li>
+<li><strong>I&#x2F;O多路复用</strong>：文件事件处理器的核心。通过<code>epoll</code>、<code>kqueue</code>、<code>select</code>等系统调用，一个线程可以监听和管理成千上万个网络连接 socket 的就绪状态（可读、可写）。</li>
+</ul>
+<h4 id="面试深入追问与解答-4"><a href="#面试深入追问与解答-4" class="headerlink" title="面试深入追问与解答"></a><strong>面试深入追问与解答</strong></h4><p><strong>Q：为什么Redis选择单线程模型？还能这么快？</strong></p>
+<ul>
+<li><strong>答案</strong>：快的原因并非因为单线程，而是因为：<ol>
+<li><strong>纯内存操作</strong>：数据在内存中，读写速度极快。</li>
+<li><strong>I&#x2F;O多路复用</strong>：单线程可以高效处理大量并发连接，避免了多线程的上下文切换和锁竞争开销。</li>
+<li><strong>高效的数据结构</strong>：如跳跃表、哈希表等，为不同场景做了优化。</li>
+</ol>
+</li>
+<li><strong>为什么用单线程？</strong>：避免了多线程的<strong>上下文切换</strong>和<strong>竞争锁</strong>的损耗，使得模型非常简单、可预测，不存在并发读写带来的数据一致性问题。</li>
+</ul>
+<p><strong>Q：Redis 6.0之后的多线程是怎么回事？</strong></p>
+<ul>
+<li><strong>答案</strong>：Redis 6.0引入的<strong>多线程仅限于网络I&#x2F;O和处理协议解析</strong>，<strong>命令的执行依然是单线程的</strong>。</li>
+<li><strong>工作原理</strong>：<ol>
+<li>主线程（单线程）通过I&#x2F;O多路复用接收所有连接，并将就绪的Socket放入一个队列。</li>
+<li>一组I&#x2F;O线程（可配置数量）并行地从队列中获取Socket，进行<strong>读写网络数据</strong>和<strong>解析命令</strong>（<code>read()</code>和<code>parse</code>）。</li>
+<li>主线程<strong>串行</strong>地执行所有解析好的命令。</li>
+<li>主线程将命令结果写入缓冲区。</li>
+<li>I&#x2F;O线程再次并行地将缓冲区中的结果<strong>写回网络</strong>（<code>send()</code>）发送给客户端。</li>
+</ol>
+</li>
+<li><strong>结论</strong>：多线程I&#x2F;O只是为了缓解网络读写这个瓶颈，核心的命令处理逻辑仍然是单线程的，所以<strong>不存在线程安全问题</strong>。</li>
+</ul>
+<hr>
+<h3 id="2-核心数据结构与使用场景"><a href="#2-核心数据结构与使用场景" class="headerlink" title="2. 核心数据结构与使用场景"></a>2. 核心数据结构与使用场景</h3><p><strong>面试官不会只问你5种基本类型，会问底层和场景。</strong></p>
+<p>| 数据类型 | 底层实现（可能不止一种） | 典型使用场景 |<br>| ：— | ：— | :— |<br>| <strong>String</strong> | SDS (Simple Dynamic String) | 缓存、计数器、分布式锁 (<code>SETNX</code>)、Session |<br>| <strong>List</strong> | 压缩列表 (ziplist) &#x2F; 双向链表 (linkedlist) | 消息队列（LPUSH+BRPOP）、最新列表、排行榜 |<br>| <strong>Hash</strong> | 压缩列表 (ziplist) &#x2F; 哈希表 (hashtable) | 缓存对象（用户信息、商品信息）、存储结构化数据 |<br>| <strong>Set</strong> | 整数集合 (intset) &#x2F; 哈希表 (hashtable) | 共同关注（交集）、抽奖（随机元素）、标签系统 |<br>| <strong>ZSet</strong> | 压缩列表 (ziplist) &#x2F; <strong>跳跃表 (skiplist)</strong> + 哈希表 | 排行榜、带权重的消息队列、延迟任务 |<br>| <strong>HyperLogLog</strong> | - | 大数据量的基数统计（UV统计），有误差 |<br>| <strong>Bitmap</strong> | - | 二值状态统计（签到打卡、用户是否在线） |<br>| <strong>GEO</strong> | 基于ZSet实现 | 地理位置信息、附近的人 |</p>
+<p><strong>追问：ZSet为什么用跳跃表而不用红黑树？</strong></p>
+<ol>
+<li><strong>范围查询效率</strong>：跳跃表在范围查询（<code>ZRANGE</code>）上效率极高，只需遍历最底层的链表。而红黑树进行中序遍历相对复杂。</li>
+<li><strong>实现和维护简单</strong>：跳跃表的实现和调试比红黑树简单得多。</li>
+<li><strong>并发友好</strong>：虽然Redis是单线程用不到，但跳跃表在并发环境下更容易扩展。</li>
+</ol>
+<hr>
+<h3 id="3-缓存问题解决方案-必考"><a href="#3-缓存问题解决方案-必考" class="headerlink" title="3. 缓存问题解决方案 (必考)"></a>3. 缓存问题解决方案 (必考)</h3><h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a><strong>缓存雪崩</strong></h4><ul>
+<li><strong>问题</strong>：<strong>大量缓存数据在同一时间过期</strong>或<strong>Redis实例宕机</strong>，导致所有请求瞬间打到数据库，造成数据库压力过大甚至宕机。</li>
+<li><strong>解决方案</strong>：<ol>
+<li><strong>过期时间随机</strong>：给缓存数据的TTL加上一个随机值，避免同时过期。</li>
+<li><strong>集群高可用</strong>：搭建Redis集群（哨兵或Cluster模式），实现故障自动转移，避免整体宕机。</li>
+<li><strong>服务降级与熔断</strong>：使用Hystrix或Sentinel，当数据库压力过大时，对非核心业务进行降级，甚至直接返回预定义信息（熔断）。</li>
+<li><strong>缓存永不过期</strong>：后台定时任务主动更新缓存。</li>
+</ol>
+</li>
+</ul>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a><strong>缓存穿透</strong></h4><ul>
+<li><strong>问题</strong>：<strong>查询一个数据库中肯定不存在的数据</strong>（如id为负数的商品）。导致每次请求都无法命中缓存，直接穿透到数据库。</li>
+<li><strong>解决方案</strong>：<ol>
+<li><strong>缓存空对象</strong>：即使从数据库没查到，也将这个<code>null</code>或空值缓存起来，并设置一个较短的过期时间。<strong>缺点</strong>：可能缓存大量无用的key。</li>
+<li><strong>布隆过滤器 (Bloom Filter)</strong>：<strong>最优解</strong>。将所有可能存在的key哈希到一个巨大的bitmap中。请求来时，先经过布隆过滤器：<ul>
+<li>如果判断<strong>不存在</strong>，则直接返回。</li>
+<li>如果判断<strong>存在</strong>，则继续后续的缓存、数据库流程。</li>
+<li><strong>优点</strong>：空间效率极高。</li>
+<li><strong>缺点</strong>：有误判率（可能存在判断为存在，但实际不存在，但这个问题影响不大），且数据删除困难。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a><strong>缓存击穿</strong></h4><ul>
+<li><strong>问题</strong>：一个<strong>热点key</strong>在过期瞬间，大量并发请求这个key，全部穿透到数据库，像一个“子弹”击穿了缓存。</li>
+<li><strong>解决方案</strong>：<ol>
+<li><strong>互斥锁 (Mutex Lock)</strong>：第一个请求发现缓存失效后，去查询数据库前，先使用<code>SETNX</code>或<code>Redisson</code>等工具获取一个分布式锁。其他请求获取锁失败则等待或返回默认值，待第一个请求重建缓存后，后续请求再从缓存读取。</li>
+<li><strong>逻辑过期&#x2F;永不过期</strong>：缓存值不设置TTL，而是在value中封装一个逻辑过期时间。业务线程发现逻辑时间过期后，获取互斥锁，然后启动一个新线程去异步更新缓存，自己先返回旧的缓存数据。</li>
+</ol>
+</li>
+</ul>
+<h4 id="双写一致性"><a href="#双写一致性" class="headerlink" title="双写一致性"></a><strong>双写一致性</strong></h4><ul>
+<li><strong>问题</strong>：如何保证缓存中的数据与数据库中的数据一致？</li>
+<li><strong>解决方案</strong>：<strong>没有银弹</strong>，根据业务对一致性的要求选择策略。<ol>
+<li><strong>最终一致性（常用）</strong>：<ul>
+<li><strong>先更新数据库，再删除缓存</strong>：<strong>这是最推荐的模式</strong>。即使第二步删除缓存失败，也只会造成一次旧数据脏读，下次读取时就会更新。可以通过消息队列重试机制来保证删除成功。</li>
+<li><strong>延迟双删</strong>：先删缓存 -&gt; 再更新数据库 -&gt; 延迟几百毫秒再删一次缓存。目的是为了清除在“更新数据库”期间其他请求可能写入的旧缓存。</li>
+</ul>
+</li>
+<li><strong>强一致性</strong>：几乎无法实现，且性能代价极大。可以通过<strong>Redisson的读写锁</strong>或<strong>Canel监听数据库binlog</strong>来异步淘汰缓存，但延迟不可避免。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="4-持久化策略"><a href="#4-持久化策略" class="headerlink" title="4. 持久化策略"></a>4. 持久化策略</h3><p>| | RDB (Redis Database) | AOF (Append Only File) |<br>| ：— | :— | :— |<br>| <strong>原理</strong> | 定时fork子进程，生成内存快照 | 记录每一次写操作命令到日志文件 |<br>| <strong>优点</strong> | 文件小，恢复速度快，适合冷备 | 数据安全性高，最多丢失1秒数据 |<br>| <strong>缺点</strong> | 可能丢失上次快照后的数据 | 文件大，恢复速度慢，写入性能有影响 |<br>| <strong>配置</strong> | <code>save 900 1</code> (900秒内1次修改则触发) | <code>appendfsync always/everysec/no</code> |<br>| <strong>最佳实践</strong> | <strong>混合持久化 (AOF + RDB)</strong>：<code>aof-use-rdb-preamble yes</code>。重写后的AOF文件前半部分是RDB格式的快照，后半部分是增量的AOF日志。兼顾了速度和数据安全性。 |</p>
+<hr>
+<h3 id="5-分布式锁-分片集群"><a href="#5-分布式锁-分片集群" class="headerlink" title="5. 分布式锁 &amp; 分片集群"></a>5. 分布式锁 &amp; 分片集群</h3><p><strong>Q：如何用Redis实现一个可靠的分布式锁？</strong></p>
+<ol>
+<li><p><strong>加锁</strong>：<code>SET lock_key random_value NX PX 30000</code></p>
+<ul>
+<li><code>NX</code>：仅当key不存在时才能设置成功。</li>
+<li><code>PX</code>：设置过期时间，防止客户端宕机导致锁无法释放。</li>
+<li><code>random_value</code>（唯一值）：防止<strong>误删</strong>。只能由加锁的客户端来解锁。</li>
+</ul>
+</li>
+<li><p><strong>解锁</strong>：使用Lua脚本保证原子性。</p>
+<p>lua</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">if</span> redis.<span class="hljs-keyword">call</span>(&quot;get&quot;, KEYS[<span class="hljs-number">1</span>]) == ARGV[<span class="hljs-number">1</span>] <span class="hljs-keyword">then</span><br>    <span class="hljs-keyword">return</span> redis.<span class="hljs-keyword">call</span>(&quot;del&quot;, KEYS[<span class="hljs-number">1</span>])<br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>追问：RedLock算法了解吗？</strong><br>用于在多个独立的Redis主节点上实现更高可靠的分布式锁。流程是向超过半数的节点申请锁，全部成功才算加锁成功。<strong>争议较大，一般不推荐使用</strong>，优先考虑使用ZooKeeper或etcd实现分布式锁。</p>
+<p><strong>Q：你搭建的Redis分片集群（Cluster）是如何工作的？</strong></p>
+<ul>
+<li><strong>数据分片</strong>：采用<strong>哈希槽（Slot）</strong>，共16384个槽。每个节点负责一部分槽。<code>key</code>通过<code>CRC16(key) % 16384</code>计算属于哪个槽。</li>
+<li><strong>请求路由</strong>：<ul>
+<li>客户端直连任意节点，如果key不在该节点，节点返回<code>MOVED</code>错误和正确节点地址，客户端<strong>重定向</strong>访问。</li>
+<li>使用智能客户端（如Lettuce）或代理中间件（如Codis）可以缓存槽位映射，直接路由到正确节点。</li>
+</ul>
+</li>
+<li><strong>扩容与重新分片</strong>：<ul>
+<li>使用<code>redis-cli --cluster add-node</code>添加新节点。</li>
+<li>使用<code>redis-cli --cluster reshard</code>命令，将一部分哈希槽从现有节点<strong>在线迁移</strong>到新节点。迁移过程中，客户端请求无需停机。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Q：集群的高可用如何保证？</strong><br>Redis Cluster本身通过<strong>主从复制</strong>实现高可用。每个主节点都有1个或多个从节点。当主节点宕机，其从节点会通过<strong>选举</strong>晋升为新的主节点，继续提供服务。</p>
+<h2 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h2><h3 id="1-Java-内存模型-JMM-理论基础"><a href="#1-Java-内存模型-JMM-理论基础" class="headerlink" title="1. Java 内存模型 (JMM) - 理论基础"></a>1. Java 内存模型 (JMM) - 理论基础</h3><p>这是理解所有并发问题的基石。</p>
+<ul>
+<li><strong>核心问题</strong>：在多线程环境下，线程之间如何“看到”共享变量的值？为什么有时线程A修改了变量，线程B却看不到？</li>
+<li><strong>JMM定义</strong>：JMM是一种规范，规定了线程如何与主内存（共享内存）和工作内存（线程私有，可类比CPU缓存）交互，以及何时将工作内存中的值刷新到主内存。</li>
+<li><strong>三大特性</strong>：<ol>
+<li><strong>原子性</strong>：基本数据类型的访问读写是原子性的（<code>long</code>和<code>double</code>非原子性，但商用虚拟机都实现了原子性）。<code>synchronized</code>和<code>Lock</code>可以保证更大范围的原子性。</li>
+<li><strong>可见性</strong>：一个线程修改了共享变量，其他线程能<strong>立即看到</strong>修改后的值。</li>
+<li><strong>有序性</strong>：程序执行的顺序不一定就是代码编写的顺序。为了提高性能，编译器和处理器会做<strong>指令重排序</strong>。单线程下没问题，但多线程下可能导致诡异问题。</li>
+</ol>
+</li>
+</ul>
+<p><strong>面试追问：什么是happens-before原则？</strong><br>它是JMM中定义的两个操作之间的偏序关系，用来判断数据是否存在竞争、线程是否安全。如果操作A happens-before 操作B，那么A的结果对B可见。<br>常见的happens-before规则包括：</p>
+<ul>
+<li><strong>程序次序规则</strong>：一个线程内，前面的操作happens-before于后面的操作。</li>
+<li><strong>监视器锁规则</strong>：对一个锁的解锁happens-before于随后对这个锁的加锁。</li>
+<li><strong>volatile变量规则</strong>：对一个volatile域的写happens-before于任意后续对这个volatile域的读。</li>
+<li><strong>传递性</strong>：如果A hb B, B hb C，那么A hb C。</li>
+</ul>
+<hr>
+<h3 id="2-synchronized-关键字"><a href="#2-synchronized-关键字" class="headerlink" title="2. synchronized 关键字"></a>2. synchronized 关键字</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a><strong>原理</strong></h4><ul>
+<li><strong>作用</strong>：提供了一种<strong>独占</strong>的加锁方式，保证了原子性、可见性和有序性。</li>
+<li><strong>实现</strong>：JVM基于<strong>Monitor（管程）</strong> 实现。每个Java对象都可以关联一个Monitor。<ul>
+<li>代码同步块编译后，会生成<code>monitorenter</code>和<code>monitorexit</code>指令。</li>
+<li>同步方法会被标记<code>ACC_SYNCHRONIZED</code>访问标志。</li>
+</ul>
+</li>
+</ul>
+<h4 id="锁升级过程-非常重要！"><a href="#锁升级过程-非常重要！" class="headerlink" title="锁升级过程 (非常重要！)"></a><strong>锁升级过程 (非常重要！)</strong></h4><p>为了提高性能，synchronized的锁状态会随着竞争情况升级，<strong>方向不可逆</strong>：</p>
+<ol>
+<li><strong>无锁 (New)</strong>：新创建的对象。</li>
+<li><strong>偏向锁 (Biased Locking)</strong>：<strong>适用于只有一个线程访问同步块</strong>。线程第一次获得锁时，会在对象头和栈帧中记录偏向的线程ID。以后该线程进入和退出同步块时，不需要进行CAS加锁和解锁，性能极高。</li>
+<li><strong>轻量级锁 (Lightweight Lock)</strong>：<strong>适用于线程交替执行，竞争不激烈</strong>。当有另一个线程来竞争锁时，偏向锁会升级为轻量级锁。该线程会在自己的栈帧中创建锁记录（Lock Record），通过<strong>CAS操作</strong>尝试将对象头的Mark Word替换为指向锁记录的指针。如果成功，当前线程获得锁；如果失败，表示有其他线程竞争，会<strong>自旋</strong>尝试获取锁。</li>
+<li><strong>重量级锁 (Heavyweight Lock)</strong>：<strong>适用于竞争激烈</strong>。如果自旋失败（或自旋超过一定次数），锁会升级为重量级锁。此时，其他尝试获取锁的线程都会<strong>进入阻塞状态（BLOCKED）</strong>，等待操作系统的调度，需要进行用户态到内核态的切换，开销巨大。</li>
+</ol>
+<p><strong>面试追问：为什么引入锁升级？</strong><br>为了避免在无竞争或低竞争情况下，直接使用重量级锁带来的性能开销（用户态到内核态的切换）。通过偏向锁和轻量级锁这两种乐观策略来优化性能。</p>
+<hr>
+<h3 id="3-ReentrantLock-可重入锁"><a href="#3-ReentrantLock-可重入锁" class="headerlink" title="3. ReentrantLock (可重入锁)"></a>3. ReentrantLock (可重入锁)</h3><h4 id="与synchronized对比"><a href="#与synchronized对比" class="headerlink" title="与synchronized对比"></a><strong>与synchronized对比</strong></h4><p>| 特性 | synchronized (隐式锁) | ReentrantLock (显式锁) |<br>| ：— | :— | :— |<br>| <strong>实现</strong> | JVM层面，关键字 | JDK层面，API |<br>| <strong>锁获取</strong> | 自动加锁与释放 | 必须手动<code>lock()</code>和<code>unlock()</code>，通常在<code>finally</code>中释放 |<br>| <strong>灵活性</strong> | 较差 | 很强，可尝试非阻塞获取(<code>tryLock</code>)、可中断(<code>lockInterruptibly</code>)、超时获取 |<br>| <strong>公平性</strong> | <strong>非公平</strong> | <strong>可选公平或非公平</strong>（构造方法传入<code>true</code>） |<br>| ** Condition ** | 只能有一个等待队列 | 可以绑定多个<strong>Condition</strong>，实现更精细的线程等待&#x2F;唤醒 |</p>
+<h4 id="核心原理：AQS-AbstractQueuedSynchronizer"><a href="#核心原理：AQS-AbstractQueuedSynchronizer" class="headerlink" title="核心原理：AQS (AbstractQueuedSynchronizer)"></a><strong>核心原理：AQS (AbstractQueuedSynchronizer)</strong></h4><p><strong>这是JUC并发包的灵魂，必须理解。</strong></p>
+<ul>
+<li><strong>是什么</strong>：一个用于构建锁和同步器的<strong>框架</strong>。ReentrantLock、Semaphore、CountDownLatch等都是基于AQS构建的。</li>
+<li><strong>核心思想</strong>：<ul>
+<li>它维护了一个<strong>volatile int state</strong>（代表共享资源状态）和一个<strong>FIFO线程等待队列</strong>（CLH变体）。</li>
+<li><strong>state</strong>：对于ReentrantLock，<code>state=0</code>表示锁空闲，<code>state&gt;0</code>表示锁被占用，且数值表示重入次数。</li>
+<li><strong>等待队列</strong>：获取资源失败的线程会被封装成Node节点入队。</li>
+</ul>
+</li>
+<li><strong>工作流程 (以非公平锁为例)</strong>：<ol>
+<li>线程A调用<code>lock()</code>，尝试用<strong>CAS</strong>将state从0改为1，成功则获取锁，并设置独占线程为A。</li>
+<li>线程B也来尝试CAS，失败。则调用AQS的<code>acquire</code>方法。</li>
+<li><code>acquire</code>会再次尝试获取（<code>tryAcquire</code>），失败后，将线程B包装成Node节点，<strong>CAS地加入等待队列尾部</strong>，然后线程B会** park（阻塞）**。</li>
+<li>线程A执行完<code>unlock()</code>，将state减1。然后去唤醒（unpark）队列中的头节点的后继节点（线程B）。</li>
+<li>线程B被唤醒，再次尝试获取锁（CAS修改state）。</li>
+</ol>
+</li>
+</ul>
+<p><strong>面试追问：公平锁和非公平锁的实现区别？</strong></p>
+<ul>
+<li><strong>非公平锁</strong>：线程获取锁时，<strong>直接先尝试CAS抢锁</strong>，不管队列里有没有线程在等。抢失败了才入队。<code>ReentrantLock</code>默认是非公平的，吞吐量高，但可能造成“饥饿”。</li>
+<li><strong>公平锁</strong>：线程获取锁时，<strong>先检查队列是否为空</strong>（或有比自己更早的线程在等），如果是，则直接乖乖入队；如果不是，才尝试CAS抢锁。</li>
+</ul>
+<hr>
+<h3 id="4-volatile-关键字"><a href="#4-volatile-关键字" class="headerlink" title="4. volatile 关键字"></a>4. volatile 关键字</h3><ul>
+<li><strong>作用</strong>：<ol>
+<li><strong>保证可见性</strong>：对一个volatile变量的写，会立刻刷新到主内存；对一个volatile变量的读，会从主内存读取最新值。</li>
+<li><strong>禁止指令重排序</strong>：通过插入<strong>内存屏障</strong>来实现。</li>
+</ol>
+</li>
+<li><strong>原理</strong>：在汇编层面，修改volatile变量会多执行一个<code>lock addl $0x0, (%esp)</code>操作。这个操作相当于一个<strong>内存屏障</strong>，并会<strong>触发缓存一致性协议</strong>（如MESI），使得其他CPU的缓存行失效，从而必须从主内存重新读取数据。</li>
+<li><strong>注意</strong>：<strong>volatile不保证原子性</strong>！<code>count++</code>这种复合操作即使加了volatile也不是线程安全的。</li>
+</ul>
+<hr>
+<h3 id="5-ThreadLocal"><a href="#5-ThreadLocal" class="headerlink" title="5. ThreadLocal"></a>5. ThreadLocal</h3><ul>
+<li><strong>是什么</strong>：提供线程局部变量。每个线程都有一个该变量的独立副本，实现了线程隔离。</li>
+<li><strong>原理</strong>：<ul>
+<li>每个<code>Thread</code>对象内部都有一个<code>ThreadLocalMap</code>类型的变量<code>threadLocals</code>。</li>
+<li><code>ThreadLocalMap</code>的<code>key</code>是<strong>弱引用</strong>的<code>ThreadLocal</code>对象，<code>value</code>是存储的值。</li>
+<li>当你调用<code>threadLocal.set(value)</code>时，实际上是以当前<code>ThreadLocal</code>实例为key，<code>value</code>为值，存入了<strong>当前线程的</strong><code>ThreadLocalMap</code>中。</li>
+</ul>
+</li>
+<li><strong>内存泄漏问题 (必问！)</strong>：<ul>
+<li><strong>成因</strong>：由于<code>ThreadLocalMap</code>的<code>key</code>是弱引用，当<code>ThreadLocal</code>实例没有强引用指向时（比如置为null），在下次GC时，<code>key</code>会被回收，但<code>value</code>是强引用，还会存在。这就导致了一条<code>key=null</code>而<code>value</code>有值的无效Entry，如果线程迟迟不结束（例如线程池中的线程），就会造成内存泄漏。</li>
+<li><strong>解决方案</strong>：<strong>每次使用完ThreadLocal后，必须调用<code>remove()</code>方法</strong>，手动清除Entry。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="6-线程池-ThreadPoolExecutor"><a href="#6-线程池-ThreadPoolExecutor" class="headerlink" title="6. 线程池 (ThreadPoolExecutor)"></a>6. 线程池 (ThreadPoolExecutor)</h3><h4 id="核心参数-7个"><a href="#核心参数-7个" class="headerlink" title="核心参数 (7个)"></a><strong>核心参数 (7个)</strong></h4><ol>
+<li><strong><code>corePoolSize</code></strong>：核心线程数，即使空闲也会保留的线程数量。</li>
+<li><strong><code>maximumPoolSize</code></strong>：最大线程数。</li>
+<li><strong><code>keepAliveTime</code></strong>：非核心线程空闲时的存活时间。</li>
+<li><strong><code>unit</code></strong>：存活时间的单位。</li>
+<li><strong><code>workQueue</code></strong>：用于保存等待执行的任务的阻塞队列（如<code>ArrayBlockingQueue</code>, <code>LinkedBlockingQueue</code>, <code>SynchronousQueue</code>）。</li>
+<li><strong><code>threadFactory</code></strong>：用于创建新线程的工厂。</li>
+<li><strong><code>handler</code></strong>：<strong>饱和策略</strong>。当队列和线程池都满了时的处理策略（<code>AbortPolicy</code>抛出异常、<code>CallerRunsPolicy</code>用调用者线程执行、<code>DiscardPolicy</code>直接丢弃、<code>DiscardOldestPolicy</code>丢弃队列中最老的任务）。</li>
+</ol>
+<h4 id="工作流程-非常重要！"><a href="#工作流程-非常重要！" class="headerlink" title="工作流程 (非常重要！)"></a><strong>工作流程 (非常重要！)</strong></h4><ol>
+<li>提交一个任务。</li>
+<li>如果<strong>当前线程数 &lt; corePoolSize</strong>，<strong>创建新核心线程</strong>执行任务。</li>
+<li>如果已达到核心线程数，则将任务<strong>放入workQueue</strong>等待。</li>
+<li>如果队列已满，且<strong>当前线程数 &lt; maximumPoolSize</strong>，<strong>创建新非核心线程</strong>执行任务。</li>
+<li>如果队列已满且线程数已达最大值，则触发<strong>饱和策略handler</strong>。</li>
+<li>当线程空闲时间超过<code>keepAliveTime</code>，且是<strong>非核心线程</strong>，该线程会被回收。核心线程默认不回收（可通过<code>allowCoreThreadTimeOut(true)</code>设置回收）。</li>
+</ol>
+<p><strong>面试追问：如何配置线程池参数？</strong><br>没有固定公式，需要根据任务类型<strong>压测</strong>。</p>
+<ul>
+<li><strong>CPU密集型</strong>：线程数 ≈ CPU核数 + 1（避免过多线程上下文切换）</li>
+<li><strong>IO密集型</strong>：线程数可以设置得多一些，如 ≈ CPU核数 * 2 （或更高），因为线程大部分时间在阻塞等待IO。</li>
+</ul>
+<hr>
+<h3 id="7-JUC-并发工具包其他组件"><a href="#7-JUC-并发工具包其他组件" class="headerlink" title="7. JUC 并发工具包其他组件"></a>7. JUC 并发工具包其他组件</h3><ul>
+<li><strong>CountDownLatch</strong>：<strong>倒计时器</strong>。一个或多个线程等待其他线程完成操作。<code>await()</code>等待，<code>countDown()</code>计数减一。</li>
+<li><strong>CyclicBarrier</strong>：<strong>循环栅栏</strong>。一组线程相互等待，到达一个公共屏障点后再继续执行。可重用。</li>
+<li><strong>Semaphore</strong>：<strong>信号量</strong>。控制同时访问特定资源的线程数量。<code>acquire()</code>获取许可，<code>release()</code>释放。</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="1-IOC-控制反转-与-DI-依赖注入"><a href="#1-IOC-控制反转-与-DI-依赖注入" class="headerlink" title="1. IOC (控制反转) 与 DI (依赖注入)"></a>1. IOC (控制反转) 与 DI (依赖注入)</h3><h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h4><ul>
+<li><strong>IoC (Inversion of Control)</strong>：是一种<strong>设计思想</strong>，将原本由程序主动创建和管理对象（<code>new Object()</code>）的控制权，反转给<strong>外部容器</strong>（Spring Framework）来管理。</li>
+<li><strong>DI (Dependency Injection)</strong>：是<strong>实现IoC的一种方式</strong>。由容器在运行期动态地将某种依赖关系注入到对象之中（通过构造函数、Setter方法等方式）。</li>
+</ul>
+<p><strong>一句话总结：IoC是目的，DI是手段。</strong></p>
+<h4 id="面试追问"><a href="#面试追问" class="headerlink" title="面试追问"></a><strong>面试追问</strong></h4><p><strong>Q：IoC容器做了什么？它的好处是什么？</strong></p>
+<ul>
+<li><strong>做了什么</strong>：负责对象的<strong>创建、组装（注入依赖）、配置、和管理其整个生命周期</strong>。</li>
+<li><strong>好处</strong>：<ol>
+<li><strong>解耦</strong>：对象之间的依赖关系由容器维护，降低了代码的耦合度。</li>
+<li><strong>资源集中管理</strong>：统一管理大量对象的创建和销毁，易于配置和维护。</li>
+<li><strong>易于测试</strong>：可以通过容器注入一个模拟对象（Mock）来进行单元测试。</li>
+</ol>
+</li>
+</ul>
+<p><strong>Q：有哪些依赖注入的方式？</strong></p>
+<ol>
+<li><p><strong>构造器注入</strong>：<strong>Spring官方推荐的方式</strong>。保证依赖不可变、完全初始化的状态。能避免循环依赖问题。</p>
+<p>java</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> OrderService orderService;<br>    <span class="hljs-comment">// 构造器注入</span><br>    <span class="hljs-keyword">public</span> UserService(OrderService orderService) &#123;<br>        <span class="hljs-keyword">this</span>.orderService = orderService;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>Setter方法注入</strong>：可选依赖，允许对象在创建后重新配置。</p>
+<p>java</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">OrderService</span> orderService;<br>    <span class="hljs-comment">// Setter注入</span><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">setOrderService</span>(<span class="hljs-params"><span class="hljs-title class_">OrderService</span> orderService</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">orderService</span> = orderService;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>字段注入（不推荐）</strong>：使用<code>@Autowired</code>直接标注在字段上。代码简洁，但缺点很多：不利于测试（必须通过反射注入）、隐藏了依赖关系、容易导致NPE（因为字段可能为null）。</p>
+<p>java</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs perl">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserService</span> </span>&#123;<br>    <span class="hljs-variable">@Autowired</span> // 不推荐<br>    private OrderService orderService;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="2-Bean-的生命周期-非常非常重要"><a href="#2-Bean-的生命周期-非常非常重要" class="headerlink" title="2. Bean 的生命周期 (非常非常重要)"></a>2. Bean 的生命周期 (非常非常重要)</h3><p>一个Bean从创建到销毁的完整过程。你需要能说出关键步骤和扩展点。</p>
+<p><strong>简化版核心流程：</strong></p>
+<ol>
+<li><strong>实例化 (Instantiate)</strong>：通过反射调用构造方法创建Bean的实例。</li>
+<li><strong>属性赋值 (Populate)</strong>：为Bean的属性注入值（依赖注入发生在这里）。</li>
+<li><strong>初始化 (Initialize)</strong>：<ul>
+<li>如果Bean实现了<code>BeanNameAware</code>、<code>BeanFactoryAware</code>等接口，会调用相应的回调方法。</li>
+<li>执行所有<code>BeanPostProcessor</code>的**<code>postProcessBeforeInitialization</code>**方法。</li>
+<li>如果Bean指定了<code>init-method</code>或实现了<code>InitializingBean</code>接口，调用初始化方法。</li>
+<li>执行所有<code>BeanPostProcessor</code>的**<code>postProcessAfterInitialization</code>**方法（<strong>AOP代理对象的生成就在这一步！</strong>）。</li>
+</ul>
+</li>
+<li><strong>使用 (Ready)</strong>：Bean已经完全初始化，存放在IoC容器中，可供应用程序使用。</li>
+<li><strong>销毁 (Destroy)</strong>：容器关闭时，如果Bean指定了<code>destroy-method</code>或实现了<code>DisposableBean</code>接口，会调用销毁方法。</li>
+</ol>
+<p><strong>面试追问：请详细说一下<code>BeanPostProcessor</code>的作用？</strong></p>
+<ul>
+<li><strong>作用</strong>：它是Spring提供的一个<strong>强大的扩展点</strong>，允许开发者在Bean初始化前后“插手”，进行自定义逻辑。</li>
+<li><strong><code>postProcessBeforeInitialization</code></strong>：在初始化方法（如<code>@PostConstruct</code>）调用之前执行。</li>
+<li><strong><code>postProcessAfterInitialization</code></strong>：在初始化方法调用之后执行。<strong>Spring AOP就是通过<code>AbstractAutoProxyCreator</code>（它是一个<code>BeanPostProcessor</code>）在这一步创建代理对象的。</strong></li>
+</ul>
+<p><strong>追问：<code>@PostConstruct</code>、<code>InitializingBean</code>、<code>init-method</code>的执行顺序？</strong></p>
+<ol>
+<li><code>@PostConstruct</code> 注解标注的方法</li>
+<li><code>InitializingBean</code> 接口的 <code>afterPropertiesSet()</code> 方法</li>
+<li>自定义的 <code>init-method</code> 方法</li>
+</ol>
+<hr>
+<h3 id="3-循环依赖-Circular-Dependency"><a href="#3-循环依赖-Circular-Dependency" class="headerlink" title="3. 循环依赖 (Circular Dependency)"></a>3. 循环依赖 (Circular Dependency)</h3><h4 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a><strong>问题场景</strong></h4><p>比如：<code>AService</code> 依赖 <code>BService</code>，同时 <code>BService</code> 又依赖 <code>AService</code>。</p>
+<h4 id="Spring的解决方案-三级缓存"><a href="#Spring的解决方案-三级缓存" class="headerlink" title="Spring的解决方案 (三级缓存)"></a><strong>Spring的解决方案 (三级缓存)</strong></h4><p>Spring通过<strong>三级缓存</strong>来解决<strong>单例Bean</strong>的<strong>Setter注入&#x2F;字段注入</strong>的循环依赖。</p>
+<ul>
+<li><strong>第一级缓存 (singletonObjects)</strong>：存放已经完全初始化好的Bean。</li>
+<li><strong>第二级缓存 (earlySingletonObjects)</strong>：存放提前暴露的<strong>原始Bean</strong>（尚未填充属性），用于解决循环依赖。</li>
+<li><strong>第三级缓存 (singletonFactories)</strong>：存放<strong>ObjectFactory</strong>，用于生成原始Bean的<strong>早期引用</strong>（可能被AOP代理）。</li>
+</ul>
+<p><strong>解决流程（以A、B循环依赖为例）：</strong></p>
+<ol>
+<li>开始创建A，实例化A（只是调用构造方法），得到一个原始对象。此时，将A对应的<code>ObjectFactory</code>放入<strong>第三级缓存</strong>。</li>
+<li>为A进行属性赋值，发现需要注入B。于是去创建B。</li>
+<li>开始创建B，实例化B，将B的<code>ObjectFactory</code>放入第三级缓存。</li>
+<li>为B进行属性赋值，发现需要注入A。于是尝试从缓存中获取A：<ul>
+<li>从第一级缓存<code>singletonObjects</code>获取A -&gt; 没有。</li>
+<li>从第二级缓存<code>earlySingletonObjects</code>获取A -&gt; 没有。</li>
+<li><strong>从第三级缓存<code>singletonFactories</code>中获取A的ObjectFactory，并调用<code>getObject()</code>方法。这个方法可能会提前进行AOP（如果A需要被代理），然后得到一个A的早期引用（可能是代理对象），并将这个早期引用放入第二级缓存，同时从第三级缓存移除A的ObjectFactory。</strong></li>
+</ul>
+</li>
+<li>B成功获取到A的早期引用，完成属性赋值和初始化，成为一个完整的Bean，放入第一级缓存。</li>
+<li>A接着注入B，完成属性赋值和初始化，也成为一个完整的Bean，放入第一级缓存。</li>
+</ol>
+<p><strong>面试追问：为什么构造器注入的循环依赖无法解决？</strong><br>因为构造器注入发生在<strong>实例化</strong>这一步。在实例化A时，就需要先得到B；而实例化B时，又需要先得到A。双方都卡在第一步，无法完成实例化，更无法提前暴露引用，因此三级缓存机制失效，Spring会直接抛出<code>BeanCurrentlyInCreationException</code>异常。</p>
+<hr>
+<h3 id="4-AOP-面向切面编程"><a href="#4-AOP-面向切面编程" class="headerlink" title="4. AOP (面向切面编程)"></a>4. AOP (面向切面编程)</h3><h4 id="核心概念-1"><a href="#核心概念-1" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h4><ul>
+<li><strong>作用</strong>：将那些与核心业务逻辑无关但又遍布在代码中的功能（如日志、事务、安全等）分离出来，作为“横切关注点”，集中管理。</li>
+<li><strong>重要术语</strong>：<ul>
+<li><strong>切面 (Aspect)</strong>：封装横切关注点的模块（一个<code>@Aspect</code>注解的类）。</li>
+<li><strong>连接点 (Joinpoint)</strong>：程序执行过程中可以插入切面的点（如方法调用、异常抛出）。</li>
+<li><strong>通知 (Advice)</strong>：切面在特定连接点执行的动作（<code>@Before</code>, <code>@After</code>, <code>@Around</code>, <code>@AfterReturning</code>, <code>@AfterThrowing</code>）。</li>
+<li><strong>切点 (Pointcut)</strong>：匹配连接点的表达式，定义了通知何时被执行（<code>@Pointcut</code>）。</li>
+<li><strong>织入 (Weaving)</strong>：将切面应用到目标对象并创建代理对象的过程。</li>
+</ul>
+</li>
+</ul>
+<h4 id="实现原理：动态代理"><a href="#实现原理：动态代理" class="headerlink" title="实现原理：动态代理"></a><strong>实现原理：动态代理</strong></h4><p>Spring AOP默认使用动态代理，根据条件选择：</p>
+<ol>
+<li><strong>JDK动态代理 (默认)</strong>：<strong>要求目标类必须实现至少一个接口</strong>。代理对象会实现相同的接口。</li>
+<li><strong>CGLIB动态代理</strong>：通过<strong>继承</strong>目标类来生成子类作为代理。<strong>不需要实现接口</strong>。可以通过<code>@EnableAspectJAutoProxy(proxyTargetClass = true)</code>强制使用。</li>
+</ol>
+<p><strong>面试追问：<code>@Around</code>和<code>@After</code>的区别？</strong></p>
+<ul>
+<li><code>@Around</code>：<strong>最强大的通知</strong>。它包围了连接点，可以控制目标方法是否执行、何时执行、执行多少次，并可以修改返回值。它需要显式调用<code>ProceedingJoinPoint.proceed()</code>来执行目标方法。</li>
+<li><code>@After</code>：<strong>最终通知</strong>。无论目标方法是正常返回还是抛出异常，它都会执行（类似于<code>finally</code>块）。</li>
+</ul>
+<hr>
+<h3 id="5-Spring-Boot-自动配置原理-Magic"><a href="#5-Spring-Boot-自动配置原理-Magic" class="headerlink" title="5. Spring Boot 自动配置原理 (Magic)"></a>5. Spring Boot 自动配置原理 (Magic)</h3><p>这是Spring Boot的核心魅力所在。</p>
+<p><strong>核心注解：<code>@SpringBootApplication</code></strong><br>它是一个复合注解，主要由三个注解组成：</p>
+<ol>
+<li><code>@SpringBootConfiguration</code>：表明这是一个配置类。</li>
+<li><code>@ComponentScan</code>：开启组件扫描。</li>
+<li><strong><code>@EnableAutoConfiguration</code> (关键)</strong>：启用自动配置。</li>
+</ol>
+<p><strong><code>@EnableAutoConfiguration</code> 的工作原理：</strong></p>
+<ol>
+<li>它导入了<code>AutoConfigurationImportSelector</code>类。</li>
+<li>这个类会调用<code>SpringFactoriesLoader.loadFactoryNames()</code>方法，从所有jar包的<code>META-INF/spring.factories</code>文件中读取<code>EnableAutoConfiguration</code>键对应的<strong>全限定类名列表</strong>（这些就是自动配置类）。</li>
+<li>这些自动配置类（如<code>DataSourceAutoConfiguration</code>）使用<code>@Configuration</code>注解，并利用<code>@ConditionalOnClass</code>, <code>@ConditionalOnProperty</code>, <code>@ConditionalOnMissingBean</code>等<strong>条件注解</strong>进行判断。</li>
+<li><strong>条件注解的逻辑是：</strong> “如果类路径下有某个类”、“如果配置了某个属性”、“如果容器中没有某个Bean”，<strong>才</strong>创建配置中定义的Bean。</li>
+<li>这样就实现了：只要你引入了<code>spring-boot-starter-web</code>，Tomcat和Spring MVC所需的Bean就会自动配置好；只要你引入了<code>spring-boot-starter-jdbc</code>并配置了数据源，<code>DataSource</code>和<code>JdbcTemplate</code>就会自动配置好。</li>
+</ol>
+<p><strong>面试追问：如何自定义一个Starter？</strong></p>
+<ol>
+<li>创建一个项目，包含自动配置模块<code>your-starter-autoconfigure</code>和可选依赖模块<code>your-starter</code>。</li>
+<li>在<code>your-starter-autoconfigure</code>中创建：<ul>
+<li>一个<code>YourServiceProperties</code>类，绑定<code>@ConfigurationProperties</code>。</li>
+<li>一个<code>YourServiceAutoConfiguration</code>类，使用<code>@Configuration</code>和<code>@EnableConfigurationProperties(YourServiceProperties.class)</code>，并用条件注解控制Bean的创建。</li>
+</ul>
+</li>
+<li>在<code>resources/META-INF/</code>下创建<code>spring.factories</code>文件，添加<code>org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.you.YourServiceAutoConfiguration</code>。</li>
+<li>将<code>your-starter-autoconfigure</code>打包，并在<code>your-starter</code>中依赖它。</li>
+</ol>
+<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><h3 id="一、消息队列核心模型与价值"><a href="#一、消息队列核心模型与价值" class="headerlink" title="一、消息队列核心模型与价值"></a>一、消息队列核心模型与价值</h3><p>消息队列（MQ）是分布式系统中实现异步通信、解耦服务、削峰填谷的核心组件，核心模型是<strong>发布 - 订阅模式</strong>：</p>
+<ul>
+<li><strong>生产者（Producer）</strong>：发送消息的服务；</li>
+<li><strong>消费者（Consumer）</strong>：接收并处理消息的服务；</li>
+<li>** broker**：中间件服务器，存储消息并转发给消费者；</li>
+<li><strong>主题（Topic）</strong>：消息的分类标识，生产者向 Topic 发送消息，消费者从 Topic 订阅消息。</li>
+</ul>
+<p><strong>核心价值</strong>：</p>
+<ul>
+<li><strong>解耦</strong>：服务间通过 MQ 通信，无需直接依赖；</li>
+<li><strong>异步</strong>：非核心流程异步处理（如下单后异步发送通知），提升主流程响应速度；</li>
+<li><strong>削峰</strong>：高并发场景下（如秒杀），MQ 缓冲请求，避免下游服务被压垮；</li>
+<li><strong>可靠通信</strong>：通过持久化、重试机制确保消息不丢失。</li>
+</ul>
+<h3 id="二、Kafka-深度解析"><a href="#二、Kafka-深度解析" class="headerlink" title="二、Kafka 深度解析"></a>二、Kafka 深度解析</h3><p>Kafka 是高吞吐、低延迟的分布式消息系统，适合大数据场景（如日志收集、实时计算）。</p>
+<h4 id="1-核心架构组件"><a href="#1-核心架构组件" class="headerlink" title="1. 核心架构组件"></a>1. 核心架构组件</h4><p>（示意图：展示生产者、broker 集群、消费者组与 ZooKeeper 的关系）</p>
+<ul>
+<li><strong>Producer（生产者）</strong>：<br>发送消息到 Topic，支持同步 &#x2F; 异步发送，通过分区策略（默认按 key 哈希）将消息分配到具体分区。</li>
+<li><strong>Consumer（消费者）</strong>：<br>从 Topic 订阅消息，以<strong>消费者组（Consumer Group）</strong> 为单位工作：<ul>
+<li>同一组内的消费者分工消费不同分区（一个分区仅被组内一个消费者消费）；</li>
+<li>不同组可独立消费同一 Topic（广播模式）。</li>
+</ul>
+</li>
+<li><strong>Broker（ broker 节点）</strong>：<br>存储消息的服务器，多个 broker 组成集群。每个 broker 负责多个 Topic 的分区存储。</li>
+<li><strong>Topic 与 Partition（分区）</strong>：<ul>
+<li>Topic 是消息的逻辑分类，物理上被划分为多个<strong>分区（Partition）</strong>，分区是 Kafka 并行处理的最小单位；</li>
+<li>每个分区是有序的、不可变的消息日志（按时间顺序追加），消息被分配全局唯一的 offset（偏移量）标识位置。</li>
+</ul>
+</li>
+<li><strong>Replica（副本）</strong>：<br>每个分区有多个副本（1 个 leader + N 个 follower），实现高可用：<ul>
+<li><strong>leader 副本</strong>：处理读写请求；</li>
+<li><strong>follower 副本</strong>：同步 leader 数据，leader 故障时通过选举成为新 leader。</li>
+<li><strong>ISR（In-Sync Replicas）</strong>：与 leader 保持同步的副本集合（延迟不超过阈值），只有 ISR 内的副本可参与 leader 选举。</li>
+</ul>
+</li>
+<li><strong>ZooKeeper（Kafka 2.8 前）</strong>：<br>管理集群元数据（如 broker 节点列表、分区 - 副本映射、消费者组 offset），协调 leader 选举。<br><em>注：Kafka 2.8+ 支持 KRaft 模式（去 ZooKeeper 化），用内置元数据控制器替代 ZooKeeper。</em></li>
+</ul>
+<h4 id="2-消息可靠原理（生产-存储-消费全链路）"><a href="#2-消息可靠原理（生产-存储-消费全链路）" class="headerlink" title="2. 消息可靠原理（生产 - 存储 - 消费全链路）"></a>2. 消息可靠原理（生产 - 存储 - 消费全链路）</h4><h5 id="（1）生产端可靠性：确保消息成功发送到-broker"><a href="#（1）生产端可靠性：确保消息成功发送到-broker" class="headerlink" title="（1）生产端可靠性：确保消息成功发送到 broker"></a>（1）生产端可靠性：确保消息成功发送到 broker</h5><ul>
+<li><p>acks 参数控制确认级别</p>
+<p>：</p>
+<ul>
+<li><code>acks=0</code>：生产者发送后不等待确认（可能丢失，吞吐最高）；</li>
+<li><code>acks=1</code>：仅等待 leader 写入成功确认（leader 故障可能丢失）；</li>
+<li><code>acks=all</code>（或 <code>-1</code>）：等待 leader 和所有 ISR 中的 follower 写入成功确认（最可靠，吞吐最低）。</li>
+</ul>
+</li>
+<li><p><strong>重试机制</strong>：配置 <code>retries</code>（重试次数）和 <code>retry.backoff.ms</code>（重试间隔），应对网络抖动等临时故障。</p>
+</li>
+</ul>
+<h5 id="（2）存储端可靠性：确保消息持久化不丢失"><a href="#（2）存储端可靠性：确保消息持久化不丢失" class="headerlink" title="（2）存储端可靠性：确保消息持久化不丢失"></a>（2）存储端可靠性：确保消息持久化不丢失</h5><ul>
+<li><strong>分区副本机制</strong>：通过多副本（如 3 副本），即使单个 broker 故障，数据仍可从其他副本恢复；</li>
+<li><strong>日志持久化</strong>：消息写入分区后，先存于页缓存（PageCache），再通过<strong>刷盘策略</strong>写入磁盘（<code>log.flush.interval.messages</code> 控制消息数触发刷盘，<code>log.flush.interval.ms</code> 控制时间触发）；</li>
+<li><strong>ISR 动态维护</strong>：follower 若落后 leader 超过阈值（<code>replica.lag.time.max.ms</code>，默认 30s），会被移出 ISR，确保仅同步状态良好的副本参与确认。</li>
+</ul>
+<h5 id="（3）消费端可靠性：确保消息被正确处理"><a href="#（3）消费端可靠性：确保消息被正确处理" class="headerlink" title="（3）消费端可靠性：确保消息被正确处理"></a>（3）消费端可靠性：确保消息被正确处理</h5><ul>
+<li><p>offset 提交机制</p>
+<p>：消费者处理完消息后，手动提交 offset（记录已消费到的位置）：</p>
+<ul>
+<li>自动提交（<code>enable.auto.commit=true</code>）：按间隔自动提交，可能重复消费（处理中未提交，消费者重启）；</li>
+<li>手动提交：<code>commitSync()</code>（同步阻塞）或 <code>commitAsync()</code>（异步非阻塞），确保处理成功后再提交，避免消息丢失。</li>
+</ul>
+</li>
+<li><p><strong>消费者组重平衡（Rebalance）</strong>：当消费者组内成员变化（新增 &#x2F; 下线）或分区数量变化时，重新分配分区与消费者的映射，需通过 <code>group.id</code> 标识组，<code>session.timeout.ms</code> 检测消费者存活。</p>
+</li>
+</ul>
+<h4 id="3-典型问题与解决方案"><a href="#3-典型问题与解决方案" class="headerlink" title="3. 典型问题与解决方案"></a>3. 典型问题与解决方案</h4><ul>
+<li><strong>消息重复消费</strong>：因网络延迟导致 offset 提交失败，消费者重启后重复拉取。解决：消费逻辑设计为<strong>幂等性</strong>（如基于消息 ID 去重）。</li>
+<li><strong>顺序消息</strong>：Kafka 仅保证<strong>分区内消息有序</strong>（按 offset 递增），全局无序。若需全局有序，需将 Topic 设为 1 个分区（牺牲并行性）。</li>
+</ul>
+<h3 id="三、RocketMQ-深度解析"><a href="#三、RocketMQ-深度解析" class="headerlink" title="三、RocketMQ 深度解析"></a>三、RocketMQ 深度解析</h3><p>RocketMQ 是阿里开源的消息中间件，侧重金融级可靠性、低延迟和丰富的消息类型（如事务消息、定时消息），适合业务系统（如电商交易）。</p>
+<h4 id="1-核心架构组件-1"><a href="#1-核心架构组件-1" class="headerlink" title="1. 核心架构组件"></a>1. 核心架构组件</h4><p>（示意图：展示生产者、消费者、broker 集群、NameServer 的关系）</p>
+<ul>
+<li><strong>Producer（生产者）</strong>：<br>发送消息到 Topic，支持同步、异步、单向发送，提供事务消息、定时消息等高级特性。</li>
+<li><strong>Consumer（消费者）</strong>：<br>从 Topic 消费消息，分两种模式：<ul>
+<li><strong>集群消费（Clustering）</strong>：同组消费者分摊消费（类似 Kafka 的消费者组）；</li>
+<li><strong>广播消费（Broadcasting）</strong>：同组每个消费者都收到全量消息。</li>
+</ul>
+</li>
+<li><strong>Broker（ broker 节点）</strong>：<br>存储消息并处理读写请求，分<strong>Master</strong>（可读写）和<strong>Slave</strong>（只读，同步 Master 数据），支持多 Master 多 Slave 架构。</li>
+<li><strong>Topic 与 Queue（队列）</strong>：<ul>
+<li>Topic 是消息逻辑分类，物理上划分为多个<strong>队列（Queue）</strong>（类似 Kafka 的 Partition）；</li>
+<li>每个 Queue 是有序的消息列表，消息按发送顺序存储，支持顺序消费。</li>
+</ul>
+</li>
+<li><strong>NameServer</strong>：<br>轻量级路由注册中心，存储 Topic 与 broker 的映射关系（无状态，可集群部署，节点间不通信）：<ul>
+<li>生产者 &#x2F; 消费者启动时从 NameServer 获取 Topic 的路由信息（Queue 分布在哪些 broker）；</li>
+<li>broker 定期向 NameServer 发送心跳，维持存活状态。</li>
+</ul>
+</li>
+<li><strong>CommitLog 与 ConsumeQueue</strong>：<ul>
+<li><strong>CommitLog</strong>：全局统一的消息存储文件（所有 Topic 的消息混合存储），按顺序追加写入；</li>
+<li><strong>ConsumeQueue</strong>：每个 Queue 对应一个 ConsumeQueue（索引文件），记录消息在 CommitLog 中的偏移量、大小和 Tag 哈希值，加速消息检索。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-消息可靠原理（生产-存储-消费全链路）-1"><a href="#2-消息可靠原理（生产-存储-消费全链路）-1" class="headerlink" title="2. 消息可靠原理（生产 - 存储 - 消费全链路）"></a>2. 消息可靠原理（生产 - 存储 - 消费全链路）</h4><h5 id="（1）生产端可靠性：确保消息成功投递"><a href="#（1）生产端可靠性：确保消息成功投递" class="headerlink" title="（1）生产端可靠性：确保消息成功投递"></a>（1）生产端可靠性：确保消息成功投递</h5><ul>
+<li><p>发送确认机制</p>
+<p>：</p>
+<ul>
+<li>同步发送：等待 broker 返回确认（<code>SEND_OK</code>），失败则重试（<code>retryTimesWhenSendFailed</code>）；</li>
+<li>异步发送：通过回调函数处理发送结果，失败时触发重试。</li>
+</ul>
+</li>
+<li><p><strong>事务消息</strong>：支持分布式事务（2PC 思想），通过 “半消息 + 确认 &#x2F; 回滚” 机制确保事务一致性。</p>
+</li>
+</ul>
+<h5 id="（2）存储端可靠性：确保消息持久化"><a href="#（2）存储端可靠性：确保消息持久化" class="headerlink" title="（2）存储端可靠性：确保消息持久化"></a>（2）存储端可靠性：确保消息持久化</h5><ul>
+<li><p>刷盘策略</p>
+<p>：消息写入 CommitLog 时，可配置：</p>
+<ul>
+<li><strong>同步刷盘（SYNC_FLUSH）</strong>：消息写入磁盘后才返回确认（可靠性高，性能低）；</li>
+<li><strong>异步刷盘（ASYNC_FLUSH）</strong>：消息写入页缓存后即返回，后台线程异步刷盘（性能高，可能丢失未刷盘数据）。</li>
+</ul>
+</li>
+<li><p>主从复制策略</p>
+<p>：Master 与 Slave 的数据同步：</p>
+<ul>
+<li><strong>同步复制</strong>：Master 等待 Slave 复制完成后才返回确认（无单点丢失风险）；</li>
+<li><strong>异步复制</strong>：Master 无需等待 Slave，直接返回（性能高，Slave 未同步时 Master 故障会丢失数据）。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（3）消费端可靠性：确保消息被正确处理-1"><a href="#（3）消费端可靠性：确保消息被正确处理-1" class="headerlink" title="（3）消费端可靠性：确保消息被正确处理"></a>（3）消费端可靠性：确保消息被正确处理</h5><ul>
+<li><p>消费确认（Ack）</p>
+<p>：</p>
+<ul>
+<li>消费者处理完消息后，需发送 Ack 给 broker（默认自动 Ack，可配置手动 Ack）；</li>
+<li>未 Ack 的消息会被放入<strong>重试队列</strong>（最多重试 16 次，间隔递增），避免消息丢失。</li>
+</ul>
+</li>
+<li><p><strong>消费位点管理</strong>：broker 存储消费者组的消费位点（消费到哪个 Queue 的哪个位置），消费者重启后可从位点继续消费。</p>
+</li>
+</ul>
+<h4 id="3-典型问题与解决方案-1"><a href="#3-典型问题与解决方案-1" class="headerlink" title="3. 典型问题与解决方案"></a>3. 典型问题与解决方案</h4><ul>
+<li><p>事务消息实现</p>
+<p>：解决分布式事务（如 “下单 + 扣库存”），流程：</p>
+<ol>
+<li>生产者发送 “半消息”（暂不能被消费）；</li>
+<li>执行本地事务；</li>
+<li>发送 “确认”（半消息变为可消费）或 “回滚”（半消息被删除）；</li>
+<li>若超时未确认，broker 通过 “回查” 生产者确认事务状态。</li>
+</ol>
+</li>
+<li><p><strong>顺序消息</strong>：支持<strong>全局顺序</strong>（Topic 仅 1 个 Queue）和<strong>分区顺序</strong>（按业务 key 路由到固定 Queue），确保同一 key 的消息有序消费。</p>
+</li>
+</ul>
+<h3 id="四、Kafka-vs-RocketMQ-核心差异"><a href="#四、Kafka-vs-RocketMQ-核心差异" class="headerlink" title="四、Kafka vs RocketMQ 核心差异"></a>四、Kafka vs RocketMQ 核心差异</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Kafka</th>
+<th>RocketMQ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定位</td>
+<td>高吞吐大数据场景（日志、流处理）</td>
+<td>业务系统（交易、通知），侧重可靠性</td>
+</tr>
+<tr>
+<td>元数据管理</td>
+<td>依赖 ZooKeeper（或 KRaft）</td>
+<td>轻量级 NameServer（无状态）</td>
+</tr>
+<tr>
+<td>消息存储</td>
+<td>分区日志文件（按 Topic - 分区隔离）</td>
+<td>全局 CommitLog + 索引 ConsumeQueue</td>
+</tr>
+<tr>
+<td>高级特性</td>
+<td>基础消息、流处理集成（Kafka Streams）</td>
+<td>事务消息、定时消息、重试队列等</td>
+</tr>
+<tr>
+<td>吞吐量</td>
+<td>极高（单机十万级 &#x2F; 秒）</td>
+<td>高（单机万级 &#x2F; 秒，满足业务场景）</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>毫秒级</td>
+<td>毫秒级（略高于 Kafka）</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Kafka 和 RocketMQ 均基于发布 - 订阅模式，通过分区 &#x2F; 队列实现并行处理，通过副本机制保证可靠性。Kafka 以高吞吐见长，适合大数据场景；RocketMQ 以丰富特性和金融级可靠性为优势，适合业务系统。理解两者的架构设计（如分区 &#x2F; 队列、元数据管理）和可靠性保障机制（生产确认、存储持久化、消费确认），是正确选型和解决问题的核心。</p>
+<h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><h3 id="一、微服务核心认知与开发流程"><a href="#一、微服务核心认知与开发流程" class="headerlink" title="一、微服务核心认知与开发流程"></a>一、微服务核心认知与开发流程</h3><p>微服务是将单体应用拆分为<strong>独立部署、职责单一、通信轻量</strong>的小型服务集群，每个服务聚焦特定业务域，通过 HTTP&#x2F;RPC 等协议协作。其核心目标是解决单体应用 “迭代慢、扩展性差、故障影响范围大” 的问题。</p>
+<h4 id="1-微服务开发全流程"><a href="#1-微服务开发全流程" class="headerlink" title="1. 微服务开发全流程"></a>1. 微服务开发全流程</h4><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>核心任务</th>
+<th>关键原则 &#x2F; 工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需求分析与服务拆分</td>
+<td>将业务拆分为独立服务（如电商拆分为用户、订单、商品、支付服务）</td>
+<td>按业务域拆分、单一职责、高内聚低耦合（DDD 领域驱动设计可辅助）</td>
+</tr>
+<tr>
+<td>技术选型</td>
+<td>确定注册中心、配置中心、服务调用、流量控制、网关等组件</td>
+<td>主流栈：Spring Cloud Alibaba（Nacos&#x2F;Feign&#x2F;Sentinel）或 Spring Cloud Netflix</td>
+</tr>
+<tr>
+<td>服务开发</td>
+<td>单个服务按 “分层架构” 实现（Controller→Service→DAO），暴露 API 接口</td>
+<td>统一接口规范（如 RESTful）、定义服务契约（OpenAPI&#x2F;Swagger）</td>
+</tr>
+<tr>
+<td>服务治理</td>
+<td>解决服务注册发现、配置同步、调用熔断、流量控制、监控告警等问题</td>
+<td>Nacos（注册 &#x2F; 配置）、Sentinel（流量）、Prometheus+Grafana（监控）</td>
+</tr>
+<tr>
+<td>部署运维</td>
+<td>服务容器化（Docker）、编排（K8s）、持续集成 &#x2F; 部署（CI&#x2F;CD）</td>
+<td>容器化部署、灰度发布、滚动更新</td>
+</tr>
+</tbody></table>
+<h4 id="2-服务拆分关键原则"><a href="#2-服务拆分关键原则" class="headerlink" title="2. 服务拆分关键原则"></a>2. 服务拆分关键原则</h4><ul>
+<li><strong>避免 “过细拆分”</strong>：拆分过细会导致服务间调用频繁（“分布式事务地狱”），通常按 “业务能力” 拆分（如 “商品管理” 而非 “商品查询”“商品修改” 两个服务）；</li>
+<li><strong>数据自治</strong>：每个服务拥有独立数据库（避免跨服务读写库），跨服务数据交互通过 API 而非直接操作 DB；</li>
+<li><strong>接口稳定</strong>：服务对外 API 一旦发布，避免频繁变更（如需变更，兼容旧版本或版本化 API）。</li>
+</ul>
+<h3 id="二、核心技术栈详解（Spring-Cloud-Alibaba-体系）"><a href="#二、核心技术栈详解（Spring-Cloud-Alibaba-体系）" class="headerlink" title="二、核心技术栈详解（Spring Cloud Alibaba 体系）"></a>二、核心技术栈详解（Spring Cloud Alibaba 体系）</h3><h4 id="1-Nacos：注册中心-配置中心（双核心角色）"><a href="#1-Nacos：注册中心-配置中心（双核心角色）" class="headerlink" title="1. Nacos：注册中心 + 配置中心（双核心角色）"></a>1. Nacos：注册中心 + 配置中心（双核心角色）</h4><p>Nacos（Dynamic Naming and Configuration Service）是微服务的 “地址簿” 和 “配置中心”，替代传统的 Eureka（注册）+ Config（配置），支持高可用、动态更新。</p>
+<h5 id="（1）核心作用：服务注册与发现"><a href="#（1）核心作用：服务注册与发现" class="headerlink" title="（1）核心作用：服务注册与发现"></a>（1）核心作用：服务注册与发现</h5><p>解决 “服务间如何找到彼此” 的问题（如订单服务需调用商品服务，需知道商品服务的 IP:Port）。</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li><strong>服务注册</strong>：服务启动时，通过 Nacos 客户端将自身信息（服务名、IP、Port、健康状态）注册到 Nacos Server；</li>
+<li><strong>心跳续约</strong>：服务每 5 秒发送心跳到 Nacos，Nacos 超过 15 秒未收到心跳则标记 “不健康”，30 秒未收到则移除服务；</li>
+<li><strong>服务发现</strong>：消费者通过服务名向 Nacos 查询可用实例列表，Nacos 返回健康实例（默认采用 “加权随机” 负载均衡策略）。</li>
+</ol>
+<p><strong>使用实践</strong>：</p>
+<ul>
+<li><p>依赖引入（Spring Boot 项目）：</p>
+<p>xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-built_in">application</span>.yml<br></code></pre></td></tr></table></figure>
+
+<p>：</p>
+<p>yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">discovery:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">:8848</span>  <span class="hljs-comment"># Nacos Server地址</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">order-service</span>  <span class="hljs-comment"># 服务名（核心标识，消费者通过此名调用）</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="（2）核心作用：配置中心"><a href="#（2）核心作用：配置中心" class="headerlink" title="（2）核心作用：配置中心"></a>（2）核心作用：配置中心</h5><p>解决 “多环境、多服务配置集中管理与动态更新” 的问题（如开发 &#x2F; 测试 &#x2F; 生产环境的数据库配置，无需重启服务即可生效）。</p>
+<p><strong>工作流程</strong>：</p>
+<ol>
+<li><strong>配置发布</strong>：在 Nacos 控制台创建配置（如<code>order-service-dev.yml</code>），关联服务名和环境；</li>
+<li><strong>配置拉取</strong>：服务启动时，Nacos 客户端根据 “服务名 + 环境” 拉取配置，覆盖本地配置；</li>
+<li><strong>动态更新</strong>：配置变更时，Nacos 通过 HTTP 长轮询通知客户端，客户端自动刷新配置（无需重启）。</li>
+</ol>
+<p><strong>使用实践</strong>：</p>
+<ul>
+<li><p>依赖引入：</p>
+<p>xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">bootstrap</span>.yml<br></code></pre></td></tr></table></figure>
+
+<p>（优先于</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-built_in">application</span>.yml<br></code></pre></td></tr></table></figure>
+
+<p>加载）：</p>
+<p>yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">config:</span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">:8848</span><br>        <span class="hljs-attr">file-extension:</span> <span class="hljs-string">yml</span>  <span class="hljs-comment"># 配置文件格式</span><br>        <span class="hljs-attr">group:</span> <span class="hljs-string">DEFAULT_GROUP</span>  <span class="hljs-comment"># 配置分组（默认即可）</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">order-service</span><br>  <span class="hljs-attr">profiles:</span><br>    <span class="hljs-attr">active:</span> <span class="hljs-string">dev</span>  <span class="hljs-comment"># 环境（对应配置名：order-service-dev.yml）</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>动态刷新配置：在需要刷新的类上加</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@RefreshScope</span><br></code></pre></td></tr></table></figure>
+
+<p>：</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RefreshScope</span>  <span class="hljs-comment">// 配置变更时自动刷新</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderController</span> &#123;<br>    <span class="hljs-meta">@Value(&quot;$&#123;order.timeout:3000&#125;&quot;)</span>  <span class="hljs-comment">// 从Nacos获取配置，默认3000</span><br>    <span class="hljs-keyword">private</span> Integer timeout;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="（3）Nacos-高可用部署"><a href="#（3）Nacos-高可用部署" class="headerlink" title="（3）Nacos 高可用部署"></a>（3）Nacos 高可用部署</h5><p>生产环境需部署 Nacos 集群（至少 3 节点），通过 MySQL 共享元数据（避免单机故障），并配置负载均衡器（如 Nginx）代理 Nacos Server 地址。</p>
+<h4 id="2-Feign：声明式服务调用工具"><a href="#2-Feign：声明式服务调用工具" class="headerlink" title="2. Feign：声明式服务调用工具"></a>2. Feign：声明式服务调用工具</h4><p>Feign 是基于<code>Netflix Feign</code>封装的 HTTP 客户端，通过<strong>注解定义接口</strong>即可实现服务间调用，无需手动编写<code>RestTemplate</code>+URL 的繁琐代码，且默认集成 Ribbon（负载均衡）和 Sentinel（熔断降级）。</p>
+<h5 id="（1）核心原理：动态代理"><a href="#（1）核心原理：动态代理" class="headerlink" title="（1）核心原理：动态代理"></a>（1）核心原理：动态代理</h5><ol>
+<li>扫描<code>@FeignClient</code>注解的接口，生成动态代理实现类；</li>
+<li>代理类将接口方法转换为 HTTP 请求（解析<code>@GetMapping</code>&#x2F;<code>@PostMapping</code>等注解）；</li>
+<li>通过 Ribbon 从 Nacos 获取服务实例列表，选择一个实例发起请求；</li>
+<li>接收响应，转换为 Java 对象返回给调用者。</li>
+</ol>
+<h5 id="（2）使用实践"><a href="#（2）使用实践" class="headerlink" title="（2）使用实践"></a>（2）使用实践</h5><ul>
+<li><p>依赖引入：</p>
+<p>xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <span class="hljs-comment">&lt;!-- 集成Sentinel熔断 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动类加</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-meta">@EnableFeignClients</span><br></code></pre></td></tr></table></figure>
+
+<p>：</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableFeignClients</span>  <span class="hljs-comment">// 开启Feign扫描</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderServiceApplication</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(OrderServiceApplication.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>定义 Feign 接口（调用商品服务）：</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(</span><br><span class="hljs-meta">    value = &quot;product-service&quot;,  // 目标服务名（Nacos中注册的名称）</span><br><span class="hljs-meta">    fallback = ProductFeignFallback.class  // 熔断降级回调类</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ProductFeignClient</span> &#123;<br>    <span class="hljs-comment">// 对应商品服务的接口：GET /product/&#123;id&#125;</span><br>    <span class="hljs-meta">@GetMapping(&quot;/product/&#123;id&#125;&quot;)</span><br>    ProductDTO <span class="hljs-title function_">getById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;<br>&#125;<br><br><span class="hljs-comment">// 熔断降级实现类</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProductFeignFallback</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ProductFeignClient</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ProductDTO <span class="hljs-title function_">getById</span><span class="hljs-params">(Long id)</span> &#123;<br>        <span class="hljs-comment">// 服务不可用时返回默认值或提示</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProductDTO</span>(id, <span class="hljs-string">&quot;服务暂不可用&quot;</span>, <span class="hljs-number">0.0</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>服务中调用：</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderService</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> ProductFeignClient productFeignClient;<br><br>    <span class="hljs-keyword">public</span> OrderDTO <span class="hljs-title function_">createOrder</span><span class="hljs-params">(Long productId)</span> &#123;<br>        <span class="hljs-comment">// 调用商品服务获取商品信息（Feign自动处理服务发现和负载均衡）</span><br>        <span class="hljs-type">ProductDTO</span> <span class="hljs-variable">product</span> <span class="hljs-operator">=</span> productFeignClient.getById(productId);<br>        <span class="hljs-comment">// 业务逻辑...</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OrderDTO</span>(<span class="hljs-number">1L</span>, productId, product.getName());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="（3）关键特性与问题"><a href="#（3）关键特性与问题" class="headerlink" title="（3）关键特性与问题"></a>（3）关键特性与问题</h5><ul>
+<li><p><strong>负载均衡</strong>：默认集成 Ribbon，支持 “轮询”“加权随机” 等策略（可通过<code>ribbon.NFLoadBalancerRuleClassName</code>配置）；</p>
+</li>
+<li><p>超时配置</p>
+<p>：避免服务调用卡住，需配置超时时间：</p>
+<p>yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">feign:</span><br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">config:</span><br>      <span class="hljs-attr">default:</span>  <span class="hljs-comment"># 全局配置（也可指定服务名如product-service）</span><br>        <span class="hljs-attr">connect-timeout:</span> <span class="hljs-number">5000</span>  <span class="hljs-comment"># 连接超时</span><br>        <span class="hljs-attr">read-timeout:</span> <span class="hljs-number">3000</span>     <span class="hljs-comment"># 读取超时</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>与 RestTemplate 的区别</strong>：Feign 是 “声明式”（接口 + 注解），代码更简洁；RestTemplate 是 “命令式”（需手动拼接 URL 和参数），灵活性更高。</p>
+</li>
+</ul>
+<h4 id="3-Sentinel：流量控制与服务容错工具"><a href="#3-Sentinel：流量控制与服务容错工具" class="headerlink" title="3. Sentinel：流量控制与服务容错工具"></a>3. Sentinel：流量控制与服务容错工具</h4><p>Sentinel（哨兵）是阿里开源的流量治理组件，解决微服务中的 “流量突增压垮服务”“服务故障级联扩散（雪崩）” 等问题，核心功能：<strong>限流、熔断、降级</strong>。</p>
+<h5 id="（1）核心概念"><a href="#（1）核心概念" class="headerlink" title="（1）核心概念"></a>（1）核心概念</h5><ul>
+<li><strong>资源</strong>：需要保护的对象（如 Feign 调用、Controller 方法，通过<code>@SentinelResource</code>标记）；</li>
+<li><strong>规则</strong>：限流 &#x2F; 熔断 &#x2F; 降级的配置（如 “每秒最多 100 个请求”“异常比例超过 50% 则熔断”）；</li>
+<li><strong>插槽链（Slot Chain）</strong>：Sentinel 的核心骨架，依次执行 “节点选择→规则校验→统计” 等逻辑（如限流 Slot、熔断 Slot）。</li>
+</ul>
+<h5 id="（2）三大核心功能"><a href="#（2）三大核心功能" class="headerlink" title="（2）三大核心功能"></a>（2）三大核心功能</h5><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>作用</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>限流</td>
+<td>限制单位时间内的请求量，避免服务过载</td>
+<td>秒杀活动、接口峰值防护</td>
+</tr>
+<tr>
+<td>熔断</td>
+<td>服务调用异常（超时 &#x2F; 异常比例高）时，暂时切断调用，避免故障扩散</td>
+<td>下游服务故障，防止上游服务被拖垮</td>
+</tr>
+<tr>
+<td>降级</td>
+<td>熔断或限流触发后，返回默认值 &#x2F; 缓存数据，避免返回错误给用户</td>
+<td>商品详情接口降级，返回缓存数据</td>
+</tr>
+</tbody></table>
+<h5 id="（3）使用实践（结合-Spring-Cloud）"><a href="#（3）使用实践（结合-Spring-Cloud）" class="headerlink" title="（3）使用实践（结合 Spring Cloud）"></a>（3）使用实践（结合 Spring Cloud）</h5><ul>
+<li><p>依赖引入（同 Feign 部分的<code>sentinel</code>依赖）；</p>
+</li>
+<li><p>配置 Sentinel Dashboard（可视化控制台，用于配置规则和监控）：</p>
+<p>yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">sentinel:</span><br>      <span class="hljs-attr">transport:</span><br>        <span class="hljs-attr">dashboard:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span><span class="hljs-string">:8080</span>  <span class="hljs-comment"># Sentinel控制台地址</span><br>        <span class="hljs-attr">port:</span> <span class="hljs-number">8719</span>  <span class="hljs-comment"># 客户端与控制台通信端口</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>标记资源并配置规则：</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderController</span> &#123;<br>    <span class="hljs-comment">// 标记资源：order-create，配置限流规则</span><br>    <span class="hljs-meta">@SentinelResource(</span><br><span class="hljs-meta">        value = &quot;order-create&quot;,  // 资源名</span><br><span class="hljs-meta">        blockHandler = &quot;blockHandler&quot;,  // 限流/熔断触发的回调</span><br><span class="hljs-meta">        fallback = &quot;fallback&quot;  // 业务异常触发的降级</span><br><span class="hljs-meta">    )</span><br>    <span class="hljs-meta">@PostMapping(&quot;/order&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultDTO <span class="hljs-title function_">createOrder</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> OrderVO orderVO)</span> &#123;<br>        <span class="hljs-comment">// 业务逻辑（如调用商品服务扣库存）</span><br>        <span class="hljs-keyword">return</span> ResultDTO.success(<span class="hljs-string">&quot;订单创建成功&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 限流/熔断回调（参数和返回值需与原方法一致，额外加BlockException参数）</span><br>    <span class="hljs-keyword">public</span> ResultDTO <span class="hljs-title function_">blockHandler</span><span class="hljs-params">(OrderVO orderVO, BlockException e)</span> &#123;<br>        <span class="hljs-keyword">return</span> ResultDTO.fail(<span class="hljs-string">&quot;请求过于频繁，请稍后再试&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 业务异常回调</span><br>    <span class="hljs-keyword">public</span> ResultDTO <span class="hljs-title function_">fallback</span><span class="hljs-params">(OrderVO orderVO, Throwable e)</span> &#123;<br>        <span class="hljs-keyword">return</span> ResultDTO.fail(<span class="hljs-string">&quot;系统异常，请稍后再试&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在 Sentinel 控制台配置限流规则：</p>
+<ol>
+<li><p>访问<code>http://192.168.1.100:8080</code>（默认账号密码 sentinel&#x2F;sentinel）；</p>
+</li>
+<li><p>找到</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">order</span>-service<br></code></pre></td></tr></table></figure>
+
+<p>服务，点击 “流控规则”→“新增”，配置：</p>
+<ul>
+<li>资源名：<code>order-create</code>；</li>
+<li>限流类型：QPS（每秒请求数）；</li>
+<li>阈值：10（每秒最多 10 个请求）。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="（4）关键规则详解"><a href="#（4）关键规则详解" class="headerlink" title="（4）关键规则详解"></a>（4）关键规则详解</h5><ul>
+<li><strong>限流算法</strong>：<ol>
+<li><strong>固定窗口</strong>：简单但可能出现 “临界问题”（如 1 秒拆为两个 500ms 窗口，每个窗口阈值 100，实际 1 秒可能 200 请求）；</li>
+<li><strong>滑动窗口</strong>：将 1 秒拆分为多个小窗口（如 10 个 100ms 窗口），滑动统计请求数，解决临界问题（Sentinel 默认）；</li>
+<li><strong>令牌桶</strong>：匀速生成令牌，请求需获取令牌才允许通过（适合平滑流量）；</li>
+<li><strong>漏桶</strong>：请求匀速流出，应对突发流量（类似 “泄洪”）。</li>
+</ol>
+</li>
+<li><strong>熔断规则</strong>：支持三种熔断策略：<ol>
+<li><strong>慢调用比例</strong>：慢调用（超过阈值）占比超过设定值，触发熔断；</li>
+<li><strong>异常比例</strong>：异常请求占比超过设定值，触发熔断；</li>
+<li><strong>异常数</strong>：单位时间内异常数超过设定值，触发熔断。</li>
+</ol>
+</li>
+</ul>
+<h3 id="三、微服务核心治理场景与解决方案"><a href="#三、微服务核心治理场景与解决方案" class="headerlink" title="三、微服务核心治理场景与解决方案"></a>三、微服务核心治理场景与解决方案</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>技术组合</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务间调用</td>
+<td>Nacos + Feign</td>
+<td>Feign 声明式调用，Nacos 提供服务发现，Ribbon 负载均衡</td>
+</tr>
+<tr>
+<td>配置集中管理</td>
+<td>Nacos 配置中心</td>
+<td>多环境配置集中存储，动态刷新（<code>@RefreshScope</code>）</td>
+</tr>
+<tr>
+<td>流量峰值防护</td>
+<td>Sentinel 限流</td>
+<td>基于 QPS 配置限流规则，避免服务过载</td>
+</tr>
+<tr>
+<td>服务故障隔离</td>
+<td>Sentinel 熔断</td>
+<td>下游服务故障时熔断，防止级联雪崩</td>
+</tr>
+<tr>
+<td>接口文档统一管理</td>
+<td>Feign + Knife4j（Swagger 增强）</td>
+<td>自动生成接口文档，支持调试</td>
+</tr>
+<tr>
+<td>分布式事务</td>
+<td>Seata（Spring Cloud Alibaba 组件）</td>
+<td>基于 TCC&#x2F;SAGA 模式，解决跨服务事务一致性（如订单 + 支付 + 库存的事务）</td>
+</tr>
+</tbody></table>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>微服务开发的核心是 “<strong>服务治理</strong>”，Nacos 解决 “注册与配置” 的基础问题，Feign 简化 “服务间调用”，Sentinel 保障 “流量与容错”，三者构成 Spring Cloud Alibaba 体系的核心骨架。实际开发中，需结合业务场景合理拆分服务、配置组件参数（如 Feign 超时、Sentinel 阈值），并通过监控工具（如 Sentinel Dashboard、Prometheus）实时感知服务状态，确保微服务集群稳定运行。</p>
+<h2 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h2><h3 id="一、面向对象思想（OOP）"><a href="#一、面向对象思想（OOP）" class="headerlink" title="一、面向对象思想（OOP）"></a>一、面向对象思想（OOP）</h3><h3 id="核心名词解释"><a href="#核心名词解释" class="headerlink" title="核心名词解释"></a>核心名词解释</h3><ul>
+<li><strong>封装</strong>：将对象的属性（数据）和方法（操作）封装在类中，通过访问修饰符（private&#x2F;protected&#x2F;public&#x2F; 默认）控制外部访问权限，仅暴露必要接口（如 getter&#x2F;setter），隐藏内部实现细节。</li>
+<li><strong>继承</strong>：子类通过关键字继承父类，复用父类的属性和方法，同时可新增功能或重写父类方法，体现 “is-a” 关系。</li>
+<li><strong>多态</strong>：同一行为在不同对象上表现出不同实现，核心是 “父类引用指向子类对象”，依赖继承 &#x2F; 实现关系、方法重写两大前提。</li>
+<li><strong>抽象</strong>：通过抽象类或接口提取事物共性行为，忽略具体实现，约束子类必须实现核心功能，聚焦 “做什么” 而非 “怎么做”。</li>
+</ul>
+<h3 id="核心问答"><a href="#核心问答" class="headerlink" title="核心问答"></a>核心问答</h3><ol>
+<li><strong>问</strong>：封装的核心价值是什么？<br><strong>答</strong>：一是隐藏实现细节，避免外部误修改数据（如对年龄属性加合法性校验）；二是降低代码耦合，外部仅通过接口交互，内部逻辑修改不影响外部使用。</li>
+<li><strong>问</strong>：继承有哪些限制？实际开发中如何规避继承的弊端？<br><strong>答</strong>：Java 仅支持单继承（一个类只能有一个直接父类），且父类修改可能引发子类 “雪崩式” 变更（强耦合）。规避方式：优先使用组合（“has-a” 关系，如汽车包含发动机对象），通过对象关联实现功能复用，降低耦合。</li>
+<li><strong>问</strong>：多态的实现条件和核心价值是什么？<br><strong>答</strong>：实现条件有三：一是存在继承或接口实现关系；二是子类重写父类方法；三是父类引用指向子类对象。核心价值是降低耦合（依赖抽象而非具体实现），提升扩展性（新增子类无需修改原有调用逻辑）。</li>
+</ol>
+<h3 id="追问"><a href="#追问" class="headerlink" title="追问"></a>追问</h3><ul>
+<li>追问 1：多态在框架中的典型应用场景有哪些？<br>答：比如 Spring 的 BeanPostProcessor 接口，不同实现类可对 Bean 初始化做不同增强，框架通过父类引用调用具体实现；又如日志框架的 LoggerFactory，返回 Logger 接口即可切换不同日志实现，调用者无需关心底层。</li>
+<li>追问 2：抽象类和接口的核心区别是什么？JDK8 后接口有哪些变化？<br>答：抽象类可含普通方法和抽象方法，支持任意属性，子类通过 extends 单继承；接口早期仅含抽象方法和常量，JDK8 后新增默认方法（default）和静态方法，类通过 implements 多实现。核心区别是抽象类侧重 “部分实现”，接口侧重 “行为规范”。</li>
+</ul>
+<h3 id="二、常用集合及底层数据结构"><a href="#二、常用集合及底层数据结构" class="headerlink" title="二、常用集合及底层数据结构"></a>二、常用集合及底层数据结构</h3><h3 id="核心名词解释-1"><a href="#核心名词解释-1" class="headerlink" title="核心名词解释"></a>核心名词解释</h3><ul>
+<li><strong>ArrayList</strong>：基于动态数组实现的 List 集合，初始容量 10，扩容时为原容量的 1.5 倍，支持随机访问。</li>
+<li><strong>LinkedList</strong>：基于双向链表实现的 List 集合，每个节点包含 prev（前驱）和 next（后继）指针，插入删除首尾元素效率高。</li>
+<li><strong>HashMap</strong>：基于 “数组 + 链表 + 红黑树” 实现的 Map 集合，通过哈希函数定位元素，链表长度超过 8 且数组容量≥64 时转为红黑树。</li>
+<li><strong>ConcurrentHashMap</strong>：线程安全的 Map 集合，JDK8 后通过 “CAS+ synchronized” 保证安全，锁粒度为哈希桶（链表 &#x2F; 红黑树的头节点）。</li>
+<li><strong>HashSet</strong>：基于 HashMap 实现的 Set 集合，将元素作为 HashMap 的 key 存储，依赖 hashCode () 和 equals () 保证元素不可重复。</li>
+</ul>
+<h3 id="核心问答-1"><a href="#核心问答-1" class="headerlink" title="核心问答"></a>核心问答</h3><ol>
+<li><strong>问</strong>：HashMap 的底层结构演变（JDK7 vs JDK8）及扩容机制是什么？<br><strong>答</strong>：JDK7 底层是 “数组 + 链表”，JDK8 新增红黑树优化（解决长链表查询慢问题）。扩容机制：当元素数超过 “容量 × 负载因子（默认 0.75）” 时，容量翻倍（保证为 2 的幂次，方便计算索引），重新计算元素哈希值并迁移。</li>
+<li><strong>问</strong>：ArrayList 和 LinkedList 的核心区别及适用场景是什么？<br><strong>答</strong>：从结构看，ArrayList 是动态数组，LinkedList 是双向链表；从性能看，ArrayList 随机访问快（O (1)）、插入删除中间慢（O (n)），LinkedList 插入删除首尾快（O (1)）、随机访问慢（O (n)）。适用场景：频繁查询用 ArrayList，频繁增删首尾用 LinkedList。</li>
+<li><strong>问</strong>：HashSet 如何保证元素不可重复？为什么要同时重写 hashCode () 和 equals ()？<br><strong>答</strong>：HashSet 本质是 HashMap 的 key 集合（value 固定为常量），添加元素时先通过 hashCode () 计算哈希值定位数组位置，再通过 equals () 比较该位置的元素是否相同，两者都相同则判定为重复元素，拒绝添加。若仅重写 equals ()，可能因 hashCode () 不同导致相同元素存入不同位置；仅重写 hashCode ()，可能因 equals () 不同导致重复元素存入同一位置，均无法保证去重。</li>
+</ol>
+<h3 id="追问-1"><a href="#追问-1" class="headerlink" title="追问"></a>追问</h3><ul>
+<li>追问 1：HashMap 为什么不是线程安全的？JDK8 的 ConcurrentHashMap 如何解决线程安全问题？<br>答：HashMap 线程不安全体现在两方面：多线程扩容时 JDK7 的头插法可能导致链表成环（JDK8 尾插法解决）；多线程 put 时可能覆盖彼此结果。ConcurrentHashMap JDK8 后摒弃分段锁，改用 “CAS+ synchronized”：写操作锁定哈希桶头节点，不同桶可并发；读操作无锁，依赖 volatile 保证节点值可见性。</li>
+<li>追问 2：TreeSet 和 LinkedHashSet 的排序机制有何不同？<br>答：TreeSet 基于红黑树实现，通过元素的 Comparable 接口或外部 Comparator 实现自然排序或自定义排序，排序与插入顺序无关；LinkedHashSet 基于 LinkedHashMap 实现，通过双向链表维护元素的插入顺序，同时保证去重，排序与插入顺序一致。</li>
+</ul>
+<h3 id="三、Lambda-表达式与-Stream-流"><a href="#三、Lambda-表达式与-Stream-流" class="headerlink" title="三、Lambda 表达式与 Stream 流"></a>三、Lambda 表达式与 Stream 流</h3><h3 id="核心名词解释-2"><a href="#核心名词解释-2" class="headerlink" title="核心名词解释"></a>核心名词解释</h3><ul>
+<li><strong>Lambda 表达式</strong>：Java8 引入的函数式编程语法，用于简化匿名内部类，格式为 “(参数列表) -&gt; 方法体”，仅能用于函数式接口（含一个抽象方法的接口）。</li>
+<li><strong>函数式接口</strong>：仅包含一个抽象方法的接口，可通过 @FunctionalInterface 注解校验，如 Runnable、Consumer、Comparator 等。</li>
+<li><strong>Stream 流</strong>：Java8 用于处理集合的 “流水线式” 工具，将集合转换为元素序列，支持中间操作（惰性执行）和终止操作（触发执行），实现高效的集合处理。</li>
+<li><strong>中间操作</strong>：Stream 流的非终止操作，返回新的 Stream，不立即执行，如 filter（筛选）、map（转换）、sorted（排序）。</li>
+<li><strong>终止操作</strong>：触发 Stream 流实际处理的操作，返回非 Stream 结果，如 collect（收集）、forEach（遍历）、count（计数）。</li>
+</ul>
+<h3 id="核心问答-2"><a href="#核心问答-2" class="headerlink" title="核心问答"></a>核心问答</h3><ol>
+<li><strong>问</strong>：Lambda 表达式的使用前提是什么？相比匿名内部类有哪些优势？<br><strong>答</strong>：使用前提是必须关联函数式接口（仅含一个抽象方法）。优势在于：代码更简洁，省去匿名内部类的类名、方法名等冗余结构；语义更清晰，直接聚焦核心逻辑；支持方法引用，进一步简化代码。</li>
+<li><strong>问</strong>：Stream 流的 “惰性求值” 是什么意思？为什么要设计成惰性求值？<br><strong>答</strong>：惰性求值指仅调用终止操作时，中间操作才会实际执行，若没有终止操作，中间操作不会触发任何计算。设计目的是优化性能：可合并多个中间操作一次性处理（减少遍历次数），避免无效计算（如提前过滤掉大部分元素后再转换）。</li>
+<li><strong>问</strong>：Stream 流的并行流（parallelStream）原理是什么？使用时需注意什么？<br><strong>答</strong>：并行流基于 Fork&#x2F;Join 框架实现，将数据拆分为多个子任务，由多个线程并行处理后合并结果，适合 CPU 密集型任务。注意事项：避免处理非线程安全的集合（如 ArrayList），可能导致数据错乱；避免在并行流中修改共享变量，需额外加锁反而降低性能。</li>
+</ol>
+<h3 id="追问-2"><a href="#追问-2" class="headerlink" title="追问"></a>追问</h3><ul>
+<li>追问 1：使用 Stream 流时常见的 “坑” 有哪些？如何规避？<br>答：一是重复消费，Stream 流只能被消费一次（终止操作后关闭），重复调用会抛异常，规避需重新创建 Stream；二是线程安全问题，并行流操作非线程安全集合会出问题，规避需使用线程安全集合或在处理时加锁；三是忽略惰性求值，忘记加终止操作导致中间操作无效，规避需确保每个 Stream 流都有明确的终止操作。</li>
+<li>追问 2：方法引用是什么？有哪些常见类型？<br>答：方法引用是 Lambda 表达式的简化形式，当 Lambda 体仅调用一个现有方法时，可通过 “类名：：方法名” 或 “对象：：方法名” 替代。常见类型有：实例方法引用（如 user::getName）、静态方法引用（如 Math::max）、构造方法引用（如 User::new）。</li>
+</ul>
+<h3 id="四、多线程及并发容器"><a href="#四、多线程及并发容器" class="headerlink" title="四、多线程及并发容器"></a>四、多线程及并发容器</h3><h3 id="核心名词解释-3"><a href="#核心名词解释-3" class="headerlink" title="核心名词解释"></a>核心名词解释</h3><ul>
+<li><strong>线程</strong>：进程内的最小执行单元，一个进程可包含多个线程，共享进程资源，实现并发执行。</li>
+<li><strong>线程生命周期</strong>：线程从创建到销毁的状态变化，包含 NEW（新建）、RUNNABLE（就绪 &#x2F; 运行）、BLOCKED（阻塞）、WAITING（无超时等待）、TIMED_WAITING（超时等待）、TERMINATED（终止）6 种状态。</li>
+<li><strong>Callable</strong>：带返回值的线程任务接口，定义了 call () 方法，可抛出受检异常，需结合 FutureTask 获取执行结果。</li>
+<li><strong>ConcurrentHashMap</strong>：线程安全的 HashMap 实现，JDK8 后通过 “CAS+ synchronized” 保证并发安全，锁粒度细，性能优于 Hashtable。</li>
+<li><strong>CopyOnWriteArrayList</strong>：基于 “写时复制” 机制的线程安全 List，读操作无锁，写操作复制原数组修改后替换，适合读多写少场景。</li>
+<li><strong>BlockingQueue</strong>：支持阻塞操作的队列，提供 put ()（队列满时阻塞）和 take ()（队列空时阻塞）方法，常用于生产者 - 消费者模型。</li>
+</ul>
+<h3 id="核心问答-3"><a href="#核心问答-3" class="headerlink" title="核心问答"></a>核心问答</h3><ol>
+<li><strong>问</strong>：线程的 6 种生命周期状态及转换触发场景是什么？<br><strong>答</strong>：① NEW：new Thread () 后未调用 start ()；② RUNNABLE：调用 start () 后等待 CPU 调度或正在运行；③ BLOCKED：获取 synchronized 锁失败时进入；④ WAITING：调用 object.wait ()、thread.join () 等无超时方法时进入，需被唤醒；⑤ TIMED_WAITING：调用 Thread.sleep (long)、object.wait (long) 等超时方法时进入，超时自动唤醒；⑥ TERMINATED：run () 执行完毕或异常终止。</li>
+<li><strong>问</strong>：CopyOnWriteArrayList 的 “写时复制” 机制是什么？有哪些优缺点？<br><strong>答</strong>：写时复制指：读操作直接访问原数组（无锁，效率高）；写操作（add&#x2F;remove）先复制一份原数组，在新数组上修改，修改完成后用 volatile 变量替换原数组引用。优点是读操作无锁、线程安全；缺点是内存开销大（复制数组）、弱一致性（写后读可能看到旧数据）。</li>
+<li><strong>问</strong>：线程创建的三种方式及核心区别是什么？<br><strong>答</strong>：三种方式分别是：① 继承 Thread 类：重写 run () 方法，无返回值，无法抛受检异常，受单继承限制；② 实现 Runnable 接口：重写 run () 方法，无返回值，无法抛受检异常，可避免单继承限制；③ 实现 Callable 接口：重写 call () 方法，有返回值，可抛受检异常，需结合 FutureTask 获取结果。核心区别在于是否有返回值、是否受单继承限制、是否能抛受检异常。</li>
+</ol>
+<h3 id="追问-3"><a href="#追问-3" class="headerlink" title="追问"></a>追问</h3><ul>
+<li><p>追问 1：wait () 和 sleep () 的核心区别是什么？<br>答：从锁释放看，wait () 会释放持有的对象锁，sleep () 不会；从调用场景看，wait () 必须在 synchronized 块中调用，sleep () 可在任意场景调用；从唤醒方式看，wait () 需通过 notify ()&#x2F;notifyAll () 唤醒，sleep () 超时自动唤醒；从所属类看，wait () 是 Object 类方法（所有对象都有），sleep () 是 Thread 类方法。</p>
+</li>
+<li><h3 id="追问-2：ConcurrentHashMap-在-JDK7-和-JDK8-的实现有何不同？为什么-JDK8-性能更优？"><a href="#追问-2：ConcurrentHashMap-在-JDK7-和-JDK8-的实现有何不同？为什么-JDK8-性能更优？" class="headerlink" title="追问 2：ConcurrentHashMap 在 JDK7 和 JDK8 的实现有何不同？为什么 JDK8 性能更优？"></a>追问 2：ConcurrentHashMap 在 JDK7 和 JDK8 的实现有何不同？为什么 JDK8 性能更优？</h3><p>答：JDK7 采用 “分段锁（Segment）”，将数组分为多个 Segment，每个 Segment 是独立的 HashMap，锁粒度为 Segment；JDK8 摒弃分段锁，改用 “数组 + 链表 + 红黑树”，通过 “CAS+ synchronized” 锁定哈希桶头节点，锁粒度更细（仅单个桶）。JDK8 性能更优是因为锁粒度细化，不同桶的操作可并发执行，减少锁竞争。</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/" class="category-chain-item">为了实习说是</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+        <a href="/tags/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/" class="print-no-link">#为了实习说是</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>为了实习说是</div>
+      <div>http://tow-086.github.io/2025/09/16/为了实习说是/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Agent</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/05/ctf-platform%E5%90%8E%E7%AB%AF/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
