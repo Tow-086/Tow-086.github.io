@@ -19,27 +19,23 @@
   <meta name="author" content="Agent">
   <meta name="keywords" content="Crypto,Reverse,算法,编程技术,日常">
   
-    <meta name="description" content="2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：  然后ida打开看到：  找到这三个关键函数以及：  推测是变表和移位的base64，扔给ai分析一下，生成脚本： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051">
+    <meta name="description" content="Java面试2hr面：问个人信息，没问技术问题 后端面：自我介绍1，aop是什么，通常怎么使用 2，ioc，这次比上次强，上次直接说不会，这次说了控制反转，依赖注入，然后说了不会 3，bean的生命周期，只说了容器化初始化销毁，然后说不会 4，sychorynatheen（忘了咋拼了），那个什么锁，问了是不是可重入锁，使用场景。这个也是不会 5，问了项目中在哪使用数据库，怎么使用数据库的 6，怎么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2025Lilctf(Reverse)">
-<meta property="og:url" content="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/index.html">
+<meta property="og:title" content="Java面试2">
+<meta property="og:url" content="http://tow-086.github.io/2025/09/26/Java%E9%9D%A2%E8%AF%952/index.html">
 <meta property="og:site_name" content="Agent的个人博客">
-<meta property="og:description" content="2025Lilctf(Reverse)1.ARM ASM发现是apk，放到jadx看一下，发现：  然后ida打开看到：  找到这三个关键函数以及：  推测是变表和移位的base64，扔给ai分析一下，生成脚本： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051">
+<meta property="og:description" content="Java面试2hr面：问个人信息，没问技术问题 后端面：自我介绍1，aop是什么，通常怎么使用 2，ioc，这次比上次强，上次直接说不会，这次说了控制反转，依赖注入，然后说了不会 3，bean的生命周期，只说了容器化初始化销毁，然后说不会 4，sychorynatheen（忘了咋拼了），那个什么锁，问了是不是可重入锁，使用场景。这个也是不会 5，问了项目中在哪使用数据库，怎么使用数据库的 6，怎么">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/image-20250815220846564.png">
-<meta property="og:image" content="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/image-20250815220944516.png">
-<meta property="og:image" content="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/image-20250815221012488.png">
-<meta property="article:published_time" content="2025-08-15T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-08-15T14:20:54.646Z">
+<meta property="article:published_time" content="2025-09-26T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-10T07:48:55.558Z">
 <meta property="article:author" content="Agent">
-<meta property="article:tag" content="CTF">
-<meta property="article:tag" content="Reverse">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/image-20250815220846564.png">
   
   
   
-  <title>2025Lilctf(Reverse) - Agent的个人博客</title>
+  <title>Java面试2 - Agent的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2025Lilctf(Reverse)"></span>
+            <span id="subtitle" data-typed-text="Java面试2"></span>
           
         </div>
 
@@ -217,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-15 12:00" pubdate>
-          2025年8月15日 中午
+        <time datetime="2025-09-26 12:00" pubdate>
+          2025年9月26日 中午
         </time>
       </span>
     
@@ -229,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          449 字
+          419 字
         
       </span>
     
@@ -277,24 +273,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2025Lilctf(Reverse)</h1>
+            <h1 id="seo-header">Java面试2</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="2025Lilctf-Reverse"><a href="#2025Lilctf-Reverse" class="headerlink" title="2025Lilctf(Reverse)"></a>2025Lilctf(Reverse)</h1><h2 id="1-ARM-ASM"><a href="#1-ARM-ASM" class="headerlink" title="1.ARM ASM"></a>1.<strong>ARM ASM</strong></h2><p>发现是apk，放到jadx看一下，发现：</p>
-<p><img src="/2025/08/15/2025Lilctf(Revese)/image-20250815220846564.png" srcset="/img/loading.gif" lazyload alt="image-20250815220846564"></p>
-<p>然后ida打开看到：</p>
-<p><img src="/2025/08/15/2025Lilctf(Revese)/image-20250815220944516.png" srcset="/img/loading.gif" lazyload alt="image-20250815220944516"></p>
-<p>找到这三个关键函数以及：</p>
-<p><img src="/2025/08/15/2025Lilctf(Revese)/image-20250815221012488.png" srcset="/img/loading.gif" lazyload alt="image-20250815221012488"></p>
-<p>推测是变表和移位的base64，扔给ai分析一下，生成脚本：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">import</span> base64<br><br><span class="hljs-comment"># 自定义Base64表</span><br>custom_b64_table = <span class="hljs-string">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ3456780129+/&quot;</span><br>standard_b64_table = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span><br><br><span class="hljs-comment"># 目标密文</span><br>target_b64 = <span class="hljs-string">&quot;KRD2c1XRSJL9e0fqCIbiyJrHW1bu0ZnTYJvYw1DM2RzPK1XIQJnN2ZfRMY4So09S&quot;</span><br><br><span class="hljs-comment"># 转换到标准Base64</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">to_standard_b64</span>(<span class="hljs-params">s</span>):<br>    <span class="hljs-keyword">return</span> s.translate(<span class="hljs-built_in">str</span>.maketrans(custom_b64_table, standard_b64_table))<br><br><span class="hljs-comment"># 解码Base64</span><br>std_b64_str = to_standard_b64(target_b64)<br>decoded = base64.b64decode(std_b64_str)<br>data = <span class="hljs-built_in">list</span>(decoded)  <span class="hljs-comment"># 解码后的48字节数据</span><br><br><span class="hljs-comment"># 移位逆操作（每3字节一组）</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reverse_shift</span>(<span class="hljs-params">data</span>):<br>    result = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data), <span class="hljs-number">3</span>):<br>        <span class="hljs-comment"># 第1字节：循环右移3位（加密时循环左移3位）</span><br>        b0 = data[i]<br>        b0 = ((b0 &gt;&gt; <span class="hljs-number">3</span>) | (b0 &lt;&lt; <span class="hljs-number">5</span>)) &amp; <span class="hljs-number">0xFF</span><br>        <br>        <span class="hljs-comment"># 第2字节：循环左移1位（加密时循环右移1位）</span><br>        b1 = data[i+<span class="hljs-number">1</span>]<br>        b1 = ((b1 &lt;&lt; <span class="hljs-number">1</span>) | (b1 &gt;&gt; <span class="hljs-number">7</span>)) &amp; <span class="hljs-number">0xFF</span><br>        <br>        <span class="hljs-comment"># 第3字节不变</span><br>        b2 = data[i+<span class="hljs-number">2</span>]<br>        result.extend([b0, b1, b2])<br>    <span class="hljs-keyword">return</span> result<br><br><span class="hljs-comment"># 置换表t</span><br>t0 = [<span class="hljs-number">0x0D</span>, <span class="hljs-number">0x0E</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x0B</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x08</span>, <br>      <span class="hljs-number">0x06</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x05</span>, <span class="hljs-number">0x04</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0x00</span>]<br><br><span class="hljs-comment"># 构造逆置换表</span><br>inv_t = [<span class="hljs-number">0</span>] * <span class="hljs-number">16</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>):<br>    inv_t[t0[i]] = i<br><br><span class="hljs-comment"># 三轮变换逆操作（正确密钥）</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reverse_blocks</span>(<span class="hljs-params">blocks</span>):<br>    <span class="hljs-comment"># 块0：使用密钥 t0</span><br>    block0 = [blocks[<span class="hljs-number">0</span>][i] ^ t0[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    block0 = [block0[inv_t[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    <br>    <span class="hljs-comment"># 块1：使用密钥 t0</span><br>    block1 = [blocks[<span class="hljs-number">1</span>][i] ^ t0[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    block1 = [block1[inv_t[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    <br>    <span class="hljs-comment"># 块2：使用密钥 t0⊕1（关键修正！）</span><br>    key2 = [b ^ <span class="hljs-number">0x01</span> <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> t0]<br>    block2 = [blocks[<span class="hljs-number">2</span>][i] ^ key2[i] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    block2 = [block2[inv_t[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">16</span>)]<br>    <br>    <span class="hljs-keyword">return</span> block0 + block1 + block2<br><br><span class="hljs-comment"># 步骤1: 移位逆操作</span><br>data = reverse_shift(data)<br><br><span class="hljs-comment"># 分块（16字节/块）</span><br>blocks = [<br>    data[<span class="hljs-number">0</span>:<span class="hljs-number">16</span>],   <span class="hljs-comment"># 块0: 0-15字节</span><br>    data[<span class="hljs-number">16</span>:<span class="hljs-number">32</span>],  <span class="hljs-comment"># 块1: 16-31字节</span><br>    data[<span class="hljs-number">32</span>:<span class="hljs-number">48</span>]   <span class="hljs-comment"># 块2: 32-47字节</span><br>]<br><br><span class="hljs-comment"># 步骤2: 三轮逆操作（使用正确密钥）</span><br>original_data = reverse_blocks(blocks)<br><br><span class="hljs-comment"># 转换为字符串</span><br>flag = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(b) <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> original_data)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;完整的Flag:&quot;</span>, flag)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Flag长度:&quot;</span>, <span class="hljs-built_in">len</span>(flag))<br></code></pre></td></tr></table></figure>
-
-<p>完整的Flag: LILCTF{ez_arm_asm_meow_meow_meowm_oe_wemwom_oe}w<br>Flag长度: 48</p>
-<p>提交不上，猜了一下，最后试了试这个</p>
-<p>LILCTF{ez_arm_asm_meow_meow_meow_meow_meow_meow}</p>
-<p>提交成功</p>
+                <h1 id="Java面试2"><a href="#Java面试2" class="headerlink" title="Java面试2"></a>Java面试2</h1><p>hr面：<br>问个人信息，没问技术问题</p>
+<p>后端面：<br>自我介绍<br>1，aop是什么，通常怎么使用</p>
+<p>2，ioc，这次比上次强，上次直接说不会，这次说了控制反转，依赖注入，然后说了不会</p>
+<p>3，bean的生命周期，只说了容器化初始化销毁，然后说不会</p>
+<p>4，sychorynatheen（忘了咋拼了），那个什么锁，问了是不是可重入锁，使用场景。这个也是不会</p>
+<p>5，问了项目中在哪使用数据库，怎么使用数据库的</p>
+<p>6，怎么关联不同表，怎么保证关联表的数据一致性，表的索引有哪些，你在项目中主要用到了哪些索引，你在项目中写的最复杂的sql语句</p>
+<p>7，问了redis在项目中使用</p>
+<p>8，问了rsa</p>
+<p>，，，项目和场景还问其他的了，但我忘了</p>
+<p>前端：<br>前端问了git和Linux，因为我说不会写前端代码，只看得懂写路由和排查bug<br>1，你怎么使用git的</p>
+<p>2，git你项目写好了一部分怎么关联两个仓库，我说：先关联一个然后解开权限再关联另一个，他问我具体操作我说我没实践过</p>
+<p>3，你项目写好一部分，不想上传git也不提交到本地，你怎么暂存项目，我大概意思：保存一下然后就好了，下次继续写。但，额，面试官好像有点懵逼，然后追问，我说拿idea举例，cs保存一下下次继续写就好了</p>
+<p>4，Linux你怎么使用</p>
+<p>5，怎么编辑文件</p>
+<p>其他的忘了<br>面试官都挺友善，不赖</p>
 
                 
               </div>
@@ -313,12 +312,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/CTF/" class="category-chain-item">CTF</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
     <span>></span>
     
-  <a href="/categories/CTF/Reverse/" class="category-chain-item">Reverse</a>
+  <a href="/categories/Java/%E9%9D%A2%E8%AF%95/" class="category-chain-item">面试</a>
   
   
 
@@ -335,9 +334,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
       
-        <a href="/tags/Reverse/" class="print-no-link">#Reverse</a>
+        <a href="/tags/%E9%9D%A2%E8%AF%95/" class="print-no-link">#面试</a>
       
     </div>
   
@@ -349,8 +348,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2025Lilctf(Reverse)</div>
-      <div>http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/</div>
+      <div>Java面试2</div>
+      <div>http://tow-086.github.io/2025/09/26/Java面试2/</div>
     </div>
     <div class="license-meta">
       
@@ -362,7 +361,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年8月15日</div>
+          <div>2025年9月26日</div>
         </div>
       
       
@@ -394,9 +393,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/26/Java%E5%B8%B8%E8%A7%81%E5%85%AB%E8%82%A1/" title="Java常见八股">
+                      <a href="/2025/10/21/Java%E9%9D%A2%E8%AF%953/" title="Java面试3">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java常见八股</span>
+                        <span class="hidden-mobile">Java面试3</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -404,8 +403,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/15/2025Lilctf(Crypto)/" title="2025Lilctf(Crypto)">
-                        <span class="hidden-mobile">2025Lilctf(Crypto)</span>
+                      <a href="/2025/09/26/Java%E9%9D%A2%E8%AF%951/" title="Java面试1">
+                        <span class="hidden-mobile">Java面试1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

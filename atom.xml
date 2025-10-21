@@ -6,7 +6,7 @@
   <link href="http://tow-086.github.io/atom.xml" rel="self"/>
   
   <link href="http://tow-086.github.io/"/>
-  <updated>2025-09-16T08:44:28.530Z</updated>
+  <updated>2025-10-21T07:11:50.537Z</updated>
   <id>http://tow-086.github.io/</id>
   
   <author>
@@ -15,6 +15,114 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java面试3</title>
+    <link href="http://tow-086.github.io/2025/10/21/Java%E9%9D%A2%E8%AF%953/"/>
+    <id>http://tow-086.github.io/2025/10/21/Java%E9%9D%A2%E8%AF%953/</id>
+    <published>2025-10-21T04:00:00.000Z</published>
+    <updated>2025-10-21T07:11:50.537Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java面试3&quot;&gt;&lt;a href=&quot;#Java面试3&quot; class=&quot;headerlink&quot; title=&quot;Java面试3&quot;&gt;&lt;/a&gt;Java面试3&lt;/h1&gt;&lt;h3 id=&quot;1-MyBatis-的作用&quot;&gt;&lt;a href=&quot;#1-MyBatis-的作用&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/categories/Java/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试2</title>
+    <link href="http://tow-086.github.io/2025/09/26/Java%E9%9D%A2%E8%AF%952/"/>
+    <id>http://tow-086.github.io/2025/09/26/Java%E9%9D%A2%E8%AF%952/</id>
+    <published>2025-09-26T04:00:00.000Z</published>
+    <updated>2025-10-10T07:48:55.558Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java面试2&quot;&gt;&lt;a href=&quot;#Java面试2&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/categories/Java/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试1</title>
+    <link href="http://tow-086.github.io/2025/09/26/Java%E9%9D%A2%E8%AF%951/"/>
+    <id>http://tow-086.github.io/2025/09/26/Java%E9%9D%A2%E8%AF%951/</id>
+    <published>2025-09-26T04:00:00.000Z</published>
+    <updated>2025-10-10T07:48:01.653Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java面试1&quot;&gt;&lt;a href=&quot;#Java面试1&quot; class=&quot;headerlink&quot; title=&quot;Java面试1&quot;&gt;&lt;/a&gt;Java面试1&lt;/h1&gt;&lt;h2 id=&quot;北京昇腾&quot;&gt;&lt;a href=&quot;#北京昇腾&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/categories/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/categories/Java/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
+    
+    <category term="面试" scheme="http://tow-086.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://tow-086.github.io/2025/09/22/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    <id>http://tow-086.github.io/2025/09/22/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/</id>
+    <published>2025-09-22T01:21:02.237Z</published>
+    <updated>2025-09-23T09:18:31.979Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;算法刷题&quot;&gt;&lt;a href=&quot;#算法刷题&quot; class=&quot;headerlink&quot; title=&quot;算法刷题&quot;&gt;&lt;/a&gt;算法刷题&lt;/h1&gt;&lt;h2 id=&quot;心得体会与经典&quot;&gt;&lt;a href=&quot;#心得体会与经典&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>为了实习说是</title>
@@ -42,28 +150,6 @@
     <category term="Java" scheme="http://tow-086.github.io/tags/Java/"/>
     
     <category term="为了实习说是" scheme="http://tow-086.github.io/tags/%E4%B8%BA%E4%BA%86%E5%AE%9E%E4%B9%A0%E8%AF%B4%E6%98%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://tow-086.github.io/2025/09/05/ctf-platform%E5%90%8E%E7%AB%AF/"/>
-    <id>http://tow-086.github.io/2025/09/05/ctf-platform%E5%90%8E%E7%AB%AF/</id>
-    <published>2025-09-05T10:58:04.769Z</published>
-    <updated>2025-09-05T11:45:39.569Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;hr&gt;
-&lt;h2 id=&quot;ctf-platform后端&quot;&gt;&lt;a href=&quot;#ctf-platform后端&quot; class=&quot;headerlink&quot; title=&quot;ctf-platform后端&quot;&gt;&lt;/a&gt;ctf-platform后端&lt;/h2&gt;&lt;h1</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
@@ -97,35 +183,6 @@
   </entry>
   
   <entry>
-    <title>2025Lilctf(Crypto)</title>
-    <link href="http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/"/>
-    <id>http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/</id>
-    <published>2025-08-15T04:00:00.000Z</published>
-    <updated>2025-08-19T13:01:01.868Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2025Lilctf-Crypto&quot;&gt;&lt;a href=&quot;#2025Lilctf-Crypto&quot; class=&quot;headerlink&quot; title=&quot;2025Lilctf(Crypto)&quot;&gt;&lt;/a&gt;2025Lilctf(Crypto)&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="CTF" scheme="http://tow-086.github.io/categories/CTF/"/>
-    
-    <category term="Crypto" scheme="http://tow-086.github.io/categories/CTF/Crypto/"/>
-    
-    
-    <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
-    
-    <category term="Crypto" scheme="http://tow-086.github.io/tags/Crypto/"/>
-    
-  </entry>
-  
-  <entry>
     <title>2025Lilctf(Reverse)</title>
     <link href="http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/"/>
     <id>http://tow-086.github.io/2025/08/15/2025Lilctf(Revese)/</id>
@@ -151,6 +208,35 @@
     <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
     
     <category term="Reverse" scheme="http://tow-086.github.io/tags/Reverse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2025Lilctf(Crypto)</title>
+    <link href="http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/"/>
+    <id>http://tow-086.github.io/2025/08/15/2025Lilctf(Crypto)/</id>
+    <published>2025-08-15T04:00:00.000Z</published>
+    <updated>2025-08-19T13:01:01.868Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2025Lilctf-Crypto&quot;&gt;&lt;a href=&quot;#2025Lilctf-Crypto&quot; class=&quot;headerlink&quot; title=&quot;2025Lilctf(Crypto)&quot;&gt;&lt;/a&gt;2025Lilctf(Crypto)&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/categories/CTF/"/>
+    
+    <category term="Crypto" scheme="http://tow-086.github.io/categories/CTF/Crypto/"/>
+    
+    
+    <category term="CTF" scheme="http://tow-086.github.io/tags/CTF/"/>
+    
+    <category term="Crypto" scheme="http://tow-086.github.io/tags/Crypto/"/>
     
   </entry>
   
